@@ -47,9 +47,9 @@ function CreateAccount() {
         };
         console.log("option", options);
 
-        // METHODE DE FETCH SUR UNE FONCTION ASYNCHRONE AVEC L'API DU SOCIAL NETWORK POUR PERMETTRE LA NAVIGATION EN MODE CONNECTÉ.E
+        // METHODE DE FETCH SUR UNE FONCTION ASYNCHRONE AVEC L'API DU GAME SOCIAL NETWORK POUR PERMETTRE LA NAVIGATION EN MODE CONNECTÉ.E
         await fetch(
-            `https://social-network-api.osc-fr1.scalingo.io/post-hub/register`,
+            `https://social-network-api.osc-fr1.scalingo.io/post-hub/register`,// EN ATTENTE DE L'API DU GAME
             options
         )
             .then((response) => response.json())
