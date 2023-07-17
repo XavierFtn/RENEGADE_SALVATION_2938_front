@@ -1,0 +1,29 @@
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+}
+
+body {
+  background-image: url("./src/Components/img/backG.jpg");
+  background-size: cover;
+  cursor: url("./src/Components/img/cursor.cur"), auto;
+}
+
+.homepage {
+  width: 100%;
+  margin: 0 auto;
+  background-color: rgba(255, 255, 255, 0.1);
+  padding: 45px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  margin-top: -10px;
+}
+
+.buttonsHome {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1vw;
+}
