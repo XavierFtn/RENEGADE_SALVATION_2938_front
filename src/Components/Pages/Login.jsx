@@ -52,7 +52,7 @@ function Login() {
   }
 
   return (
-    <div className="card-body">
+    <div className="containerLogin">
       <div className="container_image">
         <img className="imageLogin" src={login1} />
       </div>
