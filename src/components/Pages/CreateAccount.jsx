@@ -62,108 +62,111 @@ function CreateAccount() {
 
 
     return (
-        <div>
+        <div className="buttonsHome">
 
-            <div className="bodyAccount">
-                <div className="container">
-                    <div className="divCreate">
-                        <form method="post">
-                            <label className="labelCreate" htmlFor="">
-                                First Name
-                            </label>
-                            <input
-                                type="text"
-                                className="inputFirstNameCreate"
-                                id="Nom"
-                                value={firstName}
-                                onChange={(e) => setFirstName(e.target.value)}
-                            />
 
-                            <label className="labelCreate" htmlFor="">
-                                Last Name
-                            </label>
-                            <input
-                                type="text"
-                                className="inputLastNameCreate"
-                                id="Prenom"
-                                value={lastName}
-                                onChange={(e) => setLastName(e.target.value)}
-                            />
+            <form method="post">
+                <label className="labelCreate" htmlFor="">
+                    First Name
+                </label>
+                <input
+                    type="text"
+                    className="inputFirstNameCreate"
+                    id="Nom"
+                    name="firstName"
+                    value={firstName}
+                    onChange={(e) => setFirstName(e.target.value)}
+                />
 
-                            <label className="labelCreate" htmlFor="">
-                                Pseudo
-                            </label>
-                            <input
-                                type="text"
-                                className="inputPseudoCreate"
-                                id="pseudo"
-                                value={username}
-                                onChange={(e) => setUsername(e.target.value)}
-                            />
+                <label className="labelCreate" htmlFor="">
+                    Last Name
+                </label>
+                <input
+                    type="text"
+                    className="inputLastNameCreate"
+                    id="Prenom"
+                    name="lastName"
+                    value={lastName}
+                    onChange={(e) => setLastName(e.target.value)}
+                />
 
-                            <label className="labelCreate" htmlFor="">
-                                Date de Naissance
-                            </label>
-                            <input
-                                type="date"
-                                className="inputDateCreate"
-                                id="date"
-                                value={date_of_birth}
-                                onChange={(e) => setDate_Of_Birth(e.target.value)}
-                            />
+                <label className="labelCreate" htmlFor="">
+                    Pseudo
+                </label>
+                <input
+                    type="text"
+                    className="inputPseudoCreate"
+                    id="pseudo"
+                    name="username"
+                    value={username}
+                    onChange={(e) => setUsername(e.target.value)}
+                />
 
-                            <label className="labelCreate" htmlFor="">
-                                Photos de Profils
-                            </label>
-                            <input
-                                type="image"
-                                className="inputCreate"
-                                id="image"
-                                value={picture}
-                                onChange={(e) => setPicture(e.target.value)}
-                            />
-                            <label className="labelCreate" htmlFor="">
-                                E-mail
-                            </label>
-                            <input
-                                type="email"
-                                className="inputEmailCreate"
-                                id="email"
-                                value={email}
-                                onChange={(e) => setEmail(e.target.value)}
-                            />
-                            <label className="labelCreate" htmlFor="">
-                                Password
-                            </label>
-                            <input
-                                type="password"
-                                className="inputPasswordCreate"
-                                id="Password"
-                                value={password}
-                                onChange={(e) => setPassword(e.target.value)}
-                            />
+                <label className="labelCreate" htmlFor="">
+                    Date de Naissance
+                </label>
+                <input
+                    type="date"
+                    className="inputDateCreate"
+                    id="date"
+                    name="date_of_birth"
+                    value={date_of_birth}
+                    onChange={(e) => setDate_Of_Birth(e.target.value)}
+                />
 
-                            <label className="labelCreate" htmlFor="">
-                                Confimation du Password
-                            </label>
-                            <input
-                                type="password"
-                                className="inputConfPasswordCreate"
-                                id="ConfPassword"
-                                value={confpassword}
-                                onChange={(e) => setConfPassword(e.target.value)}
-                            />
+                <label className="labelCreate" htmlFor="">
+                    Photos de Profils
+                </label>
+                <input
+                    type="file"
+                    id="image"
+                    name="picture"
+                    value={picture}
+                    onChange={(e) => setPicture(e.target.value)}
+                />
+                <label className="labelCreate" htmlFor="">
+                    E-mail
+                </label>
+                <input
+                    type="email"
+                    className="inputEmailCreate"
+                    id="email"
+                    name="email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                />
+                <label className="labelCreate" htmlFor="">
+                    Password
+                </label>
+                <input
+                    type="password"
+                    className="inputPasswordCreate"
+                    id="Password"
+                    name="password"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                />
 
-                            <div className="divButtonCreate">
-                                {messageErreur && <p>{messageErreur}</p>}
-                                <button className="buttonInscription" onClick={handleSubmit}>
-                                    Create Account
-                                </button>
-                            </div>
-                        </form>
-                    </div>
+                <label className="labelCreate" htmlFor="">
+                    Confimation du Password
+                </label>
+                <input
+                    type="password"
+                    className="inputConfPasswordCreate"
+                    id="ConfPassword"
+                    name="confpassword"
+                    value={confpassword}
+                    onChange={(e) => setConfPassword(e.target.value)}
+                />
+
+                <div className="divButtonCreate">
+                    {messageErreur && <p>{messageErreur}</p>}
+                    <button type="submit" onClick={handleSubmit}>
+                        Create Account
+                    </button>
                 </div>
-            </div>
+            </form>
+
 
         </div>
     );
