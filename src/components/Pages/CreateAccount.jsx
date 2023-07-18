@@ -57,7 +57,7 @@ function CreateAccount() {
             .then((response) => response.json())
             .then((data) => {
                 if (data.success) {
-                    navigate("/connection");
+                    navigate("/login");
                 } else {
                     swal(data.message);
                 }
