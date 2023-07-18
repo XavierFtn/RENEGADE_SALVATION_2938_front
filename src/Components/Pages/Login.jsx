@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import swal from "sweetalert";
+// import swal from "sweetalert";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "../style/login.css";
-import login1 from "../img/login1.jpg";
+import login from "../img/login.jpg";
 
 function Login() {
   // stock donné email et pasword dans localstorage afin de pouvoir rester connecté d'une page a l'autre et d'avoir les autorisations necessaire pour naviguer
@@ -30,10 +30,7 @@ function Login() {
     setPassword("");
 
     // Colis/ Information de la réponse
-    const response = await fetch(
-      `https://social-network-api.osc-fr1.scalingo.io/post-hub/loginsss`,
-      options
-    );
+    const response = await fetch(`http://127.0.0.1:8000/api/login`, options);
 
     const data = await response.json();
 
@@ -54,7 +51,7 @@ function Login() {
   return (
     <div className="containerLogin">
       <div className="container_image">
-        <img className="imageLogin" src={login1} />
+        <img className="imageLogin" src={login} />
       </div>
       <div className="inputLogin">
         <input
