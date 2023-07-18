@@ -15,7 +15,7 @@ function Home() {
         <br />
         <br />
         <div className="buttonsHome">
-          <Link to="/createAccount" className="btn btn-primary">
+          <Link to="/register" className="btn btn-primary">
             Create Account
           </Link>
           <Link to="/login" className="btn btn-primary">
