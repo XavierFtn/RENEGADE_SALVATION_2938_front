@@ -25,7 +25,7 @@ function Buildings(){
 
             return (
 
-              <MBuildings key={id} id={item.id} type={item.type} level={item.level} energy_consumption={item.energy_consumption} created_at={item.construction_time} />
+              <MBuildings key={id} id={item.id} type={item.type} level={item.level} energy_consumption={item.energy_consumption} created_at={item.created_at} />
 
             ); 
         }
