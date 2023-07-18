@@ -12,10 +12,10 @@ function Buildings(){
         let donnees = await response.json();
         console.log('données Building', donnees);
         setBuilding(donnees);
-        
-
     }
-    useEffect(() => { Mbuilding1() }, []);
+    useEffect(() => {
+        Mbuilding1();
+      }, []);
 
 
     const RenderMyArray = () => {
