@@ -2,8 +2,8 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 // import swal from "sweetalert";
 import "bootstrap/dist/css/bootstrap.min.css";
-import "../style/login.css";
-import login from "../img/login.jpg";
+import "../Components/style/login.css";
+import login from "../Components/img/login.jpg";
 
 function Login() {
   // stock donné email et pasword dans localstorage afin de pouvoir rester connecté d'une page a l'autre et d'avoir les autorisations necessaire pour naviguer
