@@ -5,14 +5,14 @@ import { createBrowserRouter } from "react-router-dom";
 import CreateAccount from "./Components/Pages/CreateAccount";
 
 export const router = createBrowserRouter([
-  {
-    path: "/",
-    element: <Home />,
-  },
-  {
-    path: "/login",
-    element: <Login />,
-  },
+  // {
+  //   path: "/",
+  //   element: <Home />,
+  // },
+  // {
+  //   path: "/login",
+  //   element: <Login />,
+  // },
   {
     path: "/createaccount",
     element: <CreateAccount />,
