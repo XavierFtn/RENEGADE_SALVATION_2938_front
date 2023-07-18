@@ -3,7 +3,6 @@ import moment from 'moment/moment';
 import { useEffect, useState } from 'react';
 import { Button, ListGroup, Modal, ProgressBar } from 'react-bootstrap';
 import Card from 'react-bootstrap/Card';
-import DBuilding from '../../Components/Buildings/DeleteBuildings';
 
 function MBuildings(props){
   
@@ -25,6 +24,7 @@ function MBuildings(props){
     var build = moment(props.created_at).add(1, 'hours'); // Temps du created_at avec 1heure supp
     setBuildMin(build.diff(now, 'minutes')); // Temps restant en minutes
     setPercentage(Math.round((100 / 60) * buildMin))
+    console.log(buildMin);
     if (buildMin >= 0){
       setShowWait(false);
       setShowFinish(true)}
@@ -33,6 +33,9 @@ function MBuildings(props){
       setShowWait(true);
       setShowFinish(false);
       }
+}
+function handleDeleteClick() {
+  props.onDelete(); // Props de la fonction de suppression
 }
   useEffect(() => { Display() },)
   
@@ -56,7 +59,7 @@ function MBuildings(props){
                 <Modal.Body>Are you sure to delete this {props.type} ?</Modal.Body>
                 <Modal.Footer>
                 <Button variant="secondary" onClick={handleClose}>Close</Button>
-                <Button variant="danger" onClick={() => { handleClose(); DBuilding(props.id); }}>Delete</Button>        </Modal.Footer>
+                <Button variant="danger" onClick={() => { handleClose(); handleDeleteClick(); }}>Delete</Button>        </Modal.Footer>
               </Modal>
             </ListGroup.Item>}
           {showFinish && <ListGroup.Item><ProgressBar  animated now={percentage} label={`${buildMin} minutes rest.`} /></ListGroup.Item>}
