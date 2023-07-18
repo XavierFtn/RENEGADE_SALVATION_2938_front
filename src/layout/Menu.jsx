@@ -3,8 +3,8 @@ import Button from 'react-bootstrap/Button';
 
 
 function Menu() {
-   
-    
+
+
     return (
         <div className="col">
             <nav >
@@ -17,7 +17,9 @@ function Menu() {
                 <div className="row mt-5 ">
                     <Link className="align" to="/buildyourempire"><Button variant="info">Build</Button>{' '}</Link>
                 </div>
-
+                <div className="row mt-5 ">
+                    <Link className="align" to="/createaccount"><Button variant="info">Create</Button>{' '}</Link>
+                </div>
             </nav>
 
         </div>

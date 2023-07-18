@@ -47,7 +47,7 @@ function CreateAccount() {
         console.log("option", options);
 
         await fetch(
-            `https://social-network-api.osc-fr1.scalingo.io/post-hub/register`,// EN ATTENTE DE L'API DU GAME
+            `http://127.0.0.1:8000/api/login`,// EN ATTENTE DE L'API DU GAME
             options
         )
             .then((response) => response.json())
