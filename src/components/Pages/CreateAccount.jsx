@@ -2,8 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import swal from "sweetalert";
 import React from "react";
-import "../style/homepage.css";
-import { Link, useNavigate } from "react-router-dom";
+// import "../style/homepage.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 function CreateAccount() {
