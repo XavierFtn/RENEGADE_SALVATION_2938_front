@@ -6,7 +6,6 @@ import "bootstrap/dist/css/bootstrap.min.css";
 
 function CreateAccount() {
 
-    // ON UTILISE USESTATE AFIN DE POUVOIR ENREGISTRER LES INFORMATIONS DE CREATION DE COMPTE : PRÉNOM, NOM, EMAIL, ET MOT DE PASSE, AVEC DES STRINGS
 
     const [firstName, setFirstName] = useState("");
     const [lastName, setLastName] = useState("");
@@ -19,13 +18,11 @@ function CreateAccount() {
     const [messageErreur, setMessageErreur] = useState('');
 
 
-    // METHODE POUR SOUMETTRE LES INFORMATIONS DE CREATION DE COMPTE 
     const navigate = useNavigate();
     const handleSubmit = async (e) => {
         e.preventDefault();
 
 
-        // Véraifiactionde l'age
         const ageMinimum = 18;
         const dateNaissance = parseISO(date_of_birth);
         const age = differenceInYears(new Date(), dateNaissance);
@@ -49,7 +46,6 @@ function CreateAccount() {
         };
         console.log("option", options);
 
-        // METHODE DE FETCH SUR UNE FONCTION ASYNCHRONE AVEC L'API DU GAME SOCIAL NETWORK POUR PERMETTRE LA NAVIGATION EN MODE CONNECTÉ.E
         await fetch(
             `https://social-network-api.osc-fr1.scalingo.io/post-hub/register`,// EN ATTENTE DE L'API DU GAME
             options
@@ -65,16 +61,13 @@ function CreateAccount() {
     };
 
 
-
-
-    // ON DEMANDE LES ÉLÉMENTS À AFFICHER SUR LA PAGE POUR QUE L'UTILISATEUR PUISSE ENTRER LES INFORMATIONS NÉCESSAIRES À LA CRÉATION DE SON COMPTE (INPUT ET TEXTE INFORMATIF)
     return (
         <div>
 
             <div className="bodyAccount">
                 <div className="container">
                     <div className="divCreate">
-                        <form action="" method="post">
+                        <form method="post">
                             <label className="labelCreate" htmlFor="">
                                 First Name
                             </label>
@@ -129,7 +122,6 @@ function CreateAccount() {
                                 value={picture}
                                 onChange={(e) => setPicture(e.target.value)}
                             />
-
                             <label className="labelCreate" htmlFor="">
                                 E-mail
                             </label>
@@ -140,8 +132,6 @@ function CreateAccount() {
                                 value={email}
                                 onChange={(e) => setEmail(e.target.value)}
                             />
-
-
                             <label className="labelCreate" htmlFor="">
                                 Password
                             </label>
@@ -157,7 +147,7 @@ function CreateAccount() {
                                 Confimation du Password
                             </label>
                             <input
-                                type="confpassword"
+                                type="password"
                                 className="inputConfPasswordCreate"
                                 id="ConfPassword"
                                 value={confpassword}

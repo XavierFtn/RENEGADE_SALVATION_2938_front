@@ -1,21 +1,17 @@
 import React from "react";
-import { createBrowserRouter } from "react-router-dom";
+import { BrowserRouter as Router, Route } from "react-router-dom";
 import Home from "./Components/Pages/Home";
 import Login from "./Components/Pages/Login";
+import CreateAccount from "./Components/Pages/CreateAccount";
 
-export const router = createBrowserRouter([
-  {
-    path: "/",
-    element: <Home />,
-  },
-  {
-    path: "/login",
-    element: <Login />,
-     },
-    {
-    path: "/createaccount",
-    element: <CreateAccount />,
+function App() {
+  return (
+    <Router>
+      <Route path="/" element={<Home />} />
+      <Route path="/login" element={<Login />} />
+      <Route path="/createaccount" element={<CreateAccount />} />
+    </Router>
+  );
+}
 
-  },
-
-]);
+export default App;
