@@ -31,7 +31,7 @@ function Header() {
                     <Nav className="me-auto">
                         <Nav.Link href="/">Home</Nav.Link>
                         {connected && <Nav.Link href="/buildyourempire">Build Your Empire</Nav.Link>}
-                        {connected &&  <Nav.Link href="/logout">Logout</Nav.Link>}
+                        {connected &&  <Nav.Link href="/disconnect">Logout</Nav.Link>}
                     </Nav>
                 </Container>
             </Navbar>
