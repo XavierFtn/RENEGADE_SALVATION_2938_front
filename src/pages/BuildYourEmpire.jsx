@@ -11,9 +11,9 @@ function BuildYourEmpire (){
         <div className="container">
             <Header/>
             <Menu/>
-            <h1>Build Youre Empire!</h1>
-             <Cbuilding/>
-                            <Buildings/>         
+            <h1>Build Your Empire!</h1>
+                <Cbuilding/>
+                <Buildings/>         
             <Footer/>
         </div>
     )
