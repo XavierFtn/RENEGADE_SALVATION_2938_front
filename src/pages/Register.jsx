@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import swal from "sweetalert";
-import register from "../Components/img/register.png";
+import register from "../Components/img/register.gif";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "../Components/style/register.css";
 
