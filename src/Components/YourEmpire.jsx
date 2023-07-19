@@ -31,12 +31,16 @@ function YourEmpire() {
 
         return (
             <>
+            <div>
                 <h1>YOUR SHIPS</h1>
                     { messageShips() }
+                    <div>
                         <ul className="list-ships"> 
                             {ships.map((ships) =>
                             <li className ='list-group-ships' key={ships.type}> {ships}</li>)}
                         </ul>
+                    </div>
+            </div>
             </>   
     )}
 
@@ -54,12 +58,16 @@ function YourEmpire() {
 
         return (
             <>
+            <div>
                 <h1>YOUR WAREHOUSES</h1>
                     { messageWarehouses() }
+                    <div>
                         <ul className="list-warehouses"> 
                             {warehouses.map((warehouses) =>
                             <li className ='list-group-warehouses' key={warehouses.ressources}> {warehouses}</li>)}
                         </ul>
+                    </div>
+            </div>
             </>   
     )}
 
@@ -79,12 +87,16 @@ function YourEmpire() {
 
         return (
             <>
+            <div>
                 <h1>YOUR INFRASTRUCTURES</h1>
                     { messageInfrastructures() }
+                    <div>
                         <ul className="list-infrastructures"> 
                             {infrastructures.map((infrastructures) =>
                             <li className ='list-group-infrastructures' key={infrastructures.type}> {infrastructures}</li>)}
                         </ul>
+                        </div>
+            </div>
             </>   
     )}
 
@@ -103,12 +115,16 @@ function YourEmpire() {
 
         return (
             <>
+            <div>
                 <h1>PENDING CONSTRUCTIONS</h1>
                     { messagePending() }
+                    <div>
                     <ul className="list-pending"> 
                         {pending.map((pending) =>
                         <li className ='list-group-pending' key={pending.type}> {pending}</li>)}
                     </ul>
+                    </div>
+            </div>
             </>   
     )}
 }
