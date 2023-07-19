@@ -1,10 +1,11 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import swal from "sweetalert";
 import register from "../Components/img/register.gif";
 import "bootstrap/dist/css/bootstrap.min.css";
-import "../Components/style/register.css";
+import { useNavigate } from "react-router-dom";
 
 function Register() {
+  const navigate = useNavigate();
   const [userData, setUserData] = useState({
     firstname: "",
     lastname: "",
@@ -41,10 +42,11 @@ function Register() {
       const data = await response.json();
 
       if (data.status === "success") {
-        localStorage.setItem("token", data.authorisation.token);
+        localStorage.setItem("token", JSON.stringify( data.authorisation.token));
+        localStorage.setItem("user", JSON.stringify( data.user.firstname))
+        localStorage.setItem("planet", JSON.stringify( data.user.planetary_system_id))
         swal("Registration successful!", "You are now registered!", "success");
-        // Optionally, redirect to another page after successful registration
-        // For example: navigate("/home");
+        navigate('/');
       } else {
         swal("Registration failed!", data.message, "error");
       }
