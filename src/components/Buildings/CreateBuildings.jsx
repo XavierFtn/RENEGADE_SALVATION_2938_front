@@ -1,12 +1,29 @@
+/**
+    * @description      : 
+    * @author           : 
+    * @group            : 
+    * @created          : 19/07/2023 - 13:59:20
+    * 
+    * MODIFICATION LOG
+    * - Version         : 1.0.0
+    * - Date            : 19/07/2023
+    * - Author          : 
+    * - Modification    : 
+**/
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import { useState } from 'react';
 
 function Cbuilding(){
     const [building, setBuilding] = useState();
+   
     function Create(){
+      var myHeaders = new Headers();
+      const items = JSON.parse(localStorage.getItem('token'));
+      myHeaders.append("Authorization", `Bearer ${items} `);
         var requestOptions = {
             method: 'POST',
+            headers: myHeaders,
             redirect: 'follow'
           };
           

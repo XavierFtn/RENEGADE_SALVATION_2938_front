@@ -1,29 +1,25 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
-}
+
 
 body {
-  background-image: url("./src/Components/img/backG.jpg");
-  background-size: cover;
-  background-repeat: no-repeat;
+  background-color: black;
   cursor: url("./src/Components/img/cursor.cur"), auto;
 }
 
 .homepage {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
+  height:50%;
   margin: 0 auto;
   background-color: rgba(255, 255, 255, 0.1);
-  padding: 10rem;
+  padding: 45px;
   border-radius: 10px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-  margin-top: 10rem;
+}
+
+.orbitron{
+  -webkit-text-stroke: 2px black; /*pour la bordure du texte*/
+  color:bisque;
+  font-weight: 700;
+  font-size: 30px;
+  font-family: 'Orbitron', sans-serif;
 }
 
 .buttonsHome {
