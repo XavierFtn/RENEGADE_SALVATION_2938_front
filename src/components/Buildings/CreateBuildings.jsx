@@ -4,9 +4,14 @@ import { useState } from 'react';
 
 function Cbuilding(){
     const [building, setBuilding] = useState();
+   
     function Create(){
+      var myHeaders = new Headers();
+      const items = JSON.parse(localStorage.getItem('token'));
+      myHeaders.append("Authorization", `Bearer ${items} `);
         var requestOptions = {
             method: 'POST',
+            headers: myHeaders,
             redirect: 'follow'
           };
           

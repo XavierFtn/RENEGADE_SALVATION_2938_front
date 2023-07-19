@@ -1,44 +1,17 @@
-#root {
+.card {
   display: flex;
   justify-content: center;
-  align-items: center;
-
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
-}
-
-.containerLogin {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 3vw;
-  width: 100%;
   margin: 0 auto;
   background-color: rgba(255, 255, 255, 0.1);
-  padding: 45px;
+  padding: 30px;
   border-radius: 10px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-  margin-top: -10px;
+  gap: 10px;
 }
 
-.inputLogin {
+.card-body {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
-  gap: 2rem;
-}
-
-.container_image {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.imageLogin {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border-radius: 10px;
+  gap: 1rem;
 }
