@@ -8,17 +8,22 @@
 body {
   background-image: url("./src/Components/img/backG.jpg");
   background-size: cover;
+  background-repeat: no-repeat;
   cursor: url("./src/Components/img/cursor.cur"), auto;
 }
 
 .homepage {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   width: 100%;
   margin: 0 auto;
   background-color: rgba(255, 255, 255, 0.1);
-  padding: 45px;
+  padding: 10rem;
   border-radius: 10px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-  margin-top: -10px;
+  margin-top: 10rem;
 }
 
 .buttonsHome {
