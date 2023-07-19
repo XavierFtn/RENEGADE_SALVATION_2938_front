@@ -6,6 +6,17 @@ import Battleresult from "../Components/img/Battleresult";
 import { Link } from "react-router-dom";
 
 function ExtendYourEmpire() {
-  return <div style={{ backgroundImage: "url(/Battle.png)" }}></div>;
+  return (
+    <div className="container-fluid">
+      <Header />
+
+      <Menu />
+
+      <h1>Expand your empire!</h1>
+      <Cbuilding />
+      <Buildings />
+      <Footer />
+    </div>
+  );
 }
-export default App;
+export default ExtendYourEmpire;

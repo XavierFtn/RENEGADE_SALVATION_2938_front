@@ -1,16 +1,16 @@
 import ListGroup from "react-bootstrap/ListGroup";
 
-function MBuildings(props) {
+function MShips(props) {
   return (
     <ListGroup>
       <ListGroup.Item action href="#link1">
         <p>
-          Type : {props.type} Level : {props.level} Energy Consumption:{" "}
-          {props.energy_consumption}{" "}
+          Type : {props.type} fuel : {props.fuel_consumption} Energy
+          Consumption: {props.energy_consumption}{" "}
         </p>
       </ListGroup.Item>
     </ListGroup>
   );
 }
 
-export default MBuildings;
+export default MShips;
