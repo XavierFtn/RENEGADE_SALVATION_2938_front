@@ -1,11 +1,16 @@
+import { Container, Navbar } from "react-bootstrap"
+
 function Footer() {
 
     return (
-        <footer>
-            <div className="row ">
-                <p className="c">  © Copyright </p>
-            </div>
-        </footer>
+        <Container>
+      <Navbar fixed="bottom"  bg="dark" data-bs-theme="dark" expand="lg" className="justify-content-center">
+        
+          <Navbar.Brand >© Copyright Diogo Gérald Héloïse Jimmy Xavier </Navbar.Brand>
+        
+      </Navbar>
+    </Container>
+        
     )
 }
 
