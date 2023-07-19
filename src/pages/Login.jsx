@@ -27,9 +27,12 @@ function Login() {
       const data = await response.json();
 
       if (data.status === "success") {
-        localStorage.setItem("token", JSON.stringify( data.authorisation.token));
-        localStorage.setItem("user", JSON.stringify( data.user.firstname))
-        localStorage.setItem("planet", JSON.stringify( data.user.planetary_system_id))
+        localStorage.setItem("token", JSON.stringify(data.authorisation.token));
+        localStorage.setItem("user", JSON.stringify(data.user.firstname));
+        localStorage.setItem(
+          "planet",
+          JSON.stringify(data.user.planetary_system_id)
+        );
         swal("Welcome!", "You are connected!", "success");
         navigate("/");
       } else {
