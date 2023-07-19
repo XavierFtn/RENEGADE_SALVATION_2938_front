@@ -41,18 +41,13 @@ function handleDeleteClick() {
   
     return (
     <div>
-      <Card className="text-center" border="danger" style={{ width: '18rem' }}>
-        <Card.Header>Type: {props.type} </Card.Header>
+      <Card bg ="dark" text="light" className="text-center" style={{ width: '18rem' }}>
         <Card.Body>
-          <Card.Title>level: {props.level}</Card.Title>
-          <Card.Text> Energy Consumption: {props.energy_consumption}
-          </Card.Text>
-          <ListGroup variant="flush">
-          <ListGroup.Item><Button variant="primary">Learn More</Button></ListGroup.Item>
-          {showWait && 
-            <ListGroup.Item >
+          <Card.Title>{props.type} n°{props.id} level: {props.level} </Card.Title>         
+          <ListGroup >
+          {showWait &&<div>
               <Button onClick={handleShow}   variant="danger">Delete</Button>
-              <Modal show={show} onHide={handleClose}>
+              <Modal  show={show} onHide={handleClose}>
                 <Modal.Header closeButton>
                   <Modal.Title>*Laser Noise*</Modal.Title>
                   </Modal.Header>
@@ -61,8 +56,8 @@ function handleDeleteClick() {
                 <Button variant="secondary" onClick={handleClose}>Close</Button>
                 <Button variant="danger" onClick={() => { handleClose(); handleDeleteClick(); }}>Delete</Button>        </Modal.Footer>
               </Modal>
-            </ListGroup.Item>}
-          {showFinish && <ListGroup.Item><ProgressBar  animated now={percentage} label={`${buildMin} minutes rest.`} /></ListGroup.Item>}
+          </div>}
+          {showFinish && <ProgressBar  animated now={percentage} label={`${buildMin} minutes rest.`} />}
          </ListGroup>
         </Card.Body>
       </Card>
