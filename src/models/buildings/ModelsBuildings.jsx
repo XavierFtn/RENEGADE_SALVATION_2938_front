@@ -1,16 +1,3 @@
-/**
-    * @description      : 
-    * @author           : 
-    * @group            : 
-    * @created          : 19/07/2023 - 13:59:22
-    * 
-    * MODIFICATION LOG
-    * - Version         : 1.0.0
-    * - Date            : 19/07/2023
-    * - Author          : 
-    * - Modification    : 
-**/
-
 import moment from 'moment/moment';
 import { useEffect, useState } from 'react';
 import { Button, ListGroup, Modal, ProgressBar } from 'react-bootstrap';
@@ -31,7 +18,6 @@ function MBuildings(props){
   const handleShow = () => setShow(true);
 
   function Display() {
-
     var now = moment();
     var build = moment(props.created_at).add(1, 'hours'); // Temps du created_at avec 1heure supp
     setBuildMin(build.diff(now, 'minutes')); // Temps restant en minutes
@@ -49,13 +35,14 @@ function MBuildings(props){
 function handleDeleteClick() {
   props.onDelete(); // Props de la fonction de suppression
 }
-  useEffect(() => { Display() },)
+  useEffect(() => {  Display() },)
   
     return (
     <div>
-      <Card bg ="dark" text="light" className="text-center" style={{ width: '18rem' }}>
+      <Card bg ="dark" text="light" className="text-center p-0" style={{ width: '15rem' }}>
         <Card.Body>
-          <Card.Title>{props.type} n°{props.id} level: {props.level} </Card.Title>         
+          <Card.Title className=" m-0">{props.type} n°{props.id} </Card.Title>
+          <Card.Title className=" m-0">level: {props.level} </Card.Title>             
           <ListGroup >
           {showWait &&<div>
               <Button onClick={handleShow}   variant="danger">Delete</Button>
@@ -63,7 +50,7 @@ function handleDeleteClick() {
                 <Modal.Header closeButton>
                   <Modal.Title>*Laser Noise*</Modal.Title>
                   </Modal.Header>
-                <Modal.Body>Are you sure to delete this {props.type} ?</Modal.Body>
+                <Modal.Body>Are you sure to delete this {props.type} n° {props.id}  ?</Modal.Body>
                 <Modal.Footer>
                 <Button variant="secondary" onClick={handleClose}>Close</Button>
                 <Button variant="danger" onClick={() => { handleClose(); handleDeleteClick(); }}>Delete</Button>        </Modal.Footer>
