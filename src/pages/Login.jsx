@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import swal from "sweetalert";
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -27,7 +27,7 @@ function Login() {
       const data = await response.json();
 
       if (data.status === "success") {
-        localStorage.setItem("token", data.authorisation.token);
+        localStorage.setItem("token", JSON.stringify( data.authorisation.token));
         swal("Welcome!", "You are connected!", "success");
         navigate("/home");
       } else {
