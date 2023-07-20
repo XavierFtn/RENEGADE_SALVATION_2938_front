@@ -14,7 +14,7 @@ function Register() {
     password: "",
     username: "",
     date_of_birth: "",
-    planet_system_name: "",
+    name: "", // Ajout du champ pour le nom du système planétaire
   });
 
   const handleChange = (e) => {
@@ -44,8 +44,34 @@ function Register() {
       const data = await response.json();
 
       if (data.status === "success") {
+        // Récupérer le nom du système planétaire choisi
+        const selectedPlanetName = userData.name;
+        const token = JSON.parse(localStorage.getItem("token"));
+        // Envoyer le nom du système planétaire choisi vers la route /api/index
+        const indexOptions = {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+          body: JSON.stringify({ name: selectedPlanetName }),
+        };
+
+        const indexResponse = await fetch(
+          "http://127.0.0.1:8000/api/index",
+          indexOptions
+        );
+        const indexData = await indexResponse.json();
+
+        // Votre code de gestion de la réponse de la route /api/index ici
+        // ...
+
         localStorage.setItem("token", JSON.stringify(data.authorisation.token));
         localStorage.setItem("user", JSON.stringify(data.user.firstname));
+        localStorage.setItem(
+          "planet",
+          JSON.stringify(data.user.planetary_system_id)
+        );
         swal("Registration successful!", "You are now registered!", "success");
         navigate("/");
       } else {
@@ -54,33 +80,6 @@ function Register() {
     } catch (error) {
       console.error("Error during registration:", error);
       swal("Error", "An error occurred during registration", "error");
-    }
-  };
-
-  const handleCreatePlanetarySystem = async () => {
-    try {
-      const options = {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: "Bearer " + localStorage.getItem("token"),
-        },
-        body: JSON.stringify({
-          name: userData.planet_system_name,
-        }),
-      };
-
-      const response = await fetch("http://127.0.0.1:8000/api/index", options);
-      const data = await response.json();
-
-      if (response.ok) {
-        alert(data);
-      } else {
-        alert("Error creating planetary system");
-      }
-    } catch (error) {
-      console.error("Error creating planetary system:", error);
-      alert("Error creating planetary system");
     }
   };
 
@@ -139,21 +138,21 @@ function Register() {
         </div>
         <div className="form-group">
           <input
-            name="planet_system_name"
-            value={userData.planet_system_name}
-            onChange={handleChange}
-            className="form-control"
-            placeholder="Planet System Name"
-          />
-        </div>
-        <div className="form-group">
-          <input
             type="date"
             name="date_of_birth"
             value={userData.date_of_birth}
             onChange={handleChange}
             className="form-control"
             placeholder="Date of Birth (yyyy/mm/dd)"
+          />
+        </div>
+        <div className="form-group">
+          <input
+            name="name"
+            value={userData.name}
+            onChange={handleChange}
+            className="form-control"
+            placeholder="Name of Planetary System"
           />
         </div>
         <button
