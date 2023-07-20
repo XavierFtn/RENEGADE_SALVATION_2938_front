@@ -18,8 +18,7 @@ const Counter = () => {
 
   return (
     <div>
-      <h1>Counter App</h1>
-      <p>Current Count: {count}</p>
+      <div className="orbitron">Current Count: {count}</div>
       <button onClick={increment}>Increment</button>
       <button onClick={decrement}>Decrement</button>
     </div>

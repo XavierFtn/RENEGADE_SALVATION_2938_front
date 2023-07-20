@@ -22,6 +22,7 @@ function ExtendYourEmpire() {
             <Card className="text-center px-0 pt-2">
               <Card.Header className="py-0 ">
                 <h1 className="orbitron">Fighter</h1>
+                <Counter />
               </Card.Header>
               <Card.Body>
                 <div className="py-0">
@@ -34,6 +35,7 @@ function ExtendYourEmpire() {
             <Card className="text-center px-0 pt-2">
               <Card.Header className="py-0 ">
                 <h1 className="orbitron">Frigate</h1>
+                <Counter />
               </Card.Header>
               <Card.Body>
                 <div className="py-0">
@@ -46,6 +48,7 @@ function ExtendYourEmpire() {
             <Card className="text-center px-0 pt-2">
               <Card.Header className="py-0 ">
                 <h1 className="orbitron">Cruiser</h1>
+                <Counter />
               </Card.Header>
               <Card.Body>
                 <div className="py-0">
@@ -58,6 +61,7 @@ function ExtendYourEmpire() {
             <Card className="text-center px-0 pt-2">
               <Card.Header className="py-0 ">
                 <h1 className="orbitron">Destroyer</h1>
+                <Counter />
               </Card.Header>
               <Card.Body>
                 <div className="py-0">
