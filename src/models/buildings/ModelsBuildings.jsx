@@ -1,3 +1,4 @@
+
 import moment from 'moment/moment';
 import { useEffect, useState } from 'react';
 import { Button, ListGroup, Modal, ProgressBar } from 'react-bootstrap';
@@ -65,6 +66,17 @@ function handleDeleteClick() {
       );
 
 
+function MBuildings(props) {
+  return (
+    <ListGroup>
+      <ListGroup.Item action href="#link1">
+        <p>
+          Type : {props.type} Level : {props.level} Energy Consumption:{" "}
+          {props.energy_consumption}{" "}
+        </p>
+      </ListGroup.Item>
+    </ListGroup>
+  );
 }
 
-export default MBuildings
+export default MBuildings;

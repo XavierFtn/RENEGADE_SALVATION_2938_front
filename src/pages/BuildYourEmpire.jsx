@@ -1,4 +1,5 @@
 
+
 import Header from "../models/ModelsHeader";
 import Footer from "../models/ModelsFooter";
 import Buildings from "../Components/Buildings/ViewBuildings";
@@ -6,10 +7,12 @@ import Cbuilding from "../Components/Buildings/CreateBuildings";
 import {  Card } from "react-bootstrap";
 
 
+
 function BuildYourEmpire (){
 
     return(
         <div className="container-fluid">
+
             <Header/>
             <div className="row mt-5 pt-2" >
                 <div className="col d-flex justify-content-center">
@@ -78,6 +81,7 @@ function BuildYourEmpire (){
                         </Card>
                 </div>
             </div>        
+
             <Footer/>
         </div>
     )

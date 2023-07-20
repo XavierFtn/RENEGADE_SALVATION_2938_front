@@ -36,7 +36,9 @@ function Home() {
               <Link to="/buildyourempire" className="btn btn-dark border border-warning">
                 Build Your Empire
               </Link>
+
               <Link to="/disconnect" className="btn btn-danger border border-warning">
+
                 Logout
               </Link>
             </div> }
