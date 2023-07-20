@@ -29,4 +29,8 @@
 .card-img-top {
   width: 50%;
   margin-left: 22%;
+
+  justify-content: center;
+  align-items: center;
+
 }
