@@ -46,8 +46,9 @@ function Register() {
       if (data.status === "success") {
         // Récupérer le nom du système planétaire choisi
         const selectedPlanetName = userData.name;
+
         const token = JSON.parse(localStorage.getItem("token"));
-        // Envoyer le nom du système planétaire choisi vers la route /api/index
+
         const indexOptions = {
           method: "POST",
           headers: {
@@ -62,9 +63,6 @@ function Register() {
           indexOptions
         );
         const indexData = await indexResponse.json();
-
-        // Votre code de gestion de la réponse de la route /api/index ici
-        // ...
 
         localStorage.setItem("token", JSON.stringify(data.authorisation.token));
         localStorage.setItem("user", JSON.stringify(data.user.firstname));
