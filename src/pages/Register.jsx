@@ -14,6 +14,7 @@ function Register() {
     password: "",
     username: "",
     date_of_birth: "",
+    planet_system_name: "",
   });
 
   const handleChange = (e) => {
@@ -45,10 +46,6 @@ function Register() {
       if (data.status === "success") {
         localStorage.setItem("token", JSON.stringify(data.authorisation.token));
         localStorage.setItem("user", JSON.stringify(data.user.firstname));
-        localStorage.setItem(
-          "planet",
-          JSON.stringify(data.user.planetary_system_id)
-        );
         swal("Registration successful!", "You are now registered!", "success");
         navigate("/");
       } else {
@@ -57,6 +54,33 @@ function Register() {
     } catch (error) {
       console.error("Error during registration:", error);
       swal("Error", "An error occurred during registration", "error");
+    }
+  };
+
+  const handleCreatePlanetarySystem = async () => {
+    try {
+      const options = {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: "Bearer " + localStorage.getItem("token"),
+        },
+        body: JSON.stringify({
+          name: userData.planet_system_name,
+        }),
+      };
+
+      const response = await fetch("http://127.0.0.1:8000/api/index", options);
+      const data = await response.json();
+
+      if (response.ok) {
+        alert(data);
+      } else {
+        alert("Error creating planetary system");
+      }
+    } catch (error) {
+      console.error("Error creating planetary system:", error);
+      alert("Error creating planetary system");
     }
   };
 
@@ -111,6 +135,15 @@ function Register() {
             onChange={handleChange}
             className="form-control"
             placeholder="Username"
+          />
+        </div>
+        <div className="form-group">
+          <input
+            name="planet_system_name"
+            value={userData.planet_system_name}
+            onChange={handleChange}
+            className="form-control"
+            placeholder="Planet System Name"
           />
         </div>
         <div className="form-group">
