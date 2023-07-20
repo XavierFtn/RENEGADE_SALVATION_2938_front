@@ -3,7 +3,6 @@ import swal from "sweetalert";
 import register from "../Components/img/register.gif";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { useNavigate } from "react-router-dom";
-import "../Components/style/register.css";
 
 function Register() {
   const navigate = useNavigate();

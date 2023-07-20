@@ -1,10 +1,14 @@
-import MShips from "../models/warfleet/ModelShips";
+import MShips from "../../models/fleet/ModelShips";
 import { useEffect, useState } from "react";
 
-function Warfleet() {
-  const [warfleet, setWarFleet] = useState([]);
+function Ships() {
+  const [Ship, setShip] = useState([]);
+  const [updated, setUpdated] = useState();
+  useEffect(() => {
+    MShips1();
+  }, [updated]);
 
-  async function MShips() {
+  async function MShips1() {
     var myHeaders = new Headers();
     const items = JSON.parse(localStorage.getItem("token"));
     myHeaders.append("Authorization", `Bearer ${items} `);
@@ -15,22 +19,33 @@ function Warfleet() {
       redirect: "follow",
     };
     let response = await fetch(
-      `http://127.0.0.1:8000/api/structures/`,
+      `http://127.0.0.1:8000/api/Ships/`,
       requestOptions
     );
     console.log("reponse Ships", response);
     let donnees = await response.json();
     console.log("données Ships", donnees);
-    setShips(donnees);
+    setShip(donnees);
   }
+
   useEffect(() => {
-    MShips();
+    MShips1();
   }, []);
-  async function handleShipsDelete(id) {
-    await fetch(`http://127.0.0.1:8000/api/Ships/${id}`, {
+  async function ShipDelete(id) {
+    var myHeaders = new Headers();
+    const items = JSON.parse(localStorage.getItem("token"));
+    myHeaders.append("Authorization", `Bearer ${items} `);
+
+    var requestOptions = {
       method: "DELETE",
+      headers: myHeaders,
+      redirect: "follow",
+    };
+
+    await fetch(`http://127.0.0.1:8000/api/Ships/${id}`, {
+      requestOptions,
     });
-    MShips();
+    MShips1();
   }
 
   const RenderMyArray = () => {
@@ -42,17 +57,16 @@ function Warfleet() {
           type={item.type}
           fuel={item.fuelConsumption}
           energyConsumption={item.energyConsumption}
-          onDelete={() => handleShipsDelete(item.id)}
+          onDelete={() => ShipDelete(item.id)}
         />
       );
     });
   };
   return (
     <div>
-      {" "}
       <RenderMyArray />
     </div>
   );
 }
 
-export default Warfleet;
+export default Ships;
