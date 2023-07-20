@@ -1,13 +1,9 @@
 import MBuildings from "../../models/buildings/ModelsBuildings";
 import { useEffect, useState } from "react";
-import Cbuilding from "./CreateBuildings";
+
 
 function Buildings(props) {
   const [building, setBuilding] = useState({});
-  const [updated,setUpdated] = useState(false);
-  useEffect(() => {
-    Mbuilding1();
-  },[updated]);
   
   async function Mbuilding1() {
     var myHeaders = new Headers();
@@ -82,9 +78,7 @@ function Buildings(props) {
 
   return (
     <div>
-       
             <RenderMyArray />
-    
     </div>
   );
 }
