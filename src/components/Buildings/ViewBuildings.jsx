@@ -52,6 +52,7 @@ function Buildings(props) {
   const RenderMyArray = () => {
   
 
+
     let b = [];
     if (props.type === "mine") {
       b = building.mine || [];
@@ -75,6 +76,7 @@ function Buildings(props) {
       />
     ));
   };
+
 
   return (
     <div>
