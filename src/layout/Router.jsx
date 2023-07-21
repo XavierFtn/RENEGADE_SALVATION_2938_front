@@ -31,10 +31,10 @@ const router = createBrowserRouter([
     path: "/extendyourempire",
     element: <ExtendYourEmpire />,
   },
-  {
-    path: "/battle",
-    element: <Battle />,
-  },
+  // {
+  //   path: "/battle",
+  //   element: <Battle />,
+  // },
 ]);
 
 export default router;
