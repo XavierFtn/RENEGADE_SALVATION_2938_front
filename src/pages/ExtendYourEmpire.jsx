@@ -1,11 +1,11 @@
 import Header from "../models/ModelsHeader";
 import Footer from "../models/ModelsFooter";
-import Ships from "../Components/fleet/ViewShips";
-import CShips from "../Components/fleet/CreateShips";
-import MShips from "../models/fleet/ModelShips";
+import Ships from "../Components/Ships/ViewShips";
+import CShips from "../Components/Ships/CreateShips";
+import MShips from "../models/Ships/ModelShips";
 import { Card } from "react-bootstrap";
-import Counter from "../Components/fleet/counter";
-import FuelCounter from "../Components/fleet/fuelcounter";
+import Counter from "../Components/Ships/counter";
+import FuelCounter from "../Components/Ships/fuelcounter";
 
 function ExtendYourEmpire() {
   return (

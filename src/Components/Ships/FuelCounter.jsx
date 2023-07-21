@@ -1,7 +1,7 @@
 // Counter.js
-import Counter from "../fleet/counter";
+import Counter from "./counter";
 import React, { useState } from "react";
-import ViewShips from "../fleet/ViewShips";
+import ViewShips from "./ViewShips";
 
 const FuelCounter = () => {
   // State to keep track of the counter value

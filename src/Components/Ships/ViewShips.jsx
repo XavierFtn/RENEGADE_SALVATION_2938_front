@@ -1,4 +1,4 @@
-import MShips from "../../models/fleet/ModelShips";
+import MShips from "../../models/Ships/ModelShips";
 import { useEffect, useState } from "react";
 
 function Ships() {
