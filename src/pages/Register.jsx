@@ -14,7 +14,7 @@ function Register() {
     password: "",
     username: "",
     date_of_birth: "",
-    name: "", // Ajout du champ pour le nom du système planétaire
+    name: "",
   });
 
   const handleChange = (e) => {
@@ -66,10 +66,7 @@ function Register() {
 
         localStorage.setItem("token", JSON.stringify(data.authorisation.token));
         localStorage.setItem("user", JSON.stringify(data.user.firstname));
-        localStorage.setItem(
-          "planet",
-          JSON.stringify(data.user.planetary_system_id)
-        );
+        localStorage.setItem("planet", JSON.stringify(userData.name));
         swal("Registration successful!", "You are now registered!", "success");
         navigate("/");
       } else {
