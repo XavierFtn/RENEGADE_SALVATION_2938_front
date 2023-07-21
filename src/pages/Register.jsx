@@ -126,6 +126,15 @@ function Register() {
             placeholder="Date of Birth (yyyy/mm/dd)"
           />
         </div>
+        <div className="form-group">
+          <input
+            name="name"
+            value={userData.name}
+            onChange={handleChange}
+            className="form-control"
+            placeholder="Name of Planetary System"
+          />
+        </div>
         <button
           className="btn btn-dark border border-warning"
           onClick={handleSubmit}
