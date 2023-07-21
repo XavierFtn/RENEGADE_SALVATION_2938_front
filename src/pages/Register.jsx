@@ -14,7 +14,7 @@ function Register() {
     password: "",
     username: "",
     date_of_birth: "",
-    name: "",
+    name: "", 
   });
 
   const handleChange = (e) => {
@@ -42,44 +42,15 @@ function Register() {
         options
       );
       const data = await response.json();
-
+      console.log('data', data);
       if (data.status === "success") {
+        // Récupérer le nom du système planétaire choisi
+       
         localStorage.setItem("token", JSON.stringify(data.authorisation.token));
         localStorage.setItem("user", JSON.stringify(data.user.firstname));
-
-        // Enregistrer le nom du système planétaire dans la table planetary_system
-        const selectedPlanetName = userData.name;
-        const token = JSON.parse(localStorage.getItem("token"));
-
-        const indexOptions = {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${token}`,
-          },
-          body: JSON.stringify({ name: selectedPlanetName }),
-        };
-
-        const indexResponse = await fetch(
-          "http://127.0.0.1:8000/api/index",
-          indexOptions
-        );
-        const indexData = await indexResponse.json();
-
-        if (indexData.status === "success") {
-          // localStorage.setItem(
-          //   "planet",
-          //   JSON.stringify(indexData.planetary_system_id)
-          // );
-          swal(
-            "Registration successful!",
-            "You are now registered!",
-            "success"
-          );
-          navigate("/");
-        } else {
-          swal("Registration failed!", indexData.message, "error");
-        }
+        localStorage.setItem("planet",JSON.stringify(data.user.planetary_system_name));
+        swal("Registration successful!", "You are now registered!", "success");
+        navigate("/");
       } else {
         swal("Registration failed!", data.message, "error");
       }
@@ -144,21 +115,21 @@ function Register() {
         </div>
         <div className="form-group">
           <input
-            name="name"
-            value={userData.name}
-            onChange={handleChange}
-            className="form-control"
-            placeholder="Name of Planetary System"
-          />
-        </div>
-        <div className="form-group">
-          <input
             type="date"
             name="date_of_birth"
             value={userData.date_of_birth}
             onChange={handleChange}
             className="form-control"
             placeholder="Date of Birth (yyyy/mm/dd)"
+          />
+        </div>
+        <div className="form-group">
+          <input
+            name="name"
+            value={userData.name}
+            onChange={handleChange}
+            className="form-control"
+            placeholder="Name of Planetary System"
           />
         </div>
         <button
