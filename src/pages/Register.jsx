@@ -3,7 +3,7 @@ import swal from "sweetalert";
 import register from "../Components/img/register.gif";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { useNavigate } from "react-router-dom";
-import { differenceInYears } from "date-fns";
+import "../Components/style/register.css";
 
 function Register() {
   const navigate = useNavigate();
@@ -44,10 +44,13 @@ function Register() {
 
       if (data.status === "success") {
         localStorage.setItem("token", JSON.stringify(data.authorisation.token));
-        localStorage.setItem("user", JSON.stringify(data.user.firstname))
-        localStorage.setItem("planet", JSON.stringify(data.user.planetary_system_id))
+        localStorage.setItem("user", JSON.stringify(data.user.firstname));
+        localStorage.setItem(
+          "planet",
+          JSON.stringify(data.user.planetary_system_id)
+        );
         swal("Registration successful!", "You are now registered!", "success");
-        navigate('/');
+        navigate("/");
       } else {
         swal("Registration failed!", data.message, "error");
       }
