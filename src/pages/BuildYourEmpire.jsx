@@ -1,3 +1,4 @@
+
 import Header from "../models/ModelsHeader";
 import Footer from "../models/ModelsFooter";
 import Buildings from "../Components/Buildings/ViewBuildings";
@@ -82,6 +83,7 @@ function BuildYourEmpire() {
               </div>
             </Card.Body>
           </Card>
+
         </div>
       </div>
       <Footer />

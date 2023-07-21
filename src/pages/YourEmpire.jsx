@@ -3,6 +3,7 @@ import Header from "../models/ModelsHeader";
 import Footer from "../models/ModelsFooter";
 import Menu from "../layout/Menu";
 import Menu from "../Components/Buildings/ViewBuildings";
+import Menu from "../Components/Buildings/CreateBuildings";
 
 function YourEmpire(){
 
