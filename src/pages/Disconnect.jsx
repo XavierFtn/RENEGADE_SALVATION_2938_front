@@ -26,9 +26,15 @@ function Disconnect() {
         localStorage.removeItem("token");
         localStorage.removeItem("planet");
       } 
+      else{
+        localStorage.removeItem("user");
+        localStorage.removeItem("token");
+        localStorage.removeItem("planet");
+      }
     })
     .catch(error => {
       console.error(error);
+       
       Swal.fire("Error", "An unexpected error occurred", "error");
     });
     return(
