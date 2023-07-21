@@ -53,6 +53,12 @@ function Home() {
                 Extend Your Empire
               </Link>
               <Link
+                to="/battle"
+                className="btn btn-dark border border-warning"
+              >
+                Battle
+              </Link>
+              <Link
                 to="/disconnect"
                 className="btn btn-danger border border-warning"
               >

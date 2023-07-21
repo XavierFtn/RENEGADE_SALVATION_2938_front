@@ -6,6 +6,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import Battle from ".Battle";
 import React, { useState } from "react";
 import BattleItem from "./BattleItem";
+import { Card } from "react-bootstrap";
 
 const Battle = () => {
     const [attackerShips, setAttackerShips] = useState([
@@ -57,26 +58,26 @@ const Battle = () => {
 
         // Determine the battle result
         if (attackerShips.length > 0) {
-            setBattleResult("Victoire !");
+            setBattleResult("Win !");
         } else if (defenderShips.length > 0) {
-            setBattleResult("Défaite !");
+            setBattleResult("Lose !");
         } else {
-            setBattleResult("Match nul !");
+            setBattleResult("Draw !");
         }
     };
 
     return (
         <div>
-            <h2>Bataille</h2>
-            <button onClick={handleBattle}>Lancer la bataille</button>
-            {battleResult && <p>Résultat de la bataille : {battleResult}</p>}
+            <h2>Battle</h2>
+            <button onClick={handleBattle}>Start Battle</button>
+            {battleResult && <p>Result Battle : {battleResult}</p>}
 
-            <h3>Vaisseaux attaquants :</h3>
+            <h3>Attackers :</h3>
             {attackerShips.map((ship, index) => (
                 <BattleItem key={index} type={ship.type} quantity={ship.quantity} />
             ))}
 
-            <h3>Vaisseaux défenseurs :</h3>
+            <h3>Defenders:</h3>
             {defenderShips.map((ship, index) => (
                 <BattleItem key={index} type={ship.type} quantity={ship.quantity} />
             ))}
