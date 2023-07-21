@@ -14,7 +14,7 @@ function Register() {
     password: "",
     username: "",
     date_of_birth: "",
-    name: "", 
+    name: "",
   });
 
   const handleChange = (e) => {
@@ -42,13 +42,16 @@ function Register() {
         options
       );
       const data = await response.json();
-      console.log('data', data);
+      console.log("data", data);
       if (data.status === "success") {
         // Récupérer le nom du système planétaire choisi
-       
+
         localStorage.setItem("token", JSON.stringify(data.authorisation.token));
         localStorage.setItem("user", JSON.stringify(data.user.firstname));
-        localStorage.setItem("planet",JSON.stringify(data.user.planetary_system_name));
+        localStorage.setItem(
+          "planet",
+          JSON.stringify(data.user.planetary_system_name)
+        );
         swal("Registration successful!", "You are now registered!", "success");
         navigate("/");
       } else {
@@ -121,6 +124,15 @@ function Register() {
             onChange={handleChange}
             className="form-control"
             placeholder="Date of Birth (yyyy/mm/dd)"
+          />
+        </div>
+        <div className="form-group">
+          <input
+            name="name"
+            value={userData.name}
+            onChange={handleChange}
+            className="form-control"
+            placeholder="Name of Planetary System"
           />
         </div>
         <button
