@@ -1,6 +1,5 @@
-
 import { useState } from "react";
-import {Modal } from "react-bootstrap";
+import { Modal } from "react-bootstrap";
 import Button from "react-bootstrap/Button";
 
 function CreateBuilding() {
@@ -15,10 +14,10 @@ function CreateBuilding() {
   const [ore, setOre] = useState(400);
   const [energy, setEnergy] = useState();
   const [isDisabled, setIsDisabled] = useState(true);
-  let oreMine = 300;
-  let oreRaffinery = 300;
-  let orePowerplant = 500;
-  let oreShipyard = 1000;
+  const oreMine = 300;
+  const oreRaffinery = 300;
+  const orePowerplant = 500;
+  const oreShipyard = 1000;
   // Verification des minerais , activation ou non du bouton create
 
   function handleShowm() {
@@ -47,7 +46,7 @@ function CreateBuilding() {
     }
     setShows(true);
   }
-// Verification des minerais , activation ou non du bouton create
+  // Verification des minerais , activation ou non du bouton create
   function handleShowp() {
     if (ore >= orePowerplant) {
       setIsDisabled(false);
@@ -57,16 +56,7 @@ function CreateBuilding() {
     setShowp(true);
   }
   function Create(building) {
-    if (building == "mine") {
-      console.log("code pour enlever les minerais. mine");
-    } else if (building == "raffinery") {
-      console.log("code pour enlever les minerais. raffinery");
-    } else if (building == "powerplant") {
-      console.log("code pour enlever les minerais. powerplant");
-    } else if (building == "shipyard") {
-      console.log("code pour enlever les minerais. shipyard");
-    }
-
+   
     var myHeaders = new Headers();
     const items = JSON.parse(localStorage.getItem("token"));
     myHeaders.append("Authorization", `Bearer ${items} `);
@@ -80,9 +70,22 @@ function CreateBuilding() {
     fetch(`http://127.0.0.1:8000/api/structures/${building}`, requestOptions)
       .then((response) => response.text())
       .then((result) => {
+        if (building == 'mine'){
+          //fecth
+        }
+        if (building == 'raffinery'){
+          //fecth
+        }
+        if (building == 'powerplant'){
+          //fecth
+        }
+        if (building == 'shipyard'){
+          //fecth
+        }
         console.log(result);
         // Reload à modifier, CreateBuilding Component en dehors du composant principal,pour éviter d'avoir le renderMyArray au même endroit que les boutons
         window.location.reload();
+
       })
       .catch((error) => console.log("error", error));
   }
