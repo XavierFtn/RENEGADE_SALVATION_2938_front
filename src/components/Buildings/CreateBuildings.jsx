@@ -19,7 +19,8 @@ function CreateBuilding() {
   let oreRaffinery = 300;
   let orePowerplant = 500;
   let oreShipyard = 1000;
-// Verification des minerais , activation ou non du bouton create
+  // Verification des minerais , activation ou non du bouton create
+
   function handleShowm() {
     if (ore >= oreMine) {
       setIsDisabled(false);
