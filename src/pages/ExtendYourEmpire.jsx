@@ -5,6 +5,7 @@ import CShips from "../Components/fleet/CreateShips";
 import MShips from "../models/fleet/ModelShips";
 import { Card } from "react-bootstrap";
 import Counter from "../Components/fleet/counter";
+import FuelCounter from "../Components/fleet/fuelcounter";
 
 function ExtendYourEmpire() {
   return (
@@ -75,8 +76,9 @@ function ExtendYourEmpire() {
           <Card className="text-center px-0 pt-2">
             <Card.Header className="py-0 ">
               <div className="col d-flex justify-content-center">
-                <h1 className="orbitron">Select Your Target</h1>
+                <h1 className="orbitron">Fuel</h1>
               </div>
+              <FuelCounter />
             </Card.Header>
           </Card>
         </div>
