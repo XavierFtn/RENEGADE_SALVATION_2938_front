@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Modal } from "react-bootstrap";
 import Button from "react-bootstrap/Button";
 
@@ -55,6 +55,31 @@ function CreateBuilding() {
     }
     setShowp(true);
   }
+  function ReadOre (){
+      var myHeaders = new Headers();
+      const token = JSON.parse(localStorage.getItem("token"));
+  
+      myHeaders.append("Authorization", `Bearer ${token}`);
+  
+      var requestOptions = {
+        method: "GET",
+        headers: myHeaders,
+        redirect: "follow",
+      };
+  
+      fetch("http://127.0.0.1:8000/api/ressources/", requestOptions)
+    .then((response) => response.json())
+    .then((result) => {
+      setOre(result.ore);
+      console.log("result", result);
+    })
+    .catch((error) => console.log("error", error));
+}
+  
+    useEffect(() => {
+      ReadOre();
+    }, []);
+  
   function Create(building) {
    
     var myHeaders = new Headers();
@@ -66,26 +91,12 @@ function CreateBuilding() {
       headers: myHeaders,
       redirect: "follow",
     };
-
+    
     fetch(`http://127.0.0.1:8000/api/structures/${building}`, requestOptions)
       .then((response) => response.text())
-      .then((result) => {
-        if (building == 'mine'){
-          //fecth
-        }
-        if (building == 'raffinery'){
-          //fecth
-        }
-        if (building == 'powerplant'){
-          //fecth
-        }
-        if (building == 'shipyard'){
-          //fecth
-        }
-        console.log(result);
+      .then((result) => {console.log(result);
         // Reload à modifier, CreateBuilding Component en dehors du composant principal,pour éviter d'avoir le renderMyArray au même endroit que les boutons
         window.location.reload();
-
       })
       .catch((error) => console.log("error", error));
   }

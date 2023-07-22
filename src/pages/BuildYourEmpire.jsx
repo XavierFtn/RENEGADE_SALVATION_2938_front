@@ -4,6 +4,7 @@ import Footer from "../models/ModelsFooter";
 import Buildings from "../Components/Buildings/ViewBuildings";
 import CreateBuilding from "../Components/Buildings/CreateBuildings";
 import { Card } from "react-bootstrap";
+import ViewRessources from "../Components/Ressources/ViewRessources";
 
 function BuildYourEmpire() {
   return (
@@ -30,7 +31,9 @@ function BuildYourEmpire() {
             <Card.Header className="py-0 ">
               <h1 className="orbitron">List of Ressources</h1>
             </Card.Header>
-            <Card.Body></Card.Body>
+            <Card.Body>
+              <ViewRessources/>
+            </Card.Body>
           </Card>
         </div>
       </div>
