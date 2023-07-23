@@ -1,9 +1,15 @@
 import { useState } from "react";
 import swal from "sweetalert";
-import register from "../Components/img/register.gif";
+import register from "../components/img/register.gif";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { useNavigate } from "react-router-dom";
-import "../Components/style/register.css";
+import "../components/style/register.css";
+import Avatar1 from "../components/img/Avatar/image1.jpg";
+import Avatar2 from "../components/img/Avatar/image2.jpg";
+import Avatar3 from "../components/img/Avatar/image3.jpg";
+import Avatar4 from "../components/img/Avatar/image4.jpg";
+import Avatar5 from "../components/img/Avatar/image5.jpg";
+import Avatar6 from "../components/img/Avatar/image6.jpg";
 
 function Register() {
   const navigate = useNavigate();
@@ -15,6 +21,7 @@ function Register() {
     username: "",
     date_of_birth: "",
     name: "",
+    picture: "",
   });
 
   const handleChange = (e) => {
@@ -22,6 +29,15 @@ function Register() {
     setUserData((prevData) => ({
       ...prevData,
       [name]: value,
+    }));
+  };
+
+  const handleAvatarChange = (e) => {
+    // Assuming you have the images located in /Components/img/Avatar/ folder
+    const selectedPicture = e.target.value;
+    setUserData((prevData) => ({
+      ...prevData,
+      picture: `/src/components/img/Avatar/${selectedPicture}.jpg`, // Adjust the file extension based on the actual file format
     }));
   };
 
@@ -52,6 +68,7 @@ function Register() {
           "planet",
           JSON.stringify(data.user.planetary_system_name)
         );
+        localStorage.setItem("avatar", JSON.stringify(data.user.picture)); // Save the avatar path in local storage
         swal("Registration successful!", "You are now registered!", "success");
         navigate("/");
       } else {
@@ -66,7 +83,7 @@ function Register() {
   return (
     <div className="container-sm">
       <div className="card">
-        <h5 className="card-title">Create your account</h5>
+        <h5 className="card-title text-center">Create your account</h5>
         <div>
           <img src={register} className="card-img-top" alt="Register" />
         </div>
@@ -134,6 +151,67 @@ function Register() {
             className="form-control"
             placeholder="Name of Planetary System"
           />
+        </div>
+        <div className="card">
+          <label class="text-center fw-bold">Choose your Avatar:</label>
+          <div className="form-group">
+            <div className="row">
+              <div className="col">
+                <input
+                  type="radio"
+                  name="picture"
+                  value="image1"
+                  onChange={handleAvatarChange}
+                />
+                <img src={Avatar1} alt="Avatar 1" />
+              </div>
+              <div className="col">
+                <input
+                  type="radio"
+                  name="picture"
+                  value="image2"
+                  onChange={handleAvatarChange}
+                />
+                <img src={Avatar2} alt="Avatar 2" />
+              </div>
+              <div className="col">
+                <input
+                  type="radio"
+                  name="picture"
+                  value="image3"
+                  onChange={handleAvatarChange}
+                />
+                <img src={Avatar3} alt="Avatar 3" />
+              </div>
+              <div className="col">
+                <input
+                  type="radio"
+                  name="picture"
+                  value="image4"
+                  onChange={handleAvatarChange}
+                />
+                <img src={Avatar4} alt="Avatar 4" />
+              </div>
+              <div className="col">
+                <input
+                  type="radio"
+                  name="picture"
+                  value="image5"
+                  onChange={handleAvatarChange}
+                />
+                <img src={Avatar5} alt="Avatar 5" />
+              </div>
+              <div className="col">
+                <input
+                  type="radio"
+                  name="picture"
+                  value="image6"
+                  onChange={handleAvatarChange}
+                />
+                <img src={Avatar6} alt="Avatar 6" />
+              </div>
+            </div>
+          </div>
         </div>
         <button
           className="btn btn-dark border border-warning"
