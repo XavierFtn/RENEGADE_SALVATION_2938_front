@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Container, Image, Nav, NavDropdown, Navbar } from "react-bootstrap";
 
-function Header() {
+function Header(props) {
   const [connected, setConnected] = useState(false);
   const [disconnected, setDisconnected] = useState(true);
   const [user, setUser] = useState();
@@ -58,7 +58,7 @@ function Header() {
                     width: "100px",
                   }}
                 />
-                | Welcome {user}!
+                | Welcome <span className="colorBisque">{user}</span>!
               </Navbar.Brand>
             )}
 
@@ -68,27 +68,29 @@ function Header() {
                 <Nav
                   className="me-auto my-2 my-lg-0"
                   style={{ maxHeight: "100px" }}
-                  navbarScroll
-                >
-                  <Nav.Link href="/">Home</Nav.Link>
+                  navbarScroll>
+                  <Nav.Link  href="/"> 🏚️ Home</Nav.Link>
                   <NavDropdown
                     title="Your Empire"
                     id="navbarScrollingDropdown1"
                   >
+                    <NavDropdown.Item href="/yourempire">
+                     🛕 {planet}
+                    </NavDropdown.Item>
                     <NavDropdown.Item href="/buildyourempire">
-                      Build Your Empire
+                    ⚒️ Build Your Empire
                     </NavDropdown.Item>
                     <NavDropdown.Divider />
                     <NavDropdown.Item href="/extendyourempire">
-                      Extend Your Empire
+                    🔭 Extend Your Empire
                     </NavDropdown.Item>
                   </NavDropdown>
                 </Nav>
               )}
-
+              <Nav className="me-auto my-5 my-lg-0"><p className="orbitron">{props.name}</p></Nav>
               {connected && (
                 <Nav
-                  className="me-3 my-2 my-lg-0"
+                  className="ms-auto me-3 my-2 my-lg-0"
                   style={{ maxHeight: "100px" }}
                   navbarScroll
                 >
@@ -99,15 +101,10 @@ function Header() {
                     variant="secondary"
                     title={UserMenu}
                     id="navbarScrollingDropdown2"
-                  >
-                    <NavDropdown.Item href="#action3">
-                      Edit your profil
-                    </NavDropdown.Item>
-
+                  > <NavDropdown.Item href="/">🏚️ Home</NavDropdown.Item>
+                    <NavDropdown.Item href="/editprofil">🔍 Edit your profil</NavDropdown.Item>
                     <NavDropdown.Divider />
-                    <NavDropdown.Item href="/disconnect">
-                      Logout
-                    </NavDropdown.Item>
+                    <NavDropdown.Item href="/disconnect"><span className="colorRed">🪧 Logout</span></NavDropdown.Item>
                   </NavDropdown>
                 </Nav>
               )}
@@ -115,14 +112,14 @@ function Header() {
               {disconnected && (
                 <Navbar.Collapse>
                   <Nav.Link href="/register">
-                    <span className="colorWhite">Register</span>
+                    <span className="colorWhite"> 📑 Register</span>
                   </Nav.Link>
                 </Navbar.Collapse>
               )}
               {disconnected && (
                 <Navbar.Collapse className="justify-content-end">
                   <Nav.Link href="/login">
-                    <span className="colorWhite">Login</span>
+                    <span className="colorWhite">🔗 Login</span>
                   </Nav.Link>
                 </Navbar.Collapse>
               )}

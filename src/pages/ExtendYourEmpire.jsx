@@ -10,11 +10,8 @@ import FuelCounter from "../Components/Ships/fuelcounter";
 function ExtendYourEmpire() {
   return (
     <div className="container-fluid">
-      <Header />
-      <div className="row mt-5 pt-2">
-        <div className="col d-flex justify-content-center">
-          <h1 className="orbitron">Prepare for war!</h1>
-        </div>
+      <Header name="Prepare for war!" />
+      <div className="row mb-5 pt-2">
       </div>
       <div className="row wrap">
         <div className="row mb-3"></div>

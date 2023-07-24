@@ -19,6 +19,7 @@ import Register from "../pages/Register";
 import ExtendYourEmpire from "../pages/ExtendYourEmpire";
 import Disconnect from "../pages/Disconnect";
 import Battle from "../pages/Battle";
+import EditProfil from "../pages/Edit";
 
 const router = createBrowserRouter([
   {
@@ -53,6 +54,10 @@ const router = createBrowserRouter([
   {
     path: "/battle",
     element: <Battle />,
+  },
+  {
+    path: "/editprofil",
+    element: <EditProfil />,
   },
 ]);
 
