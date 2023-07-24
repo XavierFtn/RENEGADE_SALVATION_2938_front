@@ -1,12 +1,10 @@
-
-import router from './layout/Router'
-//import { router } from "./Routes";
-import { RouterProvider } from 'react-router-dom'
-import "../src/Components/style/homepage.css";
+import { RouterProvider } from "react-router-dom";
+import router from "./layout/Router";
+import "../src/Components/style/home.css";
+import Counter from "./Components/Ships/counter";
 
 function App() {
-
-  return (<RouterProvider router={router} />)
+  return <RouterProvider router={router} />;
 }
 
 export default App;

@@ -1,0 +1,31 @@
+.btn-primary {
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+  background-color: #007bff;
+  border: none;
+  border-radius: 5px;
+  color: #fff;
+  cursor: pointer;
+}
+
+.form-control {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(238, 231, 231, 0.6);
+}
+
+.btn-primary:hover {
+  background-color: #0056b3;
+}
+
+.card-img,
+.card-img-bottom,
+.card-img-top {
+  width: 31%;
+  margin-left: 32%;
+
+  justify-content: center;
+  align-items: center;
+}

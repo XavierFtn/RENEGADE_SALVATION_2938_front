@@ -1,3 +1,4 @@
+
 import Card from 'react-bootstrap/Card';
 import ListGroup from 'react-bootstrap/ListGroup';
 function MBuildingsDetails(props){
@@ -14,11 +15,11 @@ function MBuildingsDetails(props){
           <ListGroup className="list-group-flush">
             <ListGroup.Item>{props.energy}</ListGroup.Item>
             <ListGroup.Item>{props.level}</ListGroup.Item>
-            <ListGroup.Item>{props.construction_time}</ListGroup.Item>
+            <ListGroup.Item>{props.created_at}</ListGroup.Item>
           </ListGroup>
         </Card>
       );
 }
 
+export default MBuildingsDetails;
 
-export default MBuildingsDetails
