@@ -70,17 +70,20 @@ function Header() {
                   style={{ maxHeight: "100px" }}
                   navbarScroll
                 >
-                  <Nav.Link href="/">Home</Nav.Link>
+                  <Nav.Link href="/"> 🏚️ Home</Nav.Link>
                   <NavDropdown
                     title="Your Empire"
                     id="navbarScrollingDropdown1"
                   >
+                    <NavDropdown.Item href="/yourempire">
+                     🛕 Your Empire
+                    </NavDropdown.Item>
                     <NavDropdown.Item href="/buildyourempire">
-                      Build Your Empire
+                    ⚒️ Build Your Empire
                     </NavDropdown.Item>
                     <NavDropdown.Divider />
                     <NavDropdown.Item href="/extendyourempire">
-                      Extend Your Empire
+                    🔭 Extend Your Empire
                     </NavDropdown.Item>
                   </NavDropdown>
                 </Nav>
@@ -99,14 +102,14 @@ function Header() {
                     variant="secondary"
                     title={UserMenu}
                     id="navbarScrollingDropdown2"
-                  >
+                  > <Nav.Link href="/"> 🏚️ Home</Nav.Link>
                     <NavDropdown.Item href="#action3">
-                      Edit your profil
+                    🔍 Edit your profil
                     </NavDropdown.Item>
 
                     <NavDropdown.Divider />
                     <NavDropdown.Item href="/disconnect">
-                      Logout
+                    🪧 Logout
                     </NavDropdown.Item>
                   </NavDropdown>
                 </Nav>
@@ -115,14 +118,14 @@ function Header() {
               {disconnected && (
                 <Navbar.Collapse>
                   <Nav.Link href="/register">
-                    <span className="colorWhite">Register</span>
+                    <span className="colorWhite"> 📑 Register</span>
                   </Nav.Link>
                 </Navbar.Collapse>
               )}
               {disconnected && (
                 <Navbar.Collapse className="justify-content-end">
                   <Nav.Link href="/login">
-                    <span className="colorWhite">Login</span>
+                    <span className="colorWhite">🔗 Login</span>
                   </Nav.Link>
                 </Navbar.Collapse>
               )}
