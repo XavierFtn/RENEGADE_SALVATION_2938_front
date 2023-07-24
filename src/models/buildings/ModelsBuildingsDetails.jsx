@@ -1,3 +1,15 @@
+/**
+    * @description      : 
+    * @author           : 
+    * @group            : 
+    * @created          : 24/07/2023 - 09:55:09
+    * 
+    * MODIFICATION LOG
+    * - Version         : 1.0.0
+    * - Date            : 24/07/2023
+    * - Author          : 
+    * - Modification    : 
+**/
 import Card from 'react-bootstrap/Card';
 import ListGroup from 'react-bootstrap/ListGroup';
 function MBuildingsDetails(props){
@@ -19,6 +31,5 @@ function MBuildingsDetails(props){
         </Card>
       );
 }
-
 
 export default MBuildingsDetails

@@ -1,5 +1,18 @@
+/**
+    * @description      : 
+    * @author           : 
+    * @group            : 
+    * @created          : 24/07/2023 - 09:33:00
+    * 
+    * MODIFICATION LOG
+    * - Version         : 1.0.0
+    * - Date            : 24/07/2023
+    * - Author          : 
+    * - Modification    : 
+**/
 import Home from "../pages/home";
 import BuildYourEmpire from "../pages/BuildYourEmpire";
+import YourEmpire from "../pages/YourEmpire";
 import Login from "../pages/Login";
 import { createBrowserRouter } from "react-router-dom";
 import Register from "../pages/Register";
@@ -20,6 +33,10 @@ const router = createBrowserRouter([
   {
     path: "/buildyourempire",
     element: <BuildYourEmpire />,
+  },
+  {
+    path: "/yourempire",
+    element: <YourEmpire />,
   },
 ]);
 

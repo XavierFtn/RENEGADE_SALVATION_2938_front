@@ -12,8 +12,10 @@
 **/
 import Header from "../models/ModelsHeader";
 import Footer from "../models/ModelsFooter";
+// import Warehouses from "../models/ModelsBuildings/
 import Menu from "../layout/Menu";
-import Menu from "../Components/Buildings/ViewBuildings";
+import BackgroundVideo from "../models/ModelsBackground.jsx";
+import MBuildings from "../models/buildings/ModelsBuildings.jsx";
 
 function YourEmpire(){
 
@@ -22,11 +24,11 @@ function YourEmpire(){
         <Header/>
         <Menu/>
         <h1>YOUR EMPIRE</h1>
+        <BackgroundVideo/>
             {/* <Ships/> */}
             {/* <Warehouses/> */}
-            <Buildings/>  
-            <Cbuilding/> 
-            {/* <Battles/> */}      
+            <MBuildings/>  
+            {/* <Battles/>     */}
         <Footer/>
     </div>
     )
