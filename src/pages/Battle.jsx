@@ -35,51 +35,93 @@ const Battle = () => {
 
         while (attackerShips.length > 0 && defenderShips.length > 0) {
             if (attackerPoints > defenderPoints) {
-
+                // Attacker wins the round
                 const shipsDestroyed = Math.ceil(defenderShips.length * 0.3);
                 defenderShips.splice(0, shipsDestroyed);
             } else if (attackerPoints < defenderPoints) {
-
+                // Defender wins the round
                 const shipsDestroyed = Math.ceil(attackerShips.length * 0.3);
                 attackerShips.splice(0, shipsDestroyed);
             } else {
-
+                // Draw, both sides lose 30% of their ships
                 const attackerShipsDestroyed = Math.ceil(attackerShips.length * 0.3);
                 const defenderShipsDestroyed = Math.ceil(defenderShips.length * 0.3);
                 attackerShips.splice(0, attackerShipsDestroyed);
                 defenderShips.splice(0, defenderShipsDestroyed);
             }
 
+            attackerPoints = calculateAttackPoints(attackerShips);
+            defenderPoints = calculateDefensePoints(defenderShips);
+
             rounds++;
         }
 
-
+        // Determine the battle result
         if (attackerShips.length > 0) {
-            setBattleResult("You Win !");
+            setBattleResult("Win !");
         } else if (defenderShips.length > 0) {
-            setBattleResult("You Lose !");
+            setBattleResult("Lose !");
         } else {
             setBattleResult("Draw !");
         }
     };
+    const handleSubmit = async (e) => {
+        e.preventDefault();
 
-    const handleRestartBattle = () => {
+        try {
+            const options = {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(userData),
+            };
 
-        setAttackerShips(initialAttackerShips);
-        setDefenderShips(initialDefenderShips);
-        setBattleResult(null);
+            const response = await fetch(
+                "http://127.0.0.1:8000/api/register",
+                options
+            );
+            const data = await response.json();
+            console.log("data", data);
+            if (data.status === "success") {
+                // Récupérer le nom du système planétaire choisi
+
+                localStorage.setItem("token", JSON.stringify(data.authorisation.token));
+                localStorage.setItem("user", JSON.stringify(data.user.firstname));
+                localStorage.setItem(
+                    "planet",
+                    JSON.stringify(data.user.planetary_system_name)
+                );
+                localStorage.setItem("avatar", JSON.stringify(data.user.picture)); // Save the avatar path in local storage
+
+                swal(
+                    "Registration successful!",
+                    `Your Planetary System ${data.user.planetary_system_name} was created!`,
+                    "success"
+                );
+                navigate("/");
+            } else {
+                swal("Registration failed!", data.message, "error");
+            }
+        } catch (error) {
+            console.error("Error during registration:", error);
+            swal("Error", "An error occurred during registration", "error");
+        }
     };
 
-
-
     return (
-        <div className="row">
+
+        <div className=" row ">
+
             <div>
                 <div className="row mt-5 pt-2">
                     <div className="col d-flex justify-content-center">
                         <h1 className="orbitron">Battle!</h1>
                     </div>
                 </div>
+
+                <button className="btn btn-dark border border-warning" onClick={handleBattle}>Start Battle</button>
+                {battleResult && <p>Result Battle : {battleResult}</p>}
 
                 <h3 className="orbitron">Attackers :</h3>
                 {attackerShips.map((ship, index) => (
@@ -90,28 +132,9 @@ const Battle = () => {
                 {defenderShips.map((ship, index) => (
                     <BattleItem className="orbitron" key={index} type={ship.type} quantity={ship.quantity} />
                 ))}
-
-                <button
-                    className="btn btn-dark border border-warning"
-                    onClick={handleBattle}
-                >
-                    Start Battle
-                </button>
-
-                <Card className="text-center">
-                    <Card.Body className="py-0 orbitron">
-                        {battleResult && <p>Result Battle : {battleResult}</p>}
-                    </Card.Body>
-                </Card>
-
-                <button
-                    className="btn btn-dark border border-warning"
-                    onClick={handleRestartBattle}
-                >
-                    Next Battle
-                </button>
             </div>
         </div>
+
     );
 };
 
