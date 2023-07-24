@@ -17,21 +17,21 @@ import Menu from "../layout/Menu";
 import BackgroundVideo from "../models/ModelsBackground.jsx";
 import MBuildings from "../models/buildings/ModelsBuildings.jsx";
 
-function YourEmpire(){
+function YourEmpire() {
 
-    return(
+    return (
         <div className="container">
-        <Header/>
-        <Menu/>
-        <h1>YOUR EMPIRE</h1>
-        <BackgroundVideo/>
+            <Header />
+            <Menu />
+            <h1>YOUR EMPIRE</h1>
+            <BackgroundVideo />
             {/* <Ships/> */}
             {/* <Warehouses/> */}
-            <MBuildings/>  
+            <MBuildings />
             {/* <Battles/>     */}
 
-        <Footer/>
-    </div>
+            <Footer />
+        </div>
     )
 }
-export default YourPage;
+export default YourEmpire;
