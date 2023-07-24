@@ -12,11 +12,10 @@
 **/
 import Header from "../models/ModelsHeader";
 import Footer from "../models/ModelsFooter";
+// import Warehouses from "../models/ModelsBuildings/
 import Menu from "../layout/Menu";
-import Menu from "../Components/Buildings/ViewBuildings";
-import Menu from "../Components/Buildings/CreateBuildings";
-import { Link } from "react-router-dom";
-import Button from 'react-bootstrap/Button';
+import BackgroundVideo from "../models/ModelsBackground.jsx";
+import MBuildings from "../models/buildings/ModelsBuildings.jsx";
 
 function YourEmpire() {
 

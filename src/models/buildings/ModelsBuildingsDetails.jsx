@@ -19,7 +19,7 @@ function MBuildingsDetails(props){
           </ListGroup>
         </Card>
       );
-
 }
 
 export default MBuildingsDetails;
+
