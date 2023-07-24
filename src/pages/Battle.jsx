@@ -71,7 +71,7 @@ const Battle = () => {
                     </div>
                 </div>
 
-                <button className="btn btn-dark border border-warning" onClick={handleBattle}>Start Battle</button>
+
 
 
                 <h3 className="orbitron">Attackers :</h3>
@@ -83,7 +83,7 @@ const Battle = () => {
                 {defenderShips.map((ship, index) => (
                     <BattleItem className="orbitron" key={index} type={ship.type} quantity={ship.quantity} />
                 ))}
-
+                <button className="btn btn-dark border border-warning" onClick={handleBattle}>Start Battle</button>
                 {battleResult && <p>Result Battle : {battleResult}</p>}
             </div>
         </div>
