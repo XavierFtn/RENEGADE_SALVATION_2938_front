@@ -20,11 +20,8 @@ import ViewRessources from "../Components/Ressources/ViewRessources";
 function BuildYourEmpire() {
   return (
     <div className="container-fluid">
-      <Header />
-      <div className="row mt-5 pt-2">
-        <div className="col d-flex justify-content-center">
-          <h1 className="orbitron">Build Your Empire!</h1>
-        </div>
+      <Header name="Build Your Empire" />
+      <div className="row mb-5 pt-2">
       </div>
       <div className="row wrap">
         <div className="col-md-6">

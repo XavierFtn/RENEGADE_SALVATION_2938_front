@@ -1,15 +1,3 @@
-/**
-    * @description      : 
-    * @author           : 
-    * @group            : 
-    * @created          : 24/07/2023 - 14:55:36
-    * 
-    * MODIFICATION LOG
-    * - Version         : 1.0.0
-    * - Date            : 24/07/2023
-    * - Author          : 
-    * - Modification    : 
-**/
 import Header from "../models/ModelsHeader";
 import Footer from "../models/ModelsFooter";
 // import Warehouses from "../models/ModelsBuildings/
