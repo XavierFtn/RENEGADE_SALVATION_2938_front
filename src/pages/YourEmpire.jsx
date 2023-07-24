@@ -9,9 +9,8 @@ function YourEmpire() {
 
     return(
         <div className="container m-5">
-        <Header/>
-        {/* <Menu/> */}
-        <h1>YOUR EMPIRE</h1>
+        <Header name="Your Empire"/>
+
         <BackgroundVideo/>
         <div className="m-3">
             <h1>Your are here:</h1>
