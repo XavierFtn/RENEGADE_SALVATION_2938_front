@@ -1,8 +1,8 @@
 import Header from "../models/ModelsHeader";
 import Footer from "../models/ModelsFooter";
 import Ships from "../Components/Ships/ViewShips";
-import CShips from "../Components/Ships/CreateShips";
-import MShips from "../models/Ships/ModelShips";
+import Cship from "../Components/Ships/CreateShips";
+import Grid from "../Components/Ships/Grid";
 import { Card } from "react-bootstrap";
 import Counter from "../Components/Ships/counter";
 import FuelCounter from "../Components/Ships/fuelcounter";
@@ -82,7 +82,16 @@ function ExtendYourEmpire() {
             </Card.Header>
           </Card>
         </div>
-
+        <div className="row mt-5 pt-2">
+          <Card className="text-center px-0 pt-2">
+            <Card.Header className="py-0 ">
+              <h1 className="orbitron">Select the enemy on the map!</h1>
+            </Card.Header>
+            <Card.Body>
+              <Grid />
+            </Card.Body>
+          </Card>
+        </div>
         <Footer />
       </div>
     </div>
