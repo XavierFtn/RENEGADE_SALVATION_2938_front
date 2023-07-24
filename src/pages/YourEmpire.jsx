@@ -2,11 +2,11 @@
     * @description      : 
     * @author           : 
     * @group            : 
-    * @created          : 19/07/2023 - 13:52:31
+    * @created          : 24/07/2023 - 09:08:31
     * 
     * MODIFICATION LOG
     * - Version         : 1.0.0
-    * - Date            : 19/07/2023
+    * - Date            : 24/07/2023
     * - Author          : 
     * - Modification    : 
 **/
@@ -29,8 +29,9 @@ function YourEmpire(){
             {/* <Warehouses/> */}
             <MBuildings/>  
             {/* <Battles/>     */}
+
         <Footer/>
     </div>
     )
 }
-export default YourEmpire;
+export default YourPage;
