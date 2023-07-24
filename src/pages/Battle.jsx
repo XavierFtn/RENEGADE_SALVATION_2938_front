@@ -1,17 +1,23 @@
 import React, { useState } from "react";
 import BattleItem from "./BattleItem";
+import swal from "sweetalert";
 import "bootstrap/dist/css/bootstrap.min.css";
+import { Card } from "react-bootstrap";
 
 const Battle = () => {
-    const [attackerShips, setAttackerShips] = useState([
-        { type: "Chasseur", quantity: 10 },
+    const initialAttackerShips = [
+        { type: "Chasseur", quantity: 5 },
         { type: "Fregate", quantity: 5 },
-    ]);
-    const [defenderShips, setDefenderShips] = useState([
+    ];
+    const initialDefenderShips = [
         { type: "Chasseur", quantity: 5 },
         { type: "Fregate", quantity: 6 },
-    ]);
+    ];
+    const [attackerShips, setAttackerShips] = useState(initialAttackerShips);
+    const [defenderShips, setDefenderShips] = useState(initialDefenderShips);
     const [battleResult, setBattleResult] = useState(null);
+    const [attackerId, setAttackerId] = useState("");
+    const [defenderId, setDefenderId] = useState("");
 
     const calculateAttackPoints = (ships) => {
         return ships.reduce((total, ship) => total + ship.quantity, 0);
@@ -29,41 +35,45 @@ const Battle = () => {
 
         while (attackerShips.length > 0 && defenderShips.length > 0) {
             if (attackerPoints > defenderPoints) {
-                // Attacker wins the round
+
                 const shipsDestroyed = Math.ceil(defenderShips.length * 0.3);
                 defenderShips.splice(0, shipsDestroyed);
             } else if (attackerPoints < defenderPoints) {
-                // Defender wins the round
+
                 const shipsDestroyed = Math.ceil(attackerShips.length * 0.3);
                 attackerShips.splice(0, shipsDestroyed);
             } else {
-                // Draw, both sides lose 30% of their ships
+
                 const attackerShipsDestroyed = Math.ceil(attackerShips.length * 0.3);
                 const defenderShipsDestroyed = Math.ceil(defenderShips.length * 0.3);
                 attackerShips.splice(0, attackerShipsDestroyed);
                 defenderShips.splice(0, defenderShipsDestroyed);
             }
 
-            attackerPoints = calculateAttackPoints(attackerShips);
-            defenderPoints = calculateDefensePoints(defenderShips);
-
             rounds++;
         }
 
-        // Determine the battle result
+
         if (attackerShips.length > 0) {
-            setBattleResult("Win !");
+            setBattleResult("You Win !");
         } else if (defenderShips.length > 0) {
-            setBattleResult("Lose !");
+            setBattleResult("You Lose !");
         } else {
             setBattleResult("Draw !");
         }
     };
 
+    const handleRestartBattle = () => {
+
+        setAttackerShips(initialAttackerShips);
+        setDefenderShips(initialDefenderShips);
+        setBattleResult(null);
+    };
+
+
+
     return (
-
-        <div className=" row ">
-
+        <div className="row">
             <div>
                 <div className="row mt-5 pt-2">
                     <div className="col d-flex justify-content-center">
@@ -80,11 +90,28 @@ const Battle = () => {
                 {defenderShips.map((ship, index) => (
                     <BattleItem className="orbitron" key={index} type={ship.type} quantity={ship.quantity} />
                 ))}
-                <button className="btn btn-dark border border-warning" onClick={handleBattle}>Start Battle</button>
-                {battleResult && <p>Result Battle : {battleResult}</p>}
+
+                <button
+                    className="btn btn-dark border border-warning"
+                    onClick={handleBattle}
+                >
+                    Start Battle
+                </button>
+
+                <Card className="text-center">
+                    <Card.Body className="py-0 orbitron">
+                        {battleResult && <p>Result Battle : {battleResult}</p>}
+                    </Card.Body>
+                </Card>
+
+                <button
+                    className="btn btn-dark border border-warning"
+                    onClick={handleRestartBattle}
+                >
+                    Next Battle
+                </button>
             </div>
         </div>
-
     );
 };
 

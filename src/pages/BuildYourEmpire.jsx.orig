@@ -31,13 +31,9 @@ function BuildYourEmpire() {
               <h1 className="orbitron">List of Ressources</h1>
             </Card.Header>
             <Card.Body>
-<<<<<<< HEAD
-              <ViewRessources />
-=======
 
               <ViewRessources/>
 
->>>>>>> 607de480d4b492ef640140f5c011c9bdbbd62b23
             </Card.Body>
           </Card>
         </div>

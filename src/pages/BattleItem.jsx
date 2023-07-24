@@ -10,7 +10,6 @@ const BattleItem = ({ type, quantity }) => {
                     <p>Ships : {type}</p>
                     <p>Quantity : {quantity}</p>
                 </Card.Body>
-
             </Card>
         </div>
 
