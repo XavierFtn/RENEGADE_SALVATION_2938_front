@@ -1,8 +1,7 @@
-
 import Header from "../models/ModelsHeader";
 import Footer from "../models/ModelsFooter";
 import Buildings from "../Components/Buildings/ViewBuildings";
-import CreateBuilding from "../Components/Buildings/CreateBuildings";
+import Cbuilding from "../Components/Buildings/CreateBuildings";
 import { Card } from "react-bootstrap";
 import ViewRessources from "../Components/Ressources/ViewRessources";
 
@@ -22,7 +21,7 @@ function BuildYourEmpire() {
               <h1 className="orbitron">Create</h1>
             </Card.Header>
             <Card.Body>
-              <CreateBuilding />
+              <Cbuilding />
             </Card.Body>
           </Card>
         </div>
@@ -32,7 +31,9 @@ function BuildYourEmpire() {
               <h1 className="orbitron">List of Ressources</h1>
             </Card.Header>
             <Card.Body>
+
               <ViewRessources/>
+
             </Card.Body>
           </Card>
         </div>
@@ -86,9 +87,9 @@ function BuildYourEmpire() {
               </div>
             </Card.Body>
           </Card>
-
         </div>
       </div>
+
       <Footer />
     </div>
   );

@@ -4,6 +4,7 @@ import "../Components/style/home.css";
 import Header from "../models/ModelsHeader";
 import { useEffect } from "react";
 
+
 function Home() {
  
 
@@ -13,7 +14,7 @@ function Home() {
   }, []);
   return (
     <div className="container-fluid">
-      <Header/>
+      <Header />
       <div className="col">
         <div className="row  mb-5"></div>
 

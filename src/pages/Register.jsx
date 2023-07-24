@@ -70,7 +70,11 @@ function Register() {
         );
         sessionStorage.setItem("avatar", JSON.stringify(data.user.picture)); // Save the avatar path in local storage
 
-        swal("Registration successful!", "You are now registered!", "success");
+        swal(
+          "Registration successful!",
+          `Your Planetary System ${data.user.planetary_system_name} was created!`,
+          "success"
+        );
         navigate("/");
       } else {
         swal("Registration failed!", data.message, "error");
