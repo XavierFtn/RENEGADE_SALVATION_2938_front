@@ -20,34 +20,34 @@ import MShips from "../models/warfleet/ModelShips.jsx";
 
 function YourEmpire() {
 
-    return(
+    return (
         <div className="container m-5">
-        <Header/>
-        {/* <Menu/> */}
-        <h1>YOUR EMPIRE</h1>
-        <BackgroundVideo/>
-        <div className="m-3">
-            <h1>Your are here:</h1>
-            {/* afficher carte */}
+            <Header />
+            {/* <Menu/> */}
+            <h1>YOUR EMPIRE</h1>
+            <BackgroundVideo />
+            <div className="m-3">
+                <h1>Your are here:</h1>
+                {/* afficher carte */}
             </div>
             <div className="m-3">
-            <h1>Your warehouses:</h1>
-            {/* <Warehouses/> */}
+                <h1>Your warehouses:</h1>
+                {/* <Warehouses/> */}
             </div>
             <div className="m-3">
-            <h1>Your Resources:</h1>
-            <MRessources/> 
+                <h1>Your Resources:</h1>
+                <MRessources />
             </div>
             <div className="m-3">
-            <h1>Your ships:</h1>
-            <MShips/>  
+                <h1>Your ships:</h1>
+                <MShips />
             </div>
             <div className="m-3">
-            <h1>Your past battles:</h1>
-            {/* <Battles/>  */} 
+                <h1>Your past battles:</h1>
+                {/* <Battles/>  */}
             </div>
-        <Footer/>
-    </div>
+            <Footer />
+        </div>
     )
 }
 export default YourEmpire;
