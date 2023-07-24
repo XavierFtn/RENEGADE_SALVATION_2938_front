@@ -10,7 +10,7 @@ function Ships() {
 
   async function MShips1() {
     var myHeaders = new Headers();
-    const items = JSON.parse(localStorage.getItem("token"));
+    const items = JSON.parse(sessionStorage.getItem("token"));
     myHeaders.append("Authorization", `Bearer ${items} `);
 
     var requestOptions = {
