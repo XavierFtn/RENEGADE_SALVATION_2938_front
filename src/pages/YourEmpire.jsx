@@ -1,3 +1,15 @@
+/**
+    * @description      : 
+    * @author           : 
+    * @group            : 
+    * @created          : 24/07/2023 - 15:37:26
+    * 
+    * MODIFICATION LOG
+    * - Version         : 1.0.0
+    * - Date            : 24/07/2023
+    * - Author          : 
+    * - Modification    : 
+**/
 import Header from "../models/ModelsHeader";
 import Footer from "../models/ModelsFooter";
 // import Warehouses from "../models/ModelsBuildings/
@@ -14,8 +26,6 @@ function YourEmpire() {
             
             <BackgroundVideo/>
         
-        <h1>YOUR EMPIRE</h1>
-
         <div className="row m-3">
             <div className="row wrap">
                 <div className="col-md-6">
