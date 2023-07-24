@@ -62,15 +62,19 @@ function Register() {
       if (data.status === "success") {
         // Récupérer le nom du système planétaire choisi
 
-        localStorage.setItem("token", JSON.stringify(data.authorisation.token));
-        localStorage.setItem("user", JSON.stringify(data.user.firstname));
-        localStorage.setItem(
+        sessionStorage.setItem("token", JSON.stringify(data.authorisation.token));
+        sessionStorage.setItem("user", JSON.stringify(data.user.firstname));
+        sessionStorage.setItem(
           "planet",
           JSON.stringify(data.user.planetary_system_name)
         );
-        localStorage.setItem("avatar", JSON.stringify(data.user.picture)); // Save the avatar path in local storage
+        sessionStorage.setItem("avatar", JSON.stringify(data.user.picture)); // Save the avatar path in local storage
 
-        swal("Registration successful!", "You are now registered!", "success");
+        swal(
+          "Registration successful!",
+          `Your Planetary System ${data.user.planetary_system_name} was created!`,
+          "success"
+        );
         navigate("/");
       } else {
         swal("Registration failed!", data.message, "error");
@@ -154,7 +158,7 @@ function Register() {
           />
         </div>
         <div className="card">
-          <label class="text-center fw-bold">Choose your Avatar:</label>
+          <label className="text-center fw-bold">Choose your Avatar:</label>
           <div className="form-group">
             <div className="row">
               <div className="col">
