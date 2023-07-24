@@ -18,19 +18,22 @@ import BackgroundVideo from "../models/ModelsBackground.jsx";
 import MBuildings from "../models/buildings/ModelsBuildings.jsx";
 
 function YourEmpire() {
-  return (
-    <div className="container">
-      <Header />
-      <Menu />
-      <h1>YOUR EMPIRE</h1>
-      <BackgroundVideo />
-      {/* <Ships/> */}
-      {/* <Warehouses/> */}
-      <MBuildings />
-      {/* <Battles/>     */}
 
-      <Footer />
-    </div>
-  );
+
+    return (
+        <div className="container">
+            <Header />
+            <Menu />
+            <h1>YOUR EMPIRE</h1>
+            <BackgroundVideo />
+            {/* <Ships/> */}
+            {/* <Warehouses/> */}
+            <MBuildings />
+            {/* <Battles/>     */}
+
+            <Footer />
+        </div>
+    )
 }
 export default YourEmpire;
+

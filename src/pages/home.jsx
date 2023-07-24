@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import Header from "../models/ModelsHeader";
 import { useEffect, useState } from "react";
 
+
 function Home() {
   const [connected, setConnected] = useState(false);
   const [disconnected, setDisconnected] = useState(false);
@@ -47,6 +48,18 @@ function Home() {
                 Build Your Empire
               </Link>
 
+              <Link
+                to="/extendyourempire"
+                className="btn btn-dark border border-warning"
+              >
+                Extend Your Empire
+              </Link>
+              <Link
+                to="/battle"
+                className="btn btn-dark border border-warning"
+              >
+                Battle
+              </Link>
               <Link
                 to="/disconnect"
                 className="btn btn-danger border border-warning"
