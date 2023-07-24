@@ -102,15 +102,10 @@ function Header() {
                     variant="secondary"
                     title={UserMenu}
                     id="navbarScrollingDropdown2"
-                  > <Nav.Link href="/"> 🏚️ Home</Nav.Link>
-                    <NavDropdown.Item href="#action3">
-                    🔍 Edit your profil
-                    </NavDropdown.Item>
-
+                  > <NavDropdown.Item href="/">🏚️ Home</NavDropdown.Item>
+                    <NavDropdown.Item href="#action3">🔍 Edit your profil</NavDropdown.Item>
                     <NavDropdown.Divider />
-                    <NavDropdown.Item href="/disconnect">
-                    🪧 Logout
-                    </NavDropdown.Item>
+                    <NavDropdown.Item href="/disconnect">🪧 Logout</NavDropdown.Item>
                   </NavDropdown>
                 </Nav>
               )}
