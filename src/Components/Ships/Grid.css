@@ -1,13 +1,9 @@
-.node-content {
-  display: flex;
+* {
+  box-sizing: border-box;
 }
-
-.row {
-  display: flex;
-}
-
-.node {
-  border: 1px solid black;
-  width: 30px;
-  height: 30px;
+.grid-board {
+  display: grid;
+  grid-template-columns: repeat(var(--cols), var(--tile-size));
+  grid-gap: 0;
+  align-self: flex-start;
 }

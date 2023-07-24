@@ -2,10 +2,11 @@ import Header from "../models/ModelsHeader";
 import Footer from "../models/ModelsFooter";
 import Ships from "../Components/Ships/ViewShips";
 import Cship from "../Components/Ships/CreateShips";
-import Grid from "../Components/Ships/Grid";
+import GridBoard from "../Components/Ships/GridBoard";
 import { Card } from "react-bootstrap";
 import Counter from "../Components/Ships/counter";
 import FuelCounter from "../Components/Ships/fuelcounter";
+import GridSquare from "../Components/Ships/GridSquare";
 
 function ExtendYourEmpire() {
   return (
@@ -88,7 +89,8 @@ function ExtendYourEmpire() {
               <h1 className="orbitron">Select the enemy on the map!</h1>
             </Card.Header>
             <Card.Body>
-              <Grid />
+              <GridSquare color="1" />
+              <GridBoard />
             </Card.Body>
           </Card>
         </div>
