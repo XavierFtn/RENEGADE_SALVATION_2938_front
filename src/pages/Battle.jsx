@@ -1,12 +1,6 @@
-import Header from "../models/ModelsHeader";
-import Footer from "../models/ModelsFooter";
-import Menu from "../layout/Menu";
-import swal from "sweetalert";
-import "bootstrap/dist/css/bootstrap.min.css";
-import Battle from ".Battle";
 import React, { useState } from "react";
 import BattleItem from "./BattleItem";
-import { Card } from "react-bootstrap";
+import "bootstrap/dist/css/bootstrap.min.css";
 
 const Battle = () => {
     const [attackerShips, setAttackerShips] = useState([
@@ -67,21 +61,31 @@ const Battle = () => {
     };
 
     return (
-        <div>
-            <h2>Battle</h2>
-            <button onClick={handleBattle}>Start Battle</button>
-            {battleResult && <p>Result Battle : {battleResult}</p>}
 
-            <h3>Attackers :</h3>
-            {attackerShips.map((ship, index) => (
-                <BattleItem key={index} type={ship.type} quantity={ship.quantity} />
-            ))}
+        <div className=" row ">
 
-            <h3>Defenders:</h3>
-            {defenderShips.map((ship, index) => (
-                <BattleItem key={index} type={ship.type} quantity={ship.quantity} />
-            ))}
+            <div>
+                <div className="row mt-5 pt-2">
+                    <div className="col d-flex justify-content-center">
+                        <h1 className="orbitron">Battle!</h1>
+                    </div>
+                </div>
+
+                <button className="btn btn-dark border border-warning" onClick={handleBattle}>Start Battle</button>
+                {battleResult && <p>Result Battle : {battleResult}</p>}
+
+                <h3 className="orbitron">Attackers :</h3>
+                {attackerShips.map((ship, index) => (
+                    <BattleItem className="orbitron" key={index} type={ship.type} quantity={ship.quantity} />
+                ))}
+
+                <h3 className="orbitron">Defenders:</h3>
+                {defenderShips.map((ship, index) => (
+                    <BattleItem className="orbitron" key={index} type={ship.type} quantity={ship.quantity} />
+                ))}
+            </div>
         </div>
+
     );
 };
 
