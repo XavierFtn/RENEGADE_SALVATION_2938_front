@@ -3,20 +3,20 @@ import Button from "react-bootstrap/Button";
 import { useState } from "react";
 import { useAccordionButton } from "react-bootstrap";
 
-function Cships() {
+function Cship() {
   const [ships, setShips] = useState();
 
-  function create() {
+  function Create(ship) {
     var MyHeaders = new Headers();
-    const items = JSON.parse(localStorage.getItem("token"));
+    const items = JSON.parse(sessionStorage.getItem("token"));
     MyHeaders.append("Authorization", `Bearer ${items}`);
     var requestOptions = {
       method: "POST",
-      headers: myHeaders,
+      headers: MyHeaders,
       redirect: "follow",
     };
 
-    fetch(`http://127.0.0.1:8000/api/ships/${ships}`, requestOptions)
+    fetch(`http://127.0.0.1:8000/api/ships/${ship}`, requestOptions)
       .then((response) => response.text())
       .then((result) => console.log(result))
       .catch((error) => console.log("error", error));
@@ -29,10 +29,10 @@ function Cships() {
         aria-label="Default select example"
       >
         <option>Select your ship</option>
-        <option value="fighter">Mine</option>
-        <option value="frigate">Raffinery</option>
-        <option value="cruiser">PowerPlant</option>
-        <option value="destroyer">Shipyard</option>
+        <option value="fighter">Fighter</option>
+        <option value="frigate">Frigate</option>
+        <option value="cruiser">Cruiser</option>
+        <option value="destroyer">Destroyer</option>
       </Form.Select>
       <Button type="submit" onClick={Create}>
         Create
@@ -41,4 +41,4 @@ function Cships() {
   );
 }
 
-export default Cships;
+export default Cship;

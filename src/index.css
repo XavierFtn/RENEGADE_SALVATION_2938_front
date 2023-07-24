@@ -1,14 +1,14 @@
 .video {
-    position: fixed;
-    z-index: -1;
-  }
+  position: fixed;
+  z-index: -1;
+}
 video {
-    position: fixed;
-    z-index: -1;
-    left: 0px;
-      top: 0px;
-      width: 100%;
-  }
+  position: fixed;
+  z-index: -1;
+  left: 0px;
+  top: 0px;
+  width: 100%;
+}
 
 footer {
   position: relative;
@@ -16,16 +16,15 @@ footer {
   bottom: 0;
   width: 100%;
   background-color: #0d0b0b;
-
 }
 .scroll::-webkit-scrollbar {
-  display: none;}
+  display: none;
+}
 
-.scroll{
+.scroll {
   -ms-overflow-style: none;
   scrollbar-width: none;
   overflow: scroll;
   white-space: nowrap;
-  height: 250px;;
-
+  height: 250px;
 }

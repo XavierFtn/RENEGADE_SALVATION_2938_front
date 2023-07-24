@@ -28,12 +28,10 @@ function Login() {
 
       if (data.status === "success") {
 
-        localStorage.setItem("token", JSON.stringify(data.authorisation.token));
-        localStorage.setItem("user", JSON.stringify(data.user.firstname));
-        localStorage.setItem(
-          "planet",
-          JSON.stringify(data.user.planetary_system_id)
-        );
+        sessionStorage.setItem("token", JSON.stringify(data.authorisation.token));
+        sessionStorage.setItem("user", JSON.stringify(data.user.firstname));
+        sessionStorage.setItem("planet",JSON.stringify(data.user.planetary_system_name));
+        sessionStorage.setItem("avatar",JSON.stringify(data.user.picture));
 
         swal("Welcome!", "You are connected!", "success");
         navigate("/");

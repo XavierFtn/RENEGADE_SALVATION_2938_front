@@ -1,13 +1,12 @@
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
-import Header from "../models/ModelsHeader";
-import Footer from "../models/ModelsFooter";
+
 
 function Disconnect() {
   const navigate = useNavigate();
 
-  const token = JSON.parse(localStorage.getItem("token"));
-  const user = JSON.parse(localStorage.getItem("user"));
+  const token = JSON.parse(sessionStorage.getItem("token"));
+
   var myHeaders = new Headers();
   myHeaders.append("Authorization", `Bearer ${token} `);
 
@@ -21,15 +20,12 @@ function Disconnect() {
     .then(response => {
       if (response.ok) {
         navigate("/");
-        Swal.fire("Good-Bye", "You are disconnected!", "success");
-        localStorage.removeItem("user");
-        localStorage.removeItem("token");
-        localStorage.removeItem("planet");
+        Swal.fire("Good-Bye Space Ranger", "You are disconnected!", "success");
+        sessionStorage.clear();
       } 
       else{
-        localStorage.removeItem("user");
-        localStorage.removeItem("token");
-        localStorage.removeItem("planet");
+        sessionStorage.clear();
+        navigate("/");
       }
     })
     .catch(error => {
@@ -37,20 +33,7 @@ function Disconnect() {
        
       Swal.fire("Error", "An unexpected error occurred", "error");
     });
-    return(
-        <div className="container-fluid">
-      <Header/>
-      <div className="col">
-        <div className="row  mb-5"></div>
-            <div className=" row ">
-                <img  src="src/Components/img/renegade-logo.jpg"/>
-                <p className="orbitron">GOOD-BYE SPACE RANGER {user}</p>
-                <br />
-            </div>
-        </div>
-        <Footer />
-    </div>
-    )
+   
 }
 
 export default Disconnect;

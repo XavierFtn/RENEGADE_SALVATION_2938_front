@@ -15,6 +15,7 @@
 
 // function YourEmpire() {
 
+
 //     function ListShips() {
 //         let ships = [
 //             'fighter',
@@ -71,6 +72,7 @@
 //             </>   
 //     )}
 
+
 //     function ListInfrastructures() {
 //         let infrastructures = [
 //             'mine',
@@ -80,6 +82,7 @@
 //         ]
 //         // /!\ PENSER À IMPLÉMENTER NOMBRE D'INFRASTRUCTURES' /!\
 //         // infrastrctures = [];
+
 
 //         const messageInfrastructures = () => { 
 //             return infrastructures.length === 0 ? <p>Build infrastructures to launch your ressource production.</p> : null;
@@ -100,6 +103,7 @@
 //             </>   
 //     )}
 
+
 //     function ListPending() {
 //         let pending = [
 //             'ships',
@@ -108,6 +112,7 @@
 //         ]
 //         // /!\ PENSER À IMPLÉMENTER NOMBRE DE CONSTRUCTION & LEUR TEMPS RESTANT' /!\
 //         // infrastrctures = [];
+
 
 //         const messagePending = () => { 
 //             return pending.length === 0 ? <p>You have no constructions pending.</p> : null;
@@ -128,5 +133,6 @@
 //             </>   
 //     )}
 // }
+
 
 // export default YourEmpire

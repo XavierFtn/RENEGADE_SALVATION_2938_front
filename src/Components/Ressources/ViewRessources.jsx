@@ -7,7 +7,7 @@ function ViewRessources() {
 
   function ShowRessources() {
     var myHeaders = new Headers();
-    const token = JSON.parse(localStorage.getItem("token"));
+    const token = JSON.parse(sessionStorage.getItem("token"));
 
     myHeaders.append("Authorization", `Bearer ${token}`);
 

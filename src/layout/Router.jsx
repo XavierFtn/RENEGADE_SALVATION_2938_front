@@ -18,6 +18,7 @@ import { createBrowserRouter } from "react-router-dom";
 import Register from "../pages/Register";
 import ExtendYourEmpire from "../pages/ExtendYourEmpire";
 import Disconnect from "../pages/Disconnect";
+import Battle from "../pages/Battle";
 
 const router = createBrowserRouter([
   {
@@ -48,6 +49,10 @@ const router = createBrowserRouter([
     path: "/extendyourempire",
     element: <ExtendYourEmpire />,
 
+  },
+  {
+    path: "/battle",
+    element: <Battle />,
   },
 ]);
 
