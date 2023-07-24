@@ -1,6 +1,5 @@
-
-import { useState } from "react";
-import {Modal } from "react-bootstrap";
+import { useEffect, useState } from "react";
+import { Modal } from "react-bootstrap";
 import Button from "react-bootstrap/Button";
 
 function CreateBuilding() {
@@ -15,10 +14,10 @@ function CreateBuilding() {
   const [ore, setOre] = useState(400);
   const [energy, setEnergy] = useState();
   const [isDisabled, setIsDisabled] = useState(true);
-  let oreMine = 300;
-  let oreRaffinery = 300;
-  let orePowerplant = 500;
-  let oreShipyard = 1000;
+  const oreMine = 300;
+  const oreRaffinery = 300;
+  const orePowerplant = 500;
+  const oreShipyard = 1000;
   // Verification des minerais , activation ou non du bouton create
 
   function handleShowm() {
@@ -47,7 +46,7 @@ function CreateBuilding() {
     }
     setShows(true);
   }
-// Verification des minerais , activation ou non du bouton create
+  // Verification des minerais , activation ou non du bouton create
   function handleShowp() {
     if (ore >= orePowerplant) {
       setIsDisabled(false);
@@ -56,17 +55,33 @@ function CreateBuilding() {
     }
     setShowp(true);
   }
+  function ReadOre (){
+      var myHeaders = new Headers();
+      const token = JSON.parse(localStorage.getItem("token"));
+  
+      myHeaders.append("Authorization", `Bearer ${token}`);
+  
+      var requestOptions = {
+        method: "GET",
+        headers: myHeaders,
+        redirect: "follow",
+      };
+  
+      fetch("http://127.0.0.1:8000/api/ressources/", requestOptions)
+    .then((response) => response.json())
+    .then((result) => {
+      setOre(result.ore);
+      console.log("result", result);
+    })
+    .catch((error) => console.log("error", error));
+}
+  
+    useEffect(() => {
+      ReadOre();
+    }, []);
+  
   function Create(building) {
-    if (building == "mine") {
-      console.log("code pour enlever les minerais. mine");
-    } else if (building == "raffinery") {
-      console.log("code pour enlever les minerais. raffinery");
-    } else if (building == "powerplant") {
-      console.log("code pour enlever les minerais. powerplant");
-    } else if (building == "shipyard") {
-      console.log("code pour enlever les minerais. shipyard");
-    }
-
+   
     var myHeaders = new Headers();
     const items = JSON.parse(localStorage.getItem("token"));
     myHeaders.append("Authorization", `Bearer ${items} `);
@@ -76,11 +91,10 @@ function CreateBuilding() {
       headers: myHeaders,
       redirect: "follow",
     };
-
+    
     fetch(`http://127.0.0.1:8000/api/structures/${building}`, requestOptions)
       .then((response) => response.text())
-      .then((result) => {
-        console.log(result);
+      .then((result) => {console.log(result);
         // Reload à modifier, CreateBuilding Component en dehors du composant principal,pour éviter d'avoir le renderMyArray au même endroit que les boutons
         window.location.reload();
       })
@@ -90,7 +104,7 @@ function CreateBuilding() {
   return (
     <div className="row">
       <div className="col-3">
-        <Button
+        <Button variant="btn-dark"
           className="btn btn-dark border border-warning"
           onClick={handleShowm}
         >
@@ -102,12 +116,12 @@ function CreateBuilding() {
           </Modal.Header>
           <Modal.Body>Do you really want to create this Mine ?</Modal.Body>
           <Modal.Body>
-            🪙: <strong>{oreMine}</strong> Ore Units <br /> ⚡:
+          🪨: <strong>{oreMine}</strong> Ore Units <br /> ⚡:
             <strong>1</strong> Energy Units <br /> 🕐:<strong>1</strong> hour{" "}
           </Modal.Body>
           <Modal.Footer>
             <p>
-              You have 🪙: <strong>{ore}</strong> Ore Units
+              You have 🪨: <strong>{ore}</strong> Ore Units
             </p>
             <Button variant="secondary" onClick={handleClosem}>
               Close
@@ -127,44 +141,7 @@ function CreateBuilding() {
         </Modal>
       </div>
       <div className="col-3">
-        <Button
-          className="btn btn-dark border border-warning"
-          onClick={handleShowr}
-        >
-          Raffinery
-        </Button>
-        <Modal show={showr} onHide={handleCloser}>
-          <Modal.Header closeButton>
-            <Modal.Title>*Men at work*</Modal.Title>
-          </Modal.Header>
-          <Modal.Body>Do you really want to create this Raffinery ?</Modal.Body>
-          <Modal.Body>
-            🪙: <strong>{oreRaffinery}</strong> Ore Units <br /> ⚡:
-            <strong>2</strong> Energy Units <br /> 🕐:<strong>1</strong> hour{" "}
-          </Modal.Body>
-          <Modal.Footer>
-            <p>
-              You have 🪙: <strong>{ore}</strong> Ore Units
-            </p>
-            <Button variant="secondary" onClick={handleCloser}>
-              Close
-            </Button>
-            <Button
-              variant="success"
-              id={oreRaffinery}
-              onClick={() => {
-                Create("raffinery");
-                handleCloser();
-              }}
-              disabled={isDisabled ? true : false}
-            >
-              Create 🏗️
-            </Button>
-          </Modal.Footer>
-        </Modal>
-      </div>
-      <div className="col-3">
-        <Button
+        <Button variant="btn-dark"
           className="btn btn-dark border border-warning"
           onClick={handleShowp}
         >
@@ -178,12 +155,12 @@ function CreateBuilding() {
             Do you really want to create this PowerPlant ?
           </Modal.Body>
           <Modal.Body>
-            🪙: <strong>{orePowerplant}</strong> Ore Units <br /> ⚡:
+          🪨: <strong>{orePowerplant}</strong> Ore Units <br /> ⚡:
             <strong>0</strong> Energy Unit <br /> 🕐:<strong>1</strong> hour{" "}
           </Modal.Body>
           <Modal.Footer>
             <p>
-              You have 🪙: <strong>{ore}</strong> Ore Units
+              You have 🪨: <strong>{ore}</strong> Ore Units
             </p>
             <Button variant="secondary" onClick={handleClosep}>
               Close
@@ -203,7 +180,44 @@ function CreateBuilding() {
         </Modal>
       </div>
       <div className="col-3">
-        <Button
+        <Button variant="btn-dark"
+          className="btn btn-dark border border-warning"
+          onClick={handleShowr}
+        >
+          Raffinery
+        </Button>
+        <Modal show={showr} onHide={handleCloser}>
+          <Modal.Header closeButton>
+            <Modal.Title>*Men at work*</Modal.Title>
+          </Modal.Header>
+          <Modal.Body>Do you really want to create this Raffinery ?</Modal.Body>
+          <Modal.Body>
+          🪨: <strong>{oreRaffinery}</strong> Ore Units <br /> ⚡:
+            <strong>2</strong> Energy Units <br /> 🕐:<strong>1</strong> hour{" "}
+          </Modal.Body>
+          <Modal.Footer>
+            <p>
+              You have 🪨: <strong>{ore}</strong> Ore Units
+            </p>
+            <Button variant="secondary" onClick={handleCloser}>
+              Close
+            </Button>
+            <Button
+              variant="success"
+              id={oreRaffinery}
+              onClick={() => {
+                Create("raffinery");
+                handleCloser();
+              }}
+              disabled={isDisabled ? true : false}
+            >
+              Create 🏗️
+            </Button>
+          </Modal.Footer>
+        </Modal>
+      </div>
+      <div className="col-3">
+          <Button variant="btn-dark"
           className="btn btn-dark border border-warning"
           onClick={handleShows}
         >
@@ -215,12 +229,12 @@ function CreateBuilding() {
           </Modal.Header>
           <Modal.Body>Do you really want to create this Shipyard ?</Modal.Body>
           <Modal.Body>
-            🪙: <strong>{oreShipyard}</strong> Ore Units <br /> ⚡:
+          🪨: <strong>{oreShipyard}</strong> Ore Units <br /> ⚡:
             <strong>0</strong> Energy Unit <br /> 🕐:<strong>1</strong> hour
           </Modal.Body>
           <Modal.Footer>
             <p>
-              You have 🪙: <strong>{ore}</strong> Ore Units
+              You have 🪨: <strong>{ore}</strong> Ore Units
             </p>
             <Button variant="secondary" onClick={handleCloses}>
               Close
