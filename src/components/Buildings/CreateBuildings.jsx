@@ -104,7 +104,7 @@ function CreateBuilding() {
   return (
     <div className="row">
       <div className="col-3">
-        <Button
+        <Button variant="btn-dark"
           className="btn btn-dark border border-warning"
           onClick={handleShowm}
         >
@@ -116,12 +116,12 @@ function CreateBuilding() {
           </Modal.Header>
           <Modal.Body>Do you really want to create this Mine ?</Modal.Body>
           <Modal.Body>
-            🪙: <strong>{oreMine}</strong> Ore Units <br /> ⚡:
+          🪨: <strong>{oreMine}</strong> Ore Units <br /> ⚡:
             <strong>1</strong> Energy Units <br /> 🕐:<strong>1</strong> hour{" "}
           </Modal.Body>
           <Modal.Footer>
             <p>
-              You have 🪙: <strong>{ore}</strong> Ore Units
+              You have 🪨: <strong>{ore}</strong> Ore Units
             </p>
             <Button variant="secondary" onClick={handleClosem}>
               Close
@@ -141,44 +141,7 @@ function CreateBuilding() {
         </Modal>
       </div>
       <div className="col-3">
-        <Button
-          className="btn btn-dark border border-warning"
-          onClick={handleShowr}
-        >
-          Raffinery
-        </Button>
-        <Modal show={showr} onHide={handleCloser}>
-          <Modal.Header closeButton>
-            <Modal.Title>*Men at work*</Modal.Title>
-          </Modal.Header>
-          <Modal.Body>Do you really want to create this Raffinery ?</Modal.Body>
-          <Modal.Body>
-            🪙: <strong>{oreRaffinery}</strong> Ore Units <br /> ⚡:
-            <strong>2</strong> Energy Units <br /> 🕐:<strong>1</strong> hour{" "}
-          </Modal.Body>
-          <Modal.Footer>
-            <p>
-              You have 🪙: <strong>{ore}</strong> Ore Units
-            </p>
-            <Button variant="secondary" onClick={handleCloser}>
-              Close
-            </Button>
-            <Button
-              variant="success"
-              id={oreRaffinery}
-              onClick={() => {
-                Create("raffinery");
-                handleCloser();
-              }}
-              disabled={isDisabled ? true : false}
-            >
-              Create 🏗️
-            </Button>
-          </Modal.Footer>
-        </Modal>
-      </div>
-      <div className="col-3">
-        <Button
+        <Button variant="btn-dark"
           className="btn btn-dark border border-warning"
           onClick={handleShowp}
         >
@@ -192,12 +155,12 @@ function CreateBuilding() {
             Do you really want to create this PowerPlant ?
           </Modal.Body>
           <Modal.Body>
-            🪙: <strong>{orePowerplant}</strong> Ore Units <br /> ⚡:
+          🪨: <strong>{orePowerplant}</strong> Ore Units <br /> ⚡:
             <strong>0</strong> Energy Unit <br /> 🕐:<strong>1</strong> hour{" "}
           </Modal.Body>
           <Modal.Footer>
             <p>
-              You have 🪙: <strong>{ore}</strong> Ore Units
+              You have 🪨: <strong>{ore}</strong> Ore Units
             </p>
             <Button variant="secondary" onClick={handleClosep}>
               Close
@@ -217,7 +180,44 @@ function CreateBuilding() {
         </Modal>
       </div>
       <div className="col-3">
-        <Button
+        <Button variant="btn-dark"
+          className="btn btn-dark border border-warning"
+          onClick={handleShowr}
+        >
+          Raffinery
+        </Button>
+        <Modal show={showr} onHide={handleCloser}>
+          <Modal.Header closeButton>
+            <Modal.Title>*Men at work*</Modal.Title>
+          </Modal.Header>
+          <Modal.Body>Do you really want to create this Raffinery ?</Modal.Body>
+          <Modal.Body>
+          🪨: <strong>{oreRaffinery}</strong> Ore Units <br /> ⚡:
+            <strong>2</strong> Energy Units <br /> 🕐:<strong>1</strong> hour{" "}
+          </Modal.Body>
+          <Modal.Footer>
+            <p>
+              You have 🪨: <strong>{ore}</strong> Ore Units
+            </p>
+            <Button variant="secondary" onClick={handleCloser}>
+              Close
+            </Button>
+            <Button
+              variant="success"
+              id={oreRaffinery}
+              onClick={() => {
+                Create("raffinery");
+                handleCloser();
+              }}
+              disabled={isDisabled ? true : false}
+            >
+              Create 🏗️
+            </Button>
+          </Modal.Footer>
+        </Modal>
+      </div>
+      <div className="col-3">
+          <Button variant="btn-dark"
           className="btn btn-dark border border-warning"
           onClick={handleShows}
         >
@@ -229,12 +229,12 @@ function CreateBuilding() {
           </Modal.Header>
           <Modal.Body>Do you really want to create this Shipyard ?</Modal.Body>
           <Modal.Body>
-            🪙: <strong>{oreShipyard}</strong> Ore Units <br /> ⚡:
+          🪨: <strong>{oreShipyard}</strong> Ore Units <br /> ⚡:
             <strong>0</strong> Energy Unit <br /> 🕐:<strong>1</strong> hour
           </Modal.Body>
           <Modal.Footer>
             <p>
-              You have 🪙: <strong>{ore}</strong> Ore Units
+              You have 🪨: <strong>{ore}</strong> Ore Units
             </p>
             <Button variant="secondary" onClick={handleCloses}>
               Close
