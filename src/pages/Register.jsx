@@ -69,6 +69,7 @@ function Register() {
           JSON.stringify(data.user.planetary_system_name)
         );
         localStorage.setItem("avatar", JSON.stringify(data.user.picture)); // Save the avatar path in local storage
+
         swal("Registration successful!", "You are now registered!", "success");
         navigate("/");
       } else {
