@@ -8,7 +8,7 @@ const Battle = () => {
         { type: "Fregate", quantity: 5 },
     ]);
     const [defenderShips, setDefenderShips] = useState([
-        { type: "Chasseur", quantity: 15 },
+        { type: "Chasseur", quantity: 5 },
         { type: "Fregate", quantity: 6 },
     ]);
     const [battleResult, setBattleResult] = useState(null);
@@ -70,9 +70,6 @@ const Battle = () => {
                         <h1 className="orbitron">Battle!</h1>
                     </div>
                 </div>
-
-
-
 
                 <h3 className="orbitron">Attackers :</h3>
                 {attackerShips.map((ship, index) => (

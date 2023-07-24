@@ -7,7 +7,7 @@ const BattleItem = ({ type, quantity }) => {
         <div className="col-md-6">
             <Card className="text-center">
                 <Card.Body className="py-0 ">
-                    <p>Chisp : {type}</p>
+                    <p>Ships : {type}</p>
                     <p>Quantity : {quantity}</p>
                 </Card.Body>
 
