@@ -9,7 +9,7 @@ function Buildings(props) {
   
   async function Mbuilding1() {
     var myHeaders = new Headers();
-    const items = JSON.parse(localStorage.getItem("token"));
+    const items = JSON.parse(sessionStorage.getItem("token"));
     myHeaders.append("Authorization", `Bearer ${items} `);
 
     var requestOptions = {
@@ -35,7 +35,7 @@ function Buildings(props) {
   // Suppression
   async function BuildingDelete(id) {
     var myHeaders = new Headers();
-    const items = JSON.parse(localStorage.getItem("token"));
+    const items = JSON.parse(sessionStorage.getItem("token"));
     myHeaders.append("Authorization", `Bearer ${items} `);
 
     var requestOptions = {
