@@ -8,7 +8,7 @@ const Battle = () => {
         { type: "Fregate", quantity: 5 },
     ]);
     const [defenderShips, setDefenderShips] = useState([
-        { type: "Chasseur", quantity: 8 },
+        { type: "Chasseur", quantity: 15 },
         { type: "Fregate", quantity: 6 },
     ]);
     const [battleResult, setBattleResult] = useState(null);
@@ -72,7 +72,7 @@ const Battle = () => {
                 </div>
 
                 <button className="btn btn-dark border border-warning" onClick={handleBattle}>Start Battle</button>
-                {battleResult && <p>Result Battle : {battleResult}</p>}
+
 
                 <h3 className="orbitron">Attackers :</h3>
                 {attackerShips.map((ship, index) => (
@@ -83,6 +83,8 @@ const Battle = () => {
                 {defenderShips.map((ship, index) => (
                     <BattleItem className="orbitron" key={index} type={ship.type} quantity={ship.quantity} />
                 ))}
+
+                {battleResult && <p>Result Battle : {battleResult}</p>}
             </div>
         </div>
 
