@@ -47,6 +47,7 @@ function Home() {
               >
                 Build Your Empire
               </Link>
+
               <Link
                 to="/extendyourempire"
                 className="btn btn-dark border border-warning"
