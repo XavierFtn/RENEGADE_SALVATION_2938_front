@@ -11,7 +11,6 @@ import Avatar4 from "../components/img/Avatar/image4.jpg";
 import Avatar5 from "../components/img/Avatar/image5.jpg";
 import Avatar6 from "../components/img/Avatar/image6.jpg";
 
-
 function Register() {
   const navigate = useNavigate();
   const [userData, setUserData] = useState({
@@ -73,7 +72,7 @@ function Register() {
 
         swal(
           "Registration successful!",
-          `Your Planet ${data.user.planetary_system_name} was created in planetary system`,
+          `Your Planetary System ${data.user.planetary_system_name} was created!`,
           "success"
         );
         navigate("/");
