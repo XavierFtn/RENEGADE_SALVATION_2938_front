@@ -1,7 +1,3 @@
-.container-sm {
-  margin-top: 70px;
-}
-
 .btn-primary {
   width: 100%;
   padding: 10px;
@@ -27,10 +23,9 @@
 .card-img,
 .card-img-bottom,
 .card-img-top {
-  width: 50%;
-  margin-left: 22%;
+  width: 31%;
+  margin-left: 32%;
 
   justify-content: center;
   align-items: center;
-
 }
