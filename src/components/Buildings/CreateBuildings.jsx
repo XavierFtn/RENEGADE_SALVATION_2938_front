@@ -12,7 +12,6 @@ function CreateBuilding() {
   const handleClosep = () => setShowp(false);
   const handleCloses = () => setShows(false);
   const [ore, setOre] = useState(400);
-  const [energy, setEnergy] = useState();
   const [isDisabled, setIsDisabled] = useState(true);
   const oreMine = 300;
   const oreRaffinery = 300;
@@ -57,7 +56,7 @@ function CreateBuilding() {
   }
   function ReadOre (){
       var myHeaders = new Headers();
-      const token = JSON.parse(localStorage.getItem("token"));
+      const token = JSON.parse(sessionStorage.getItem("token"));
   
       myHeaders.append("Authorization", `Bearer ${token}`);
   
@@ -83,7 +82,7 @@ function CreateBuilding() {
   function Create(building) {
    
     var myHeaders = new Headers();
-    const items = JSON.parse(localStorage.getItem("token"));
+    const items = JSON.parse(sessionStorage.getItem("token"));
     myHeaders.append("Authorization", `Bearer ${items} `);
 
     var requestOptions = {

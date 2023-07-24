@@ -8,7 +8,7 @@ function Cship() {
 
   function Create(ship) {
     var MyHeaders = new Headers();
-    const items = JSON.parse(localStorage.getItem("token"));
+    const items = JSON.parse(sessionStorage.getItem("token"));
     MyHeaders.append("Authorization", `Bearer ${items}`);
     var requestOptions = {
       method: "POST",
