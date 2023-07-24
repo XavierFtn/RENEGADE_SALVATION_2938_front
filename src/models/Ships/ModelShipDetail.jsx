@@ -16,6 +16,7 @@ function MShipsDetails(props) {
         </Card.Text>
       </Card.Body>
       <ListGroup className="list-group-flush">
+        <ListGroup.Item>{props.quantity}</ListGroup.Item>
         <ListGroup.Item>{props.cost}</ListGroup.Item>
         <ListGroup.Item>{props.fuel_consumption}</ListGroup.Item>
         <ListGroup.Item>{props.energy_consumption}</ListGroup.Item>
