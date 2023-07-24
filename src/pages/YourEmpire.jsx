@@ -18,20 +18,20 @@ import Menu from "../Components/Buildings/CreateBuildings";
 import { Link } from "react-router-dom";
 import Button from 'react-bootstrap/Button';
 
-function YourEmpire(){
+function YourEmpire() {
 
-    return(
+    return (
         <div className="container">
-        <Header/>
-        <Menu/>
-        <h1>YOUR EMPIRE</h1>
-            <Ships/>
-            <Warehouses/>
-            <Buildings/>  
-            <Cbuilding/> 
-            <Battles/>  
-        <Footer/>
-    </div>
+            <Header />
+            <Menu />
+            <h1>YOUR EMPIRE</h1>
+            <Ships />
+            <Warehouses />
+            <Buildings />
+            <Cbuilding />
+            <Battles />
+            <Footer />
+        </div>
     )
 }
-export default YourPage;
+export default YourEmpire;
