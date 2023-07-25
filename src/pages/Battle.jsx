@@ -1,92 +1,68 @@
-import React, { useState } from "react";
-import BattleItem from "./BattleItem";
-import "bootstrap/dist/css/bootstrap.min.css";
+import React, { useEffect, useState } from "react";
 
 const Battle = () => {
-    const [attackerShips, setAttackerShips] = useState([
-        { type: "Chasseur", quantity: 10 },
-        { type: "Fregate", quantity: 5 },
-    ]);
-    const [defenderShips, setDefenderShips] = useState([
-        { type: "Chasseur", quantity: 8 },
-        { type: "Fregate", quantity: 6 },
-    ]);
-    const [battleResult, setBattleResult] = useState(null);
+  const [ships, setShips] = useState({});
+  const token = JSON.parse(sessionStorage.getItem("token")); // Retrieve the token from session storage
 
-    const calculateAttackPoints = (ships) => {
-        return ships.reduce((total, ship) => total + ship.quantity, 0);
-    };
+  // Function to fetch ships data from the backend
+  const fetchShips = async () => {
+    try {
+      const response = await fetch("http://127.0.0.1:8000/api/ships", {
+        headers: {
+          Authorization: `Bearer ${token}`, // Include the token in the headers
+        },
+      });
+      const data = await response.json();
+      setShips(data.ships); // We update 'ships' with the 'ships' object from the response
+    } catch (error) {
+      console.error("Erreur lors de la récupération des vaisseaux:", error);
+    }
+  };
 
-    const calculateDefensePoints = (ships) => {
-        return ships.reduce((total, ship) => total + ship.quantity, 0);
-    };
+  // Function to handle sending the ships to battle
+  const handleSendShips = async (defenderId) => {
+    try {
+      const response = await fetch("http://127.0.0.1:8000/api/battle", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`, // Include the token in the headers
+        },
+        body: JSON.stringify({ user_id: defenderId }),
+      });
+      const data = await response.json();
+      console.log(data.message); // Battle result message from the backend
+      fetchShips(); // Refresh ships data after the battle
+    } catch (error) {
+      console.error("Erreur lors de l'envoi des vaisseaux:", error);
+      setShips([]); // Set an empty array as a fallback on error
+    }
+  };
 
-    const handleBattle = () => {
-        const attackerPoints = calculateAttackPoints(attackerShips);
-        const defenderPoints = calculateDefensePoints(defenderShips);
+  useEffect(() => {
+    fetchShips();
+  }, []);
 
-        let rounds = 1;
-
-        while (attackerShips.length > 0 && defenderShips.length > 0) {
-            if (attackerPoints > defenderPoints) {
-                // Attacker wins the round
-                const shipsDestroyed = Math.ceil(defenderShips.length * 0.3);
-                defenderShips.splice(0, shipsDestroyed);
-            } else if (attackerPoints < defenderPoints) {
-                // Defender wins the round
-                const shipsDestroyed = Math.ceil(attackerShips.length * 0.3);
-                attackerShips.splice(0, shipsDestroyed);
-            } else {
-                // Draw, both sides lose 30% of their ships
-                const attackerShipsDestroyed = Math.ceil(attackerShips.length * 0.3);
-                const defenderShipsDestroyed = Math.ceil(defenderShips.length * 0.3);
-                attackerShips.splice(0, attackerShipsDestroyed);
-                defenderShips.splice(0, defenderShipsDestroyed);
-            }
-
-            attackerPoints = calculateAttackPoints(attackerShips);
-            defenderPoints = calculateDefensePoints(defenderShips);
-
-            rounds++;
-        }
-
-        // Determine the battle result
-        if (attackerShips.length > 0) {
-            setBattleResult("Win !");
-        } else if (defenderShips.length > 0) {
-            setBattleResult("Lose !");
-        } else {
-            setBattleResult("Draw !");
-        }
-    };
-
-    return (
-
-        <div className=" row ">
-
-            <div>
-                <div className="row mt-5 pt-2">
-                    <div className="col d-flex justify-content-center">
-                        <h1 className="orbitron">Battle!</h1>
-                    </div>
-                </div>
-
-                <button className="btn btn-dark border border-warning" onClick={handleBattle}>Start Battle</button>
-                {battleResult && <p>Result Battle : {battleResult}</p>}
-
-                <h3 className="orbitron">Attackers :</h3>
-                {attackerShips.map((ship, index) => (
-                    <BattleItem className="orbitron" key={index} type={ship.type} quantity={ship.quantity} />
-                ))}
-
-                <h3 className="orbitron">Defenders:</h3>
-                {defenderShips.map((ship, index) => (
-                    <BattleItem className="orbitron" key={index} type={ship.type} quantity={ship.quantity} />
-                ))}
-            </div>
-        </div>
-
-    );
+  return (
+    <div>
+      <h1>Flotte</h1>
+      <ul>
+        {Object.entries(ships).map(([shipType, quantity]) => (
+          <li key={shipType}>
+            Type: {shipType}, Quantity: {quantity}
+          </li>
+        ))}
+      </ul>
+      <h1>Attaque</h1>
+      <button onClick={() => handleSendShips(1)}>
+        Send Ships to Defender 1
+      </button>
+      <button onClick={() => handleSendShips(2)}>
+        Send Ships to Defender 2
+      </button>
+      {/* Add more buttons for other defenders if needed */}
+    </div>
+  );
 };
 
 export default Battle;
