@@ -1,0 +1,19 @@
+/* GridComponent.css */
+.grid-container {
+  align-items: center;
+  display: grid;
+  grid-template-columns: repeat(10, 1fr); /* 1000 columns with equal width */
+  grid-gap: 0.2rem;
+  border: 0.2rem solid #111412;
+  background-color: rgb(140, 234, 181);
+  opacity: 0.5;
+  position: relative;
+}
+
+.grid-item {
+  background-color: #403d3d;
+  border: 1px solid rgb(200, 116, 116); /* Optional: Add background color for each grid cell */
+}
+.hide {
+  visibility: hidden;
+}

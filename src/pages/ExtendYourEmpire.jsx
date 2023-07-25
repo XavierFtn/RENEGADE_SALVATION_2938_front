@@ -1,7 +1,7 @@
 import Header from "../models/ModelsHeader";
 import Footer from "../models/ModelsFooter";
 import Ships from "../Components/Ships/ViewShips";
-
+import GridComponent from "../Components/Ships/GridComponent";
 import { Card } from "react-bootstrap";
 
 function ExtendYourEmpire() {
@@ -76,8 +76,7 @@ function ExtendYourEmpire() {
               <h1 className="orbitron">Select the enemy on the map!</h1>
             </Card.Header>
             <Card.Body>
-              <GridSquare color="1" />
-              <GridBoard />
+              <GridComponent />
             </Card.Body>
           </Card>
         </div>
