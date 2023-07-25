@@ -87,7 +87,7 @@ function Header(props) {
                   </NavDropdown>
                 </Nav>
               )}
-              <Nav className="me-auto my-5 my-lg-0"><p className="orbitron">{props.name}</p></Nav>
+              <Nav className="me-auto my-5 my-lg-0"><p className="orbitron ">{props.name}</p></Nav>
               {connected && (
                 <Nav
                   className="ms-auto me-3 my-2 my-lg-0"
@@ -101,8 +101,10 @@ function Header(props) {
                     variant="secondary"
                     title={UserMenu}
                     id="navbarScrollingDropdown2"
-                  > <NavDropdown.Item href="/">🏚️ Home</NavDropdown.Item>
+                  > 
                     <NavDropdown.Item href="/editprofil">🔍 Edit your profil</NavDropdown.Item>
+                    <NavDropdown.Divider />
+                    <NavDropdown.Item href="/">🪙 Premium Access</NavDropdown.Item>
                     <NavDropdown.Divider />
                     <NavDropdown.Item href="/disconnect"><span className="colorRed">🪧 Logout</span></NavDropdown.Item>
                   </NavDropdown>
@@ -110,16 +112,16 @@ function Header(props) {
               )}
 
               {disconnected && (
-                <Navbar.Collapse>
+                <Navbar.Collapse >
                   <Nav.Link href="/register">
-                    <span className="colorWhite"> 📑 Register</span>
+                    <span className="colorRed"> 📑 Register</span>
                   </Nav.Link>
                 </Navbar.Collapse>
               )}
               {disconnected && (
                 <Navbar.Collapse className="justify-content-end">
                   <Nav.Link href="/login">
-                    <span className="colorWhite">🔗 Login</span>
+                    <span className="colorBisque">🔗 Login</span>
                   </Nav.Link>
                 </Navbar.Collapse>
               )}
