@@ -1,10 +1,14 @@
 
+import swal from "sweetalert";
 import MBuildings from "../../models/buildings/ModelsBuildings";
 import { useEffect, useState } from "react";
+import {useNavigate } from "react-router-dom";
+import PropTypes from "prop-types";
 
 
 
 function Buildings(props) {
+  const navigate = useNavigate();
   const [building, setBuilding] = useState({});
   
   async function Mbuilding1() {
@@ -24,6 +28,13 @@ function Buildings(props) {
     );
     console.log("reponse Builiding", response);
     let donnees = await response.json();
+    
+      //permet d'intercepter quand le token est expiré
+      if (response.status === 401){
+        swal("Error", "Session Expired, please connect again", "error");
+        navigate('/login');
+      }
+    
     console.log("données Building", donnees);
     setBuilding(donnees);
   }
@@ -86,5 +97,13 @@ function Buildings(props) {
     </div>
   );
 }
+// évite les erreur de type: id is missing in props validation
+Buildings.propTypes = {
+  id: PropTypes.number.isRequired,
+  type: PropTypes.string,
+  level: PropTypes.number,
+  energy_consumption: PropTypes.number,
+  created_at: PropTypes.string,
+};
 
 export default Buildings;

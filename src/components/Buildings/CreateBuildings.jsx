@@ -1,8 +1,11 @@
 import { useEffect, useState } from "react";
 import { Modal } from "react-bootstrap";
 import Button from "react-bootstrap/Button";
+import {useNavigate } from "react-router-dom";
+import swal from "sweetalert";
 
 function CreateBuilding() {
+  const navigate = useNavigate();
   const [showm, setShowm] = useState(false);
   const [showr, setShowr] = useState(false);
   const [showp, setShowp] = useState(false);
@@ -91,7 +94,14 @@ function CreateBuilding() {
     };
 
     fetch(`http://127.0.0.1:8000/api/structures/${building}`, requestOptions)
-      .then((response) => response.text())
+      .then((response) =>{ 
+        //permet d'intercepter quand le token est expiré
+        if (response.status === 401){
+          swal("Error", "Session Expired, please connect again", "error");
+          navigate('/login');
+        }
+        return response.json()
+      })
       .then((result) => {
         console.log(result);
         // Reload à modifier, CreateBuilding Component en dehors du composant principal,pour éviter d'avoir le renderMyArray au même endroit que les boutons
