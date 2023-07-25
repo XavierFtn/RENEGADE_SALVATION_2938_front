@@ -1,23 +1,27 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 import BattleItem from "./BattleItem";
-import swal from "sweetalert";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Card } from "react-bootstrap";
 
 const Battle = () => {
     const initialAttackerShips = [
-        { type: "Chasseur", quantity: 5 },
-        { type: "Fregate", quantity: 5 },
+        { type: "fighter", quantity: 5 },
+        { type: "frigate", quantity: 5 },
+        { type: "cruiser", quantity: 6 },
+        { type: "destroyer", quantity: 6 },
     ];
     const initialDefenderShips = [
-        { type: "Chasseur", quantity: 5 },
-        { type: "Fregate", quantity: 6 },
+        { type: "fighter", quantity: 5 },
+        { type: "frigate", quantity: 6 },
+        { type: "cruiser", quantity: 6 },
+        { type: "destroyer", quantity: 6 },
     ];
+
     const [attackerShips, setAttackerShips] = useState(initialAttackerShips);
     const [defenderShips, setDefenderShips] = useState(initialDefenderShips);
     const [battleResult, setBattleResult] = useState(null);
-    const [attackerId, setAttackerId] = useState("");
-    const [defenderId, setDefenderId] = useState("");
+    const [selectedAttackerShips, setSelectedAttackerShips] = useState([]);
 
     const calculateAttackPoints = (ships) => {
         return ships.reduce((total, ship) => total + ship.quantity, 0);
@@ -27,92 +31,81 @@ const Battle = () => {
         return ships.reduce((total, ship) => total + ship.quantity, 0);
     };
 
-    const handleBattle = () => {
-        const attackerPoints = calculateAttackPoints(attackerShips);
+    const handleSelectAttackerShip = (ship) => {
+        if (selectedAttackerShips.includes(ship)) {
+            setSelectedAttackerShips(
+                selectedAttackerShips.filter((s) => s !== ship)
+            );
+        } else {
+            setSelectedAttackerShips([...selectedAttackerShips, ship]);
+        }
+    };
+
+    const handleBattle = async () => {
+        const attackerPoints = calculateAttackPoints(selectedAttackerShips);
         const defenderPoints = calculateDefensePoints(defenderShips);
 
-        let rounds = 1;
-
-        while (attackerShips.length > 0 && defenderShips.length > 0) {
-            if (attackerPoints > defenderPoints) {
-                // Attacker wins the round
-                const shipsDestroyed = Math.ceil(defenderShips.length * 0.3);
-                defenderShips.splice(0, shipsDestroyed);
-            } else if (attackerPoints < defenderPoints) {
-                // Defender wins the round
-                const shipsDestroyed = Math.ceil(attackerShips.length * 0.3);
-                attackerShips.splice(0, shipsDestroyed);
-            } else {
-                // Draw, both sides lose 30% of their ships
-                const attackerShipsDestroyed = Math.ceil(attackerShips.length * 0.3);
-                const defenderShipsDestroyed = Math.ceil(defenderShips.length * 0.3);
-                attackerShips.splice(0, attackerShipsDestroyed);
-                defenderShips.splice(0, defenderShipsDestroyed);
-            }
-
-            attackerPoints = calculateAttackPoints(attackerShips);
-            defenderPoints = calculateDefensePoints(defenderShips);
-
-            rounds++;
-        }
-
-        // Determine the battle result
-        if (attackerShips.length > 0) {
-            setBattleResult("Win !");
-        } else if (defenderShips.length > 0) {
-            setBattleResult("Lose !");
-        } else {
-            setBattleResult("Draw !");
-        }
-    };
-    const handleSubmit = async (e) => {
-        e.preventDefault();
+        // Implémenter la logique de la bataille ici
 
         try {
-            const options = {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify(userData),
-            };
+            // Appel à l'API pour enregistrer les résultats de la bataille
+            const response = await axios.post("http://127.0.0.1:8889/api/battle", {
+                attackerShips: selectedAttackerShips,
+                defenderShips: defenderShips,
+                // Ajoutez d'autres données pertinentes à envoyer à l'API si nécessaire
+            });
+            const data = response.data;
 
-            const response = await fetch(
-                "http://127.0.0.1:8000/api/register",
-                options
-            );
-            const data = await response.json();
-            console.log("data", data);
-            if (data.status === "success") {
-                // Récupérer le nom du système planétaire choisi
+            // Mettre à jour les vaisseaux restants après la bataille
+            setAttackerShips(data.remainingAttackerShips);
+            setDefenderShips(data.remainingDefenderShips);
 
-                localStorage.setItem("token", JSON.stringify(data.authorisation.token));
-                localStorage.setItem("user", JSON.stringify(data.user.firstname));
-                localStorage.setItem(
-                    "planet",
-                    JSON.stringify(data.user.planetary_system_name)
-                );
-                localStorage.setItem("avatar", JSON.stringify(data.user.picture)); // Save the avatar path in local storage
-
-                swal(
-                    "Registration successful!",
-                    `Your Planetary System ${data.user.planetary_system_name} was created!`,
-                    "success"
-                );
-                navigate("/");
-            } else {
-                swal("Registration failed!", data.message, "error");
-            }
+            // Mettre à jour le résultat de la bataille
+            setBattleResult(data.battleResult);
         } catch (error) {
-            console.error("Error during registration:", error);
-            swal("Error", "An error occurred during registration", "error");
+            console.error("Error during battle:", error);
+            // Gérer les erreurs de l'appel à l'API si nécessaire
         }
     };
 
+    const handleRestartBattle = () => {
+        setSelectedAttackerShips([]);
+        setAttackerShips(initialAttackerShips);
+        setDefenderShips(initialDefenderShips);
+        setBattleResult(null);
+    };
+
+    const fetchUserShips = async () => {
+        try {
+            const response = await axios.get("http://127.0.0.1:8889/api/ships");
+            const data = response.data;
+
+            setAttackerShips([
+                { type: "fighter", quantity: data.fighter[0]?.quantity || 0 },
+                { type: "frigate", quantity: data.frigate[0]?.quantity || 0 },
+                { type: "cruiser", quantity: data.cruiser[0]?.quantity || 0 },
+                { type: "destroyer", quantity: data.destroyer[0]?.quantity || 0 },
+                // Ajouter d'autres vaisseaux si nécessaire
+            ]);
+
+            setDefenderShips([
+                { type: "fighter", quantity: data.fighter[0]?.quantity || 0 },
+                { type: "frigate", quantity: data.frigate[0]?.quantity || 0 },
+                { type: "cruiser", quantity: data.cruiser[0]?.quantity || 0 },
+                { type: "destroyer", quantity: data.destroyer[0]?.quantity || 0 },
+                // Ajouter d'autres vaisseaux si nécessaire
+            ]);
+        } catch (error) {
+            console.error("Error fetching user ships:", error);
+        }
+    };
+
+    useEffect(() => {
+        fetchUserShips();
+    }, []);
+
     return (
-
-        <div className=" row ">
-
+        <div className="row">
             <div>
                 <div className="row mt-5 pt-2">
                     <div className="col d-flex justify-content-center">
@@ -120,21 +113,55 @@ const Battle = () => {
                     </div>
                 </div>
 
-                <button className="btn btn-dark border border-warning" onClick={handleBattle}>Start Battle</button>
-                {battleResult && <p>Result Battle : {battleResult}</p>}
-
                 <h3 className="orbitron">Attackers :</h3>
                 {attackerShips.map((ship, index) => (
-                    <BattleItem className="orbitron" key={index} type={ship.type} quantity={ship.quantity} />
+                    <BattleItem
+                        className={`orbitron ${selectedAttackerShips.includes(ship) ? "selected" : ""
+                            }`}
+                        key={index}
+                        type={ship.type}
+                        quantity={ship.quantity}
+                        onClick={() => handleSelectAttackerShip(ship)}
+                    />
                 ))}
 
                 <h3 className="orbitron">Defenders:</h3>
                 {defenderShips.map((ship, index) => (
                     <BattleItem className="orbitron" key={index} type={ship.type} quantity={ship.quantity} />
                 ))}
+
+                <button className="btn btn-dark border border-warning" onClick={handleBattle}>
+                    Start Battle
+                </button>
+
+                <Card className="text-center">
+                    <Card.Body className="py-0 orbitron">
+                        {battleResult && <p>Result Battle : {battleResult}</p>}
+                    </Card.Body>
+                </Card>
+
+                {battleResult && (
+                    <div>
+                        <h3 className="orbitron">Remaining Attackers :</h3>
+                        {attackerShips.map((ship, index) => (
+                            <BattleItem className="orbitron" key={index} type={ship.type} quantity={ship.quantity} />
+                        ))}
+
+                        <h3 className="orbitron">Remaining Defenders:</h3>
+                        {defenderShips.map((ship, index) => (
+                            <BattleItem className="orbitron" key={index} type={ship.type} quantity={ship.quantity} />
+                        ))}
+                    </div>
+                )}
+
+                <button
+                    className="btn btn-dark border border-warning"
+                    onClick={handleRestartBattle}
+                >
+                    Next Battle
+                </button>
             </div>
         </div>
-
     );
 };
 
