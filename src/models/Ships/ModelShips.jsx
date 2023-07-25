@@ -1,6 +1,6 @@
 import moment from "moment/moment";
 import { useEffect, useState } from "react";
-import { Button, ListGroup, Modal, ProgressBar } from "react-bootstrap";
+import { Alert, Button, ListGroup, Modal, ProgressBar } from "react-bootstrap";
 import Card from "react-bootstrap/Card";
 
 function MShips(props) {
@@ -29,21 +29,14 @@ function MShips(props) {
     //setShowFinish(false);
     //}
   }
-  function handleDeleteClick() {
-    props.onDelete(); // Props de la fonction de suppression
-  }
+  
   useEffect(() => {
     Display();
   });
 
   return (
     <div>
-      <Card
-        bg="dark"
-        text="light"
-        className="text-center p-0"
-        style={{ width: "15rem" }}
-      >
+      <Card bg="dark" text="light" className="text-center p-0" style={{ width: "15rem" }} >
         <Card.Body>
           <Card.Title className=" m-0">
             {props.type} n°{props.id}{" "}
@@ -51,33 +44,8 @@ function MShips(props) {
           <Card.Title className=" m-0">quantity: {props.quantity} </Card.Title>
           <ListGroup>
             {showWait && (
-              <div>
-                <Button onClick={handleShow} variant="danger">
-                  Delete
-                </Button>
-                <Modal show={show} onHide={handleClose}>
-                  <Modal.Header closeButton>
-                    <Modal.Title>*Laser Noise*</Modal.Title>
-                  </Modal.Header>
-                  <Modal.Body>
-                    Are you sure to delete this {props.type} n° {props.id} ?
-                  </Modal.Body>
-                  <Modal.Footer>
-                    <Button variant="secondary" onClick={handleClose}>
-                      Close
-                    </Button>
-                    <Button
-                      variant="danger"
-                      onClick={() => {
-                        handleClose();
-                        handleDeleteClick();
-                      }}
-                    >
-                      Delete
-                    </Button>{" "}
-                  </Modal.Footer>
-                </Modal>
-              </div>
+              <Alert key="success" variant="success">Vaisseau Prêt!</Alert>
+              
             )}
             {showFinish && (
               <ProgressBar
