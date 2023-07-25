@@ -80,7 +80,7 @@ function BuildYourEmpire() {
             </Card.Header>
             <Card.Body>
               <div className="scroll">
-                <Buildings type={"shipyard"} />
+               
               </div>
             </Card.Body>
           </Card>

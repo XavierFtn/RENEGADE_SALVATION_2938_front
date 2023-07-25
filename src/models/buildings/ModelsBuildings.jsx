@@ -1,4 +1,4 @@
-import moment from "moment/moment";
+import moment from "moment";
 import { useEffect, useState } from "react";
 import { Button, ListGroup, Modal, ProgressBar } from "react-bootstrap";
 import Card from "react-bootstrap/Card";
