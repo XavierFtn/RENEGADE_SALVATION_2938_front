@@ -1,3 +1,15 @@
+/**
+    * @description      : 
+    * @author           : 
+    * @group            : 
+    * @created          : 25/07/2023 - 14:46:02
+    * 
+    * MODIFICATION LOG
+    * - Version         : 1.0.0
+    * - Date            : 25/07/2023
+    * - Author          : 
+    * - Modification    : 
+**/
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import swal from "sweetalert";
@@ -79,6 +91,9 @@ function Login() {
               >
                 Log in
               </button>
+              <div className="forgot">
+              <a href = "forgot-password">Forgot Password</a>
+              </div>
             </div>
           </div>
         </div>
