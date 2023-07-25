@@ -4,6 +4,17 @@ body {
   background-color: black;
   cursor: url("./src/Components/img/cursor.cur"), auto;
 }
+.card {
+  display: flex;
+    justify-content: center;
+    margin: 0 auto;
+    background-color: rgb(16 13 13 / 60%);
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    gap: 10px;
+
+}
 
 .homepage {
   height:50%;
@@ -29,14 +40,12 @@ body {
   gap: 1vw;
 }
 
-.colorWhite{
-  color:white;
-  font-size: 20px;
+.colorBisque{
+  color:bisque;
 }
 
 .colorRed{
-  color: red;
-  font-size : 20px
+  color: rgb(248, 73, 73);
 }
 .hm-gradient {
   background-image: linear-gradient(to top, #f3e7e9 0%, #e3eeff 99%, #e3eeff 100%);

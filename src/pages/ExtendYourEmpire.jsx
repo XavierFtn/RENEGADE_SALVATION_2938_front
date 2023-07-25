@@ -1,22 +1,14 @@
 import Header from "../models/ModelsHeader";
 import Footer from "../models/ModelsFooter";
 import Ships from "../Components/Ships/ViewShips";
-import Cship from "../Components/Ships/CreateShips";
-import GridBoard from "../Components/Ships/GridBoard";
+
 import { Card } from "react-bootstrap";
-import Counter from "../Components/Ships/counter";
-import FuelCounter from "../Components/Ships/fuelcounter";
-import GridSquare from "../Components/Ships/GridSquare";
 
 function ExtendYourEmpire() {
   return (
     <div className="container-fluid">
-      <Header />
-      <div className="row mt-5 pt-2">
-        <div className="col d-flex justify-content-center">
-          <h1 className="orbitron">Prepare for war!</h1>
-        </div>
-      </div>
+      <Header name="Prepare for war!" />
+      <div className="row mb-5 pt-2"></div>
       <div className="row wrap">
         <div className="row mb-3"></div>
         <div className="row wrap">
@@ -24,7 +16,6 @@ function ExtendYourEmpire() {
             <Card className="text-center px-0 pt-2">
               <Card.Header className="py-0 ">
                 <h1 className="orbitron">Fighter</h1>
-                <Counter />
               </Card.Header>
               <Card.Body>
                 <div className="py-0">
@@ -37,7 +28,6 @@ function ExtendYourEmpire() {
             <Card className="text-center px-0 pt-2">
               <Card.Header className="py-0 ">
                 <h1 className="orbitron">Frigate</h1>
-                <Counter />
               </Card.Header>
               <Card.Body>
                 <div className="py-0">
@@ -50,7 +40,6 @@ function ExtendYourEmpire() {
             <Card className="text-center px-0 pt-2">
               <Card.Header className="py-0 ">
                 <h1 className="orbitron">Cruiser</h1>
-                <Counter />
               </Card.Header>
               <Card.Body>
                 <div className="py-0">
@@ -63,7 +52,6 @@ function ExtendYourEmpire() {
             <Card className="text-center px-0 pt-2">
               <Card.Header className="py-0 ">
                 <h1 className="orbitron">Destroyer</h1>
-                <Counter />
               </Card.Header>
               <Card.Body>
                 <div className="py-0">
@@ -79,7 +67,6 @@ function ExtendYourEmpire() {
               <div className="col d-flex justify-content-center">
                 <h1 className="orbitron">Fuel</h1>
               </div>
-              <FuelCounter />
             </Card.Header>
           </Card>
         </div>

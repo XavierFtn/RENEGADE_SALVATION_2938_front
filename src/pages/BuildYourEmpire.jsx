@@ -1,3 +1,15 @@
+/**
+    * @description      : 
+    * @author           : 
+    * @group            : 
+    * @created          : 24/07/2023 - 14:53:58
+    * 
+    * MODIFICATION LOG
+    * - Version         : 1.0.0
+    * - Date            : 24/07/2023
+    * - Author          : 
+    * - Modification    : 
+**/
 import Header from "../models/ModelsHeader";
 import Footer from "../models/ModelsFooter";
 import Buildings from "../Components/Buildings/ViewBuildings";
@@ -8,11 +20,8 @@ import ViewRessources from "../Components/Ressources/ViewRessources";
 function BuildYourEmpire() {
   return (
     <div className="container-fluid">
-      <Header />
-      <div className="row mt-5 pt-2">
-        <div className="col d-flex justify-content-center">
-          <h1 className="orbitron">Build Your Empire!</h1>
-        </div>
+      <Header name="Build Your Empire" />
+      <div className="row mb-5 pt-2">
       </div>
       <div className="row wrap">
         <div className="col-md-6">
