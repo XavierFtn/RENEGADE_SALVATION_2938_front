@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 
 import swal from "sweetalert";
 import MBuildings from "../../models/buildings/ModelsBuildings";

@@ -9,6 +9,7 @@ import Createship from "../Components/Ships/CreateShips";
 import { useEffect, useState } from "react";
 
 function ExtendYourEmpire() {
+  
   const [showfi, setShowfi] = useState(false);
   const [showfr, setShowfr] = useState(false);
   const [showcr, setShowcr] = useState(false);
