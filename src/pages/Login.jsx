@@ -91,9 +91,6 @@ function Login() {
               >
                 Log in
               </button>
-              <div className="forgot">
-              <a href = "forgot-password">Forgot Password</a>
-              </div>
             </div>
           </div>
         </div>
