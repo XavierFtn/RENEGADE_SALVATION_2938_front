@@ -70,21 +70,25 @@ function Header(props) {
                   className="me-auto my-2 my-lg-0"
                   style={{ maxHeight: "100px" }}
                   navbarScroll>
-                  <Nav.Link  href="/"> 🏚️ Home</Nav.Link>
+                  <Nav.Link href="/"> 🏚️ Home</Nav.Link>
                   <NavDropdown
                     title="Your Empire"
                     id="navbarScrollingDropdown1"
                   >
                     <NavDropdown.Item href="/yourempire">
-                     🛕 {planet}
+                      🛕 {planet}
                     </NavDropdown.Item>
                     <NavDropdown.Item href="/buildyourempire">
-                    ⚒️ Build Your Empire
+                      ⚒️ Build Your Empire
                     </NavDropdown.Item>
                     <NavDropdown.Divider />
                     <NavDropdown.Item href="/extendyourempire">
-                    🔭 Extend Your Empire
+                      🔭 Extend Your Empire
                     </NavDropdown.Item>
+                    <NavDropdown.Item href="/battle">
+                      Battle
+                    </NavDropdown.Item>
+
                   </NavDropdown>
                 </Nav>
               )}
@@ -102,7 +106,7 @@ function Header(props) {
                     variant="secondary"
                     title={UserMenu}
                     id="navbarScrollingDropdown2"
-                  > 
+                  >
                     <NavDropdown.Item href="/editprofil">🔍 Edit your profil</NavDropdown.Item>
                     <NavDropdown.Divider />
                     <NavDropdown.Item href="/">🪙 Premium Access</NavDropdown.Item>
