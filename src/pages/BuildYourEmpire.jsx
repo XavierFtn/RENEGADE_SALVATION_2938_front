@@ -16,6 +16,7 @@ import Buildings from "../Components/Buildings/ViewBuildings";
 import Cbuilding from "../Components/Buildings/CreateBuildings";
 import { Card } from "react-bootstrap";
 import ViewRessources from "../Components/Ressources/ViewRessources";
+import ViewShipyards from "../Components/Ships/ViewShipyards";
 
 function BuildYourEmpire() {
   return (
@@ -90,10 +91,9 @@ function BuildYourEmpire() {
             <Card.Header className="py-0 ">
               <h1 className="orbitron">Shipyard</h1>
             </Card.Header>
-            <Card.Body>
-              <div className="scroll">
-                <Buildings type={"shipyard"} />
-              </div>
+            <Card.Body> 
+              <ViewShipyards/>
+              
             </Card.Body>
           </Card>
         </div>

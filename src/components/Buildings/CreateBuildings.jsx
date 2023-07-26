@@ -1,8 +1,11 @@
 import { useEffect, useState } from "react";
 import { Modal } from "react-bootstrap";
 import Button from "react-bootstrap/Button";
+import {useNavigate } from "react-router-dom";
+import swal from "sweetalert";
 
 function CreateBuilding() {
+  const navigate = useNavigate();
   const [showm, setShowm] = useState(false);
   const [showr, setShowr] = useState(false);
   const [showp, setShowp] = useState(false);
@@ -11,7 +14,7 @@ function CreateBuilding() {
   const handleCloser = () => setShowr(false);
   const handleClosep = () => setShowp(false);
   const handleCloses = () => setShows(false);
-  const [ore, setOre] = useState(400);
+  const [ore, setOre] = useState(0);
   const [isDisabled, setIsDisabled] = useState(true);
   const oreMine = 300;
   const oreRaffinery = 300;
@@ -54,33 +57,32 @@ function CreateBuilding() {
     }
     setShowp(true);
   }
-  function ReadOre (){
-      var myHeaders = new Headers();
-      const token = JSON.parse(sessionStorage.getItem("token"));
-  
-      myHeaders.append("Authorization", `Bearer ${token}`);
-  
-      var requestOptions = {
-        method: "GET",
-        headers: myHeaders,
-        redirect: "follow",
-      };
-  
-      fetch("http://127.0.0.1:8000/api/ressources/", requestOptions)
-    .then((response) => response.json())
-    .then((result) => {
-      setOre(result.ore);
-      console.log("result", result);
-    })
-    .catch((error) => console.log("error", error));
-}
-  
-    useEffect(() => {
-      ReadOre();
-    }, []);
-  
+  function ReadOre() {
+    var myHeaders = new Headers();
+    const token = JSON.parse(sessionStorage.getItem("token"));
+
+    myHeaders.append("Authorization", `Bearer ${token}`);
+
+    var requestOptions = {
+      method: "GET",
+      headers: myHeaders,
+      redirect: "follow",
+    };
+
+    fetch("http://127.0.0.1:8000/api/ressources/", requestOptions)
+      .then((response) => response.json())
+      .then((result) => {
+        setOre(result.ore);
+        console.log("result", result);
+      })
+      .catch((error) => console.log("error", error));
+  }
+
+  useEffect(() => {
+    ReadOre();
+  }, []);
+
   function Create(building) {
-   
     var myHeaders = new Headers();
     const items = JSON.parse(sessionStorage.getItem("token"));
     myHeaders.append("Authorization", `Bearer ${items} `);
@@ -90,10 +92,18 @@ function CreateBuilding() {
       headers: myHeaders,
       redirect: "follow",
     };
-    
+
     fetch(`http://127.0.0.1:8000/api/structures/${building}`, requestOptions)
-      .then((response) => response.text())
-      .then((result) => {console.log(result);
+      .then((response) =>{ 
+        //permet d'intercepter quand le token est expiré
+        if (response.status === 401){
+          swal("Error", "Session Expired, please connect again", "error");
+          navigate('/login');
+        }
+        return response.json()
+      })
+      .then((result) => {
+        console.log(result);
         // Reload à modifier, CreateBuilding Component en dehors du composant principal,pour éviter d'avoir le renderMyArray au même endroit que les boutons
         window.location.reload();
       })
@@ -103,7 +113,8 @@ function CreateBuilding() {
   return (
     <div className="row">
       <div className="col-3">
-        <Button variant="btn-dark"
+        <Button
+          variant="btn-dark"
           className="btn btn-dark border border-warning"
           onClick={handleShowm}
         >
@@ -115,7 +126,7 @@ function CreateBuilding() {
           </Modal.Header>
           <Modal.Body>Do you really want to create this Mine ?</Modal.Body>
           <Modal.Body>
-          🪨: <strong>{oreMine}</strong> Ore Units <br /> ⚡:
+            🪨: <strong>{oreMine}</strong> Ore Units <br /> ⚡:
             <strong>1</strong> Energy Units <br /> 🕐:<strong>1</strong> hour{" "}
           </Modal.Body>
           <Modal.Footer>
@@ -140,7 +151,8 @@ function CreateBuilding() {
         </Modal>
       </div>
       <div className="col-3">
-        <Button variant="btn-dark"
+        <Button
+          variant="btn-dark"
           className="btn btn-dark border border-warning"
           onClick={handleShowp}
         >
@@ -154,7 +166,7 @@ function CreateBuilding() {
             Do you really want to create this PowerPlant ?
           </Modal.Body>
           <Modal.Body>
-          🪨: <strong>{orePowerplant}</strong> Ore Units <br /> ⚡:
+            🪨: <strong>{orePowerplant}</strong> Ore Units <br /> ⚡:
             <strong>0</strong> Energy Unit <br /> 🕐:<strong>1</strong> hour{" "}
           </Modal.Body>
           <Modal.Footer>
@@ -179,7 +191,8 @@ function CreateBuilding() {
         </Modal>
       </div>
       <div className="col-3">
-        <Button variant="btn-dark"
+        <Button
+          variant="btn-dark"
           className="btn btn-dark border border-warning"
           onClick={handleShowr}
         >
@@ -191,7 +204,7 @@ function CreateBuilding() {
           </Modal.Header>
           <Modal.Body>Do you really want to create this Raffinery ?</Modal.Body>
           <Modal.Body>
-          🪨: <strong>{oreRaffinery}</strong> Ore Units <br /> ⚡:
+            🪨: <strong>{oreRaffinery}</strong> Ore Units <br /> ⚡:
             <strong>2</strong> Energy Units <br /> 🕐:<strong>1</strong> hour{" "}
           </Modal.Body>
           <Modal.Footer>
@@ -216,7 +229,8 @@ function CreateBuilding() {
         </Modal>
       </div>
       <div className="col-3">
-          <Button variant="btn-dark"
+        <Button
+          variant="btn-dark"
           className="btn btn-dark border border-warning"
           onClick={handleShows}
         >
@@ -228,7 +242,7 @@ function CreateBuilding() {
           </Modal.Header>
           <Modal.Body>Do you really want to create this Shipyard ?</Modal.Body>
           <Modal.Body>
-          🪨: <strong>{oreShipyard}</strong> Ore Units <br /> ⚡:
+            🪨: <strong>{oreShipyard}</strong> Ore Units <br /> ⚡:
             <strong>0</strong> Energy Unit <br /> 🕐:<strong>1</strong> hour
           </Modal.Body>
           <Modal.Footer>

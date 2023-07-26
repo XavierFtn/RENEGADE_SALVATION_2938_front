@@ -1,44 +1,59 @@
-import Form from "react-bootstrap/Form";
-import Button from "react-bootstrap/Button";
-import { useState } from "react";
-import { useAccordionButton } from "react-bootstrap";
+import { Navigate } from "react-router-dom";
+import swal from "sweetalert";
 
-function Cship() {
-  const [ships, setShips] = useState();
+function Createship(ship) {
+  var MyHeaders = new Headers();
+  const items = JSON.parse(sessionStorage.getItem("token"));
+  MyHeaders.append("Authorization", `Bearer ${items}`);
+  var requestOptions = {
+    method: "GET",
+    headers: MyHeaders,
+    redirect: "follow",
+  };
 
-  function Create(ship) {
-    var MyHeaders = new Headers();
-    const items = JSON.parse(sessionStorage.getItem("token"));
-    MyHeaders.append("Authorization", `Bearer ${items}`);
-    var requestOptions = {
-      method: "POST",
-      headers: MyHeaders,
-      redirect: "follow",
-    };
+  fetch(`http://127.0.0.1:8000/api/shipyard/available`, requestOptions)
+    .then((response) => { 
+      //permet d'intercepter quand le token est expiré
+      if (response.status === 401){
+        sessionStorage.clear();
+        swal("Error", "Session Expired, please connect again", "error");
+        Navigate('/');
+      }
+      return response.json()
+    })
+    .then((result) => {
+      console.log('available', result);
 
-    fetch(`http://127.0.0.1:8000/api/ships/${ship}`, requestOptions)
-      .then((response) => response.text())
-      .then((result) => console.log(result))
-      .catch((error) => console.log("error", error));
-  }
+      if (result.success != "false") {
+        var MyHeaders2 = new Headers();
+        MyHeaders2.append("Authorization", `Bearer ${items}`);
+        var requestOptions2 = {
+          method: "PUT",
+          headers: MyHeaders2,
+          redirect: "follow",
+        };
 
-  return (
-    <div>
-      <Form.Select
-        onChange={(e) => setShips(e.target.value)}
-        aria-label="Default select example"
-      >
-        <option>Select your ship</option>
-        <option value="fighter">Fighter</option>
-        <option value="frigate">Frigate</option>
-        <option value="cruiser">Cruiser</option>
-        <option value="destroyer">Destroyer</option>
-      </Form.Select>
-      <Button type="submit" onClick={Create}>
-        Create
-      </Button>
-    </div>
-  );
+        fetch(`http://127.0.0.1:8000/api/ships/${ship}/add`, requestOptions2)
+          .then((response) => { 
+            //permet d'intercepter quand le token est expiré
+            if (response.status === 401){
+              sessionStorage.clear();
+  
+            }
+            return response.json()
+          })
+          .then((result) => {
+            console.log(result);
+            swal("Created!", `Your ${ship} is under construction`, "info");
+          })
+          .catch((error) => console.log("error", error));
+      } 
+      else {
+        // Aucun chantier naval disponible
+        swal("Error", "No Shipyard Available", "error");
+      }
+    })
+    .catch((error) => {console.log("error", error);swal("Error", "No Shipyard Available", "error")});
 }
 
-export default Cship;
+export default Createship;
