@@ -1,5 +1,6 @@
 import moment from "moment/moment";
 import { useEffect, useState } from "react";
+import PropTypes from "prop-types";
 
 function ModelShipyard(props) {
   var type = "";
@@ -44,5 +45,11 @@ function ModelShipyard(props) {
     </div>
   );
 }
+// évite les erreur de type: id is missing in props validation
+ModelShipyard.propTypes = {
+  id: PropTypes.number.isRequired,
+  type: PropTypes.string,
+  update: PropTypes.string,
+};
 
 export default ModelShipyard;

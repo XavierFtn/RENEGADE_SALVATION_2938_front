@@ -1,3 +1,4 @@
+import { Navigate } from "react-router-dom";
 import swal from "sweetalert";
 
 function Createship(ship) {
@@ -11,11 +12,19 @@ function Createship(ship) {
   };
 
   fetch(`http://127.0.0.1:8000/api/shipyard/available`, requestOptions)
-    .then((response) => response.text())
+    .then((response) => { 
+      //permet d'intercepter quand le token est expiré
+      if (response.status === 401){
+        sessionStorage.clear();
+        swal("Error", "Session Expired, please connect again", "error");
+        Navigate('/');
+      }
+      return response.json()
+    })
     .then((result) => {
       console.log('available', result);
 
-      if (result != "false") {
+      if (result.success != "false") {
         var MyHeaders2 = new Headers();
         MyHeaders2.append("Authorization", `Bearer ${items}`);
         var requestOptions2 = {
@@ -25,7 +34,14 @@ function Createship(ship) {
         };
 
         fetch(`http://127.0.0.1:8000/api/ships/${ship}/add`, requestOptions2)
-          .then((response) => response.text())
+          .then((response) => { 
+            //permet d'intercepter quand le token est expiré
+            if (response.status === 401){
+              sessionStorage.clear();
+  
+            }
+            return response.json()
+          })
           .then((result) => {
             console.log(result);
             swal("Created!", `Your ${ship} is under construction`, "info");

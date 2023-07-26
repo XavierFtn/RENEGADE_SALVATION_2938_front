@@ -1,8 +1,13 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect, useState } from "react";
 import ModelShips from "../../models/Ships/ModelShips";
+import {useNavigate } from "react-router-dom";
+import swal from "sweetalert";
+import PropTypes from "prop-types";
 
 function Ships(props) {
   const [ship, setShip] = useState([]);
+  const navigate = useNavigate();
 
   async function MShips1() {
     var myHeaders = new Headers();
@@ -20,6 +25,14 @@ function Ships(props) {
     );
     console.log("reponse ships", response);
     let donnees = await response.json();
+    
+      //permet d'intercepter quand le token est expiré
+      if (response.status === 401){
+        sessionStorage.clear();
+        swal("Error", "Session Expired, please connect again", "error");
+        navigate('/');
+      }
+     
     console.log("données ships", donnees);
     setShip(donnees);
   }
@@ -49,5 +62,11 @@ function Ships(props) {
     </div>
   );
 }
+// évite les erreur de type: id is missing in props validation
+Ships.propTypes = {
+  id: PropTypes.number.isRequired,
+  type: PropTypes.string,
+  quantity: PropTypes.number,
+};
 
 export default Ships;
