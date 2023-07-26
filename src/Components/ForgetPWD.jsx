@@ -12,19 +12,18 @@
 **/
 import React, { useState } from 'react';
 
-const ForgetPWD = () => {
+function ForgetPWD() {
   const [email, setEmail] = useState('');
   const [status, setStatus] = useState('');
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+  async function handleSubmit() {
     try {
-      const response = await fetch('/forget-password', {
-        method: 'POST',
+      const response = await fetch("http://127.0.0.1:8000/api/forget-password", {
+        method: 'GET',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ email }),
+       body: JSON.stringify({ email: email }),
       });
   
       const data = await response.json();
@@ -34,7 +33,7 @@ const ForgetPWD = () => {
       setStatus('Something went wrong 💥 please try again later 💫');
     }
   };  
-
+  
   return (
     <div>
       {status && <div>{status}</div>}
@@ -52,7 +51,7 @@ const ForgetPWD = () => {
                                             className="form-control"
                                             placeholder="Enter your e-mail"
                                             />
-                                        <button type="submit" className="btn btn-dark border border-warning mt-2">Reset Password</button>
+                                        <button type="submit" className="btn btn-dark border border-warning mt-2">Send me an e-mail </button>
                                     </form>
                                 </div>
                             </div>
