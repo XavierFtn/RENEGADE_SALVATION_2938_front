@@ -59,10 +59,6 @@ const router = createBrowserRouter([
     path: "/editprofil",
     element: <EditProfil />,
   },
-  {
-    path: "/forgot-password",
-    element: <ForgotPWD />,
-  },
 ]);
 
 export default router;
