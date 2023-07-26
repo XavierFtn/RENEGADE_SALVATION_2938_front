@@ -84,6 +84,7 @@ function Login() {
                   className="form-control"
                   placeholder="Password"
                 />
+                <a href ='/forget-password'>Forgot your password?</a>
               </div>
               <button
                 className="btn btn-dark border border-warning"
