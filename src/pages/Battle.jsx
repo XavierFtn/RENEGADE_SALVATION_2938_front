@@ -49,7 +49,7 @@ const Battle = () => {
 
         try {
             // Appel à l'API pour enregistrer les résultats de la bataille
-            const response = await axios.post("http://127.0.0.1:8889/api/battle", {
+            const response = await axios.post("http://127.0.0.1:8000/api/battle", {
                 attackerShips: selectedAttackerShips,
                 defenderShips: defenderShips,
                 // Ajoutez d'autres données pertinentes à envoyer à l'API si nécessaire
@@ -77,7 +77,7 @@ const Battle = () => {
 
     const fetchUserShips = async () => {
         try {
-            const response = await axios.get("http://127.0.0.1:8889/api/ships");
+            const response = await axios.get("http://127.0.0.1:8000/api/ships");
             const data = response.data;
 
             setAttackerShips([
