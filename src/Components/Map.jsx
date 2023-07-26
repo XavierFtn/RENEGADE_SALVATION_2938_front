@@ -6,11 +6,11 @@ function Map() {
   return (
     <Stage width={999} height={999}>
       <Layer>
-        {/* <KonvaImage
-          image={radarImage} 
-          width={1000} 
-          height={1000} 
-        /> */}
+        <KonvaImage
+          image={radarImage}
+          width={1000}
+          height={1000}
+        />
         <Circle
           x={532}
           y={128}
