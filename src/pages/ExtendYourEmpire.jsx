@@ -7,6 +7,7 @@ import ViewRessources from "../Components/Ressources/ViewRessources";
 import ViewShipyards from "../Components/Ships/ViewShipyards";
 import Createship from "../Components/Ships/CreateShips";
 import { useEffect, useState } from "react";
+import Map from "../Components/Map";
 
 function ExtendYourEmpire() {
   
@@ -302,7 +303,9 @@ function ExtendYourEmpire() {
                 <h1 className="orbitron">Map : </h1>
               </div>
             </Card.Header>
-            <Card.Body className="py-0 "></Card.Body>
+            <Card.Body className="py-0 ">
+             <Map/>
+            </Card.Body>
           </Card>
         </div>
         <div className="col-md-2 mt-3 ">
