@@ -1,5 +1,4 @@
-import React from 'react';
-import { Stage, Layer, Circle, Image as KonvaImage } from 'react-konva';
+import { Stage, Layer, Circle } from 'react-konva';
 // import radarImage from '../assets/radar.jpg'; 
 
 function Map() {
