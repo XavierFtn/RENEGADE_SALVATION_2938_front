@@ -99,8 +99,8 @@ const Battle = () => {
                     <p>Y Coord: {selectedSystem.y_coord}</p>
                     {/* Add more information about the selected system */}
                 </div>
-            );
-      )}
+            )};
+            )
         </div>
     );
 };
