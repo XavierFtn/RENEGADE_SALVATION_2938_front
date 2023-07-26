@@ -1,9 +1,11 @@
 import { useEffect, useState } from "react";
 import MRessources from "../../models/ressources/ModelRessources";
-
+import swal from "sweetalert";
+import { useNavigate } from "react-router-dom";
 
 function ViewRessources() {
   const [ressources, setRessources] = useState([]);
+  const navigate = useNavigate();
 
   function ShowRessources() {
     var myHeaders = new Headers();
@@ -18,7 +20,15 @@ function ViewRessources() {
     };
 
     fetch("http://127.0.0.1:8000/api/ressources/", requestOptions)
-      .then((response) => response.json())
+      .then((response) => {
+        //permet d'intercepter quand le token est expiré
+        if (response.status === 401) {
+          sessionStorage.clear();
+          swal("Error", "Session Expired, please connect again", "error");
+          navigate('/');
+        }
+        return response.json();
+      })
       .then((result) => {
         const resourcesArray = [result];
         setRessources(resourcesArray);
@@ -44,7 +54,7 @@ function ViewRessources() {
 
   return (
     <div>
-      <RenderMyArray  />
+      <RenderMyArray />
     </div>
   );
 }

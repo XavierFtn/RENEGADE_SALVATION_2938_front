@@ -1,65 +1,32 @@
-import moment from "moment/moment";
-import { useEffect, useState } from "react";
-import { Alert, Button, ListGroup, Modal, ProgressBar } from "react-bootstrap";
-import Card from "react-bootstrap/Card";
 
-function MShips(props) {
-  //Utilisation de useState pour afficher la possibilité de Supprimer ou pas si
-  // le Batiment est encore en construction.Eviter le UseRef,qui affiche quand même la div.
-  const [showWait, setShowWait] = useState(true);
-  const [showFinish, setShowFinish] = useState(false);
-  //temps de création
-  const [buildMin, setBuildMin] = useState();
-  const [percentage, setPercentage] = useState();
-  //Modal alert suppression
-  const [show, setShow] = useState(false);
-  const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
-  function Display() {
-    //var now = moment();
-    //var build = moment(props.created_at).add(1, "hours"); // Temps du created_at avec 1heure supp
-    //setBuildMin(build.diff(now, "minutes")); // Temps restant en minutes
-    //setPercentage(Math.round((100 / 60) * buildMin));
-    //console.log(buildMin);
-    //if (buildMin >= 0) {
-    // setShowWait(false);
-    // setShowFinish(true);
-    //} else {
-    // setShowWait(true);
-    //setShowFinish(false);
-    //}
-  }
-  
-  useEffect(() => {
-    Display();
-  });
+import {  Badge, ListGroup} from "react-bootstrap";
+import PropTypes from "prop-types";
+
+function ModelShips(props) {
 
   return (
     <div>
-      <Card bg="dark" text="light" className="text-center p-0" style={{ width: "15rem" }} >
-        <Card.Body>
-          <Card.Title className=" m-0">
-            {props.type} n°{props.id}{" "}
-          </Card.Title>
-          <Card.Title className=" m-0">quantity: {props.quantity} </Card.Title>
-          <ListGroup>
-            {showWait && (
-              <Alert key="success" variant="success">Vaisseau Prêt!</Alert>
-              
-            )}
-            {showFinish && (
-              <ProgressBar
-                animated
-                now={percentage}
-                label={`${buildMin} minutes rest.`}
-              />
-            )}
-          </ListGroup>
-        </Card.Body>
-      </Card>
-      <br />
+      <ListGroup.Item
+        as="li"
+        className="d-flex justify-content-between align-items-start"
+      >
+        <div className="ms-2 me-auto">
+          <div className="fw-bold colorBisque">Nb de {props.type} <Badge bg="success" pill>
+          {props.quantity}
+        </Badge></div>
+          
+        </div>
+        
+      </ListGroup.Item>
+
     </div>
   );
 }
+// évite les erreur de type: id is missing in props validation
+ModelShips.propTypes = {
+  id: PropTypes.number.isRequired,
+  type: PropTypes.string,
+  quantity: PropTypes.string,
+};
 
-export default MShips;
+export default ModelShips
