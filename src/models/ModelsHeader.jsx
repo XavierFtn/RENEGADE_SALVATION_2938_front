@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { Container, Image, Nav, NavDropdown, Navbar } from "react-bootstrap";
+import PropTypes from "prop-types";
 
 function Header(props) {
   const [connected, setConnected] = useState(false);
@@ -132,5 +133,8 @@ function Header(props) {
     </div>
   );
 }
+Header.propTypes = {
+  name: PropTypes.string,
+};
 
 export default Header;
