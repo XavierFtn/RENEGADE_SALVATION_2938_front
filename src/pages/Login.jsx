@@ -35,7 +35,7 @@ function Login() {
         }),
       };
 
-      const response = await fetch("http://127.0.0.1:8000/api/login", options);
+      const response = await fetch("/api/login", options);
       const data = await response.json();
 
       if (data.status === "success") {

@@ -16,10 +16,12 @@ function ForgetPWD() {
   const [email, setEmail] = useState('');
   const [status, setStatus] = useState('');
 
-  async function handleSubmit() {
+  async function handleSubmit(e) {
+    e.preventDefault();
+    // console.log('request ok ForgetPWD 21');
     try {
-      const response = await fetch("http://127.0.0.1:8000/api/forget-password", {
-        method: 'GET',
+      const response = await fetch("/api/forget-password", {
+        method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },

@@ -21,12 +21,13 @@ const ResetPWD = ({ token }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch(`/reset-password`, {
+      const response = await fetch(`/api/reset-password/{token}`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`, 
         },
-        body: JSON.stringify({ email, password, password_confirmation: passwordConfirmation, token }),
+        body: JSON.stringify({ email, password, password_confirmation: passwordConfirmation }),
       });
   
       const data = await response.json();
