@@ -1,10 +1,13 @@
 import React from "react";
+import "bootstrap/dist/css/bootstrap.min.css";
+import { Card } from "react-bootstrap";
 
-const BattleItem = ({ type, quantity }) => {
+
+const BattleItem = ({ type, quantity, onClick, className }) => {
     return (
-        <div>
-            <p>Type de vaisseau : {type}</p>
-            <p>Quantité : {quantity}</p>
+        <div className={className} onClick={onClick}>
+            <p>{type}</p>
+            <p>Quantity: {quantity}</p>
         </div>
     );
 };
