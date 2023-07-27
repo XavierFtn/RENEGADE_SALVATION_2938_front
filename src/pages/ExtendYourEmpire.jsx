@@ -8,9 +8,10 @@ import ViewShipyards from "../Components/Ships/ViewShipyards";
 import Createship from "../Components/Ships/CreateShips";
 import { useEffect, useState } from "react";
 import Map from "../Components/Map";
+import { useNavigate } from "react-router-dom";
 
 function ExtendYourEmpire() {
-  
+  const navigate = useNavigate();
   const [showfi, setShowfi] = useState(false);
   const [showfr, setShowfr] = useState(false);
   const [showcr, setShowcr] = useState(false);
@@ -122,6 +123,7 @@ function ExtendYourEmpire() {
                       onClick={() => {
                         Createship("fighter");
                         handleClosefi();
+                        navigate('/extendyourempire')
                       }}
                       disabled={isDisabled ? true : false}
                     >

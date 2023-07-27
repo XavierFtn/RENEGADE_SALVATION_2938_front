@@ -103,7 +103,7 @@ function EditProfil() {
 
   return (
     <div className="container-fluid">
-      <Header name="Edit Your Profil" />
+      <Header name="Edit Your Profile" />
       <div className="row mb-5 pt-2"></div>
       <div className="row wrap">
         <Card>
