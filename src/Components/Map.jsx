@@ -2,42 +2,49 @@ import React, { useState, useEffect } from 'react';
 import { Stage, Layer, Circle } from 'react-konva';
 
 function Map() {
-  const [user1Coords, setUser1Coords] = useState({ x: 222, y: 22 });
-  const [user2Coords, setUser2Coords] = useState({ x: 250, y: 50 });
+  const [userCoords, setUserCoords] = useState([]);
+  const token = JSON.parse(sessionStorage.getItem("token"));
+
+  const getMyPoints = async () => {
+    const options = {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+    };
+    const response = await fetch(
+      "http://127.0.0.1:8000/api/planetary-systems",
+      options
+    );
+    const data = await response.json();
+    console.log("data", data);
+    // Supposons que les données renvoyées par l'API sont sous forme d'un objet avec une propriété "planetarySystems" qui contient le tableau des systèmes planétaires
+    const { planetarySystems } = data;
+    // Récupérer les coordonnées de tous les systèmes planétaires
+    setUserCoords(planetarySystems.map(system => ({ x: system.x_coord, y: system.y_coord })));
+  }
 
   useEffect(() => {
     // Faites une requête à votre API pour récupérer les coordonnées des utilisateurs
-    fetch('/api/planetary-systems')
-      .then(response => response.json())
-      .then(data => {
-        // Supposons que votre API renvoie les données au format JSON avec les clés "user1" et "user2"
-        setUser1Coords({ x: data.user1.x_coord, y: data.user1.y_coord });
-        setUser2Coords({ x: data.user2.x_coord, y: data.user2.y_coord });
-      })
-      .catch(error => {
-        console.error('Erreur lors de la récupération des coordonnées des utilisateurs:', error);
-      });
+    getMyPoints();
   }, []);
 
   return (
     <Stage width={999} height={999}>
       <Layer>
-        <Circle
-          x={user1Coords.x}
-          y={user1Coords.y}
-          radius={10}
-          fill="red"
-          stroke="green"
-          strokeWidth={1}
-        />
-        <Circle
-          x={user2Coords.x}
-          y={user2Coords.y}
-          radius={10}
-          fill="blue"
-          stroke="black"
-          strokeWidth={1}
-        />
+        {userCoords.map((userCoord, index) => (
+          <Circle
+
+            key={index}
+            x={userCoord.x}
+            y={userCoord.y}
+            radius={10}
+            fill="red"
+            stroke="green"
+            strokeWidth={1}
+          />
+        ))}
       </Layer>
     </Stage>
   );
