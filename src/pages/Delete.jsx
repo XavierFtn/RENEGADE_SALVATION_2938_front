@@ -8,7 +8,7 @@ function DeleteUser() {
   const token = JSON.parse(sessionStorage.getItem("token"));
   const DeleteUser = ({ user, onDelete }) => {
     const handleDelete = () => {
-      fetch(`/api/DeleteUser/${user.id}`, {
+      fetch(`http://127.0.0.1:8000/api/deleteuser/${user.id}`, {
         method: "DELETE",
       })
         .then((response) => response.json())

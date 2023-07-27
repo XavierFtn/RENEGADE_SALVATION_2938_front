@@ -257,6 +257,13 @@ function EditProfil() {
             >
               Submit
             </button>
+            <button
+              className="btn btn-dark border border-warning"
+              onClick={handleSubmit}
+            >
+              <DeleteUser />
+              Delete Account
+            </button>
           </Form>
         </Card>
       </div>
