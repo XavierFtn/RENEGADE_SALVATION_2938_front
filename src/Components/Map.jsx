@@ -1,7 +1,5 @@
-
-import React, { useState, useEffect } from 'react';
-import { Stage, Layer, Circle } from 'react-konva';
-
+import React, { useState, useEffect } from "react";
+import { Stage, Layer, Circle, Text } from "react-konva";
 
 function Map() {
   const [userCoords, setUserCoords] = useState([]);
@@ -20,32 +18,61 @@ function Map() {
       options
     );
     const data = await response.json();
-    console.log("data", data);
-    // Supposons que les données renvoyées par l'API sont sous forme d'un objet avec une propriété "planetarySystems" qui contient le tableau des systèmes planétaires
     const { planetarySystems } = data;
-    // Récupérer les coordonnées de tous les systèmes planétaires
-    setUserCoords(planetarySystems.map(system => ({ x: system.x_coord, y: system.y_coord })));
-  }
+
+    // Mettre à jour les coordonnées des utilisateurs avec les informations supplémentaires
+    setUserCoords(
+      planetarySystems.map((system) => ({
+        id: system.id,
+        x: system.x_coord,
+        y: system.y_coord,
+        name: system.planetary_system_name,
+      }))
+    );
+  };
 
   useEffect(() => {
-    // Faites une requête à votre API pour récupérer les coordonnées des utilisateurs
     getMyPoints();
   }, []);
+
+  const getRandomColor = () => {
+    const color = `rgb(${Math.random() * 255}, ${Math.random() * 255}, ${
+      Math.random() * 255
+    })`;
+    return color;
+  };
 
   return (
     <Stage width={999} height={999}>
       <Layer>
         {userCoords.map((userCoord, index) => (
-          <Circle
-
-            key={index}
-            x={userCoord.x}
-            y={userCoord.y}
-            radius={10}
-            fill="red"
-            stroke="green"
-            strokeWidth={1}
-          />
+          <React.Fragment key={index}>
+            <Circle
+              x={userCoord.x}
+              y={userCoord.y}
+              radius={10}
+              fill={getRandomColor()}
+              stroke="green"
+              strokeWidth={1}
+            />
+            <Text
+              x={userCoord.x + 12}
+              y={userCoord.y - 5}
+              text={userCoord.name}
+              fontSize={14}
+              font
+              fontWeight="bold"
+              fill="white"
+            />
+            <Text
+              x={userCoord.x + 5}
+              y={userCoord.y + 15}
+              text={` (x:${userCoord.x}, y:${userCoord.y})`}
+              fontSize={14}
+              fontWeight="bold"
+              fill="white"
+            />
+          </React.Fragment>
         ))}
       </Layer>
     </Stage>
