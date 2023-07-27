@@ -6,24 +6,21 @@ function Map() {
   const [user2Coords, setUser2Coords] = useState({ x: 150, y: 100 });
 
   useEffect(() => {
-    // Faites une requête à votre API pour récupérer les coordonnées du premier utilisateur
-    fetch('/api/user1')
+    // Faites une requête à votre API pour récupérer les coordonnées des utilisateurs
+    fetch('/system/', {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    })
       .then(response => response.json())
       .then(data => {
-        setUser1Coords({ x: data.x_coord, y: data.y_coord });
+        // Supposons que votre API renvoie les données au format JSON avec les clés "user1" et "user2"
+        setUser1Coords({ x: data.user1.x_coord, y: data.user1.y_coord });
+        setUser2Coords({ x: data.user2.x_coord, y: data.user2.y_coord });
       })
       .catch(error => {
-        console.error('Erreur lors de la récupération des coordonnées du premier utilisateur:', error);
-      });
-
-    // Faites une requête à votre API pour récupérer les coordonnées du deuxième utilisateur
-    fetch('/api/user2')
-      .then(response => response.json())
-      .then(data => {
-        setUser2Coords({ x: data.x_coord, y: data.y_coord });
-      })
-      .catch(error => {
-        console.error('Erreur lors de la récupération des coordonnées du deuxième utilisateur:', error);
+        console.error('Erreur lors de la récupération des coordonnées des utilisateurs:', error);
       });
   }, []);
 
