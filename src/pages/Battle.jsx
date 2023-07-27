@@ -1,22 +1,4 @@
-<<<<<<< HEAD
 import React, { useEffect, useState } from "react";
-=======
-/**
-    * @description      : 
-    * @author           : 
-    * @group            : 
-    * @created          : 27/07/2023 - 09:12:33
-    * 
-    * MODIFICATION LOG
-    * - Version         : 1.0.0
-    * - Date            : 27/07/2023
-    * - Author          : 
-    * - Modification    : 
-**/
-import React, { useState } from "react";
-import BattleItem from "./BattleItem";
-import "bootstrap/dist/css/bootstrap.min.css";
->>>>>>> Dev2
 
 const Battle = () => {
   const [ships, setShips] = useState({});
