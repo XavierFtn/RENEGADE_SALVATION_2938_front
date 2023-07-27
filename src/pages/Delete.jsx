@@ -1,55 +1,64 @@
 import { Button, Card, Col, Form, Row } from "react-bootstrap";
-import Footer from "../models/ModelsFooter";
-import Header from "../models/ModelsHeader";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
-import axios from "axios";
-
 import Swal from "sweetalert2";
 
-
-function DeleteProfile() {
-
-  //const [deleteUserData, setDeleteUserData] = useState({
-  //  firstname: "",
-  //  lastname: "",
-  //  email: "",
-  //  password: "",
-  //  username: "",
-  //  date_of_birth: "",
-  //  name: "",
-  //  picture: "",
-  //});
-  const firstname = JSON.parse(sessionStorage.getItem("firstname"));
-  const lastname = JSON.parse(sessionStorage.getItem("lastname"));
-  const username = JSON.parse(sessionStorage.getItem("user"));
-  const date_of_birth = JSON.parse(sessionStorage.getItem("date_of_birth"));
-  const email = JSON.parse(sessionStorage.getItem("email"));
+function DeleteUser() {
   const navigate = useNavigate();
-
   const token = JSON.parse(sessionStorage.getItem("token"));
+  const DeleteUser = ({ user, onDelete }) => {
+    const handleDelete = () => {
+      fetch(`/api/DeleteUser/${user.id}`, {
+        method: "DELETE",
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          console.log("User deleted successfully");
+          onDelete(user.id);
+        })
+        .catch((error) => {
+          console.error("Error deleting user:", error);
+        });
+    };
 
-  var myHeaders = new Headers();
-  myHeaders.append("Authorization",`Bearer ${token}`);
+    return (
+      <div>
+        <p>firstname :{user.firstname}</p>
+        <p>lastname: {user.lastname}</p>
+        <p>username: {user.username}</p>
+        <p>date_of_birth: {user.date_of_birth}</p>
+        <p>planetary_system_name: {user.planetary_system_name}</p>
+        <p>Email: {user.email}</p>
 
-  var requestOptions = {
-    method: 'POST',
-    headers: myHeaders,
-    redirect: 'follow'
+        <button onClick={handleDelete}>Delete User</button>
+      </div>
+    );
   };
 
-  fetch("http://127.0.0.1:8000/api/deleteprofile", requestOptions)
-  .then(response => {
-    if (response.ok) {
-      navigate("/");
-      Swal.fire("Account successfully deleted","success");
-      sessionStorage.delete();
-    } 
-  //return (
-   // <button variant="success" type=submit>
-
-  //  </button>
-  //)
-  
+  //var myHeaders = new Headers();
+  // myHeaders.append("Authorization", `Bearer ${token} `);
+  //
+  //var requestOptions = {
+  // method: "DELETE",
+  // headers: myHeaders,
+  // redirect: "follow",
+  //};
+  //
+  //fetch("http://127.0.0.1:8000/api/delete", requestOptions)
+  //.then((response) => {
+  // if (response.ok) {
+  //   navigate("/");
+  //   Swal.fire("Account successfully deleted", "See you soon!", "success");
+  //   sessionStorage.delete();
+  //  } else {
+  //sessionStorage.delete();
+  //   navigate("/");
+  // }
+  // })
+  //.catch((error) => {
+  //  console.error(error);
+  //
+  // Swal.fire("Error", "An unexpected error occurred", "error");
+  // });
 }
-export default DeleteProfile;
+export default DeleteUser;
