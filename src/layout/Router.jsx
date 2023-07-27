@@ -1,15 +1,3 @@
-/**
- * @description      :
- * @author           :
- * @group            :
- * @created          : 24/07/2023 - 09:33:00
- *
- * MODIFICATION LOG
- * - Version         : 1.0.0
- * - Date            : 24/07/2023
- * - Author          :
- * - Modification    :
- **/
 import Home from "../pages/home";
 import BuildYourEmpire from "../pages/BuildYourEmpire";
 import YourEmpire from "../pages/YourEmpire";

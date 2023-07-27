@@ -12,8 +12,7 @@ import Map from "../Components/Map";
 import fighter from "../components/img/Ships/fighter.png";
 import frigate from "../components/img/Ships/frigate.png";
 import cruiser from "../components/img/Ships/cruiser.png";
-import destroyer from "../components/img/Ships/destroyer(1).png";
-
+import destroyer from "../components/img/Ships/destroyer.png";
 
 import { useNavigate } from "react-router-dom";
 
@@ -132,7 +131,7 @@ function ExtendYourEmpire() {
                       onClick={() => {
                         Createship("fighter");
                         handleClosefi();
-                        navigate('/extendyourempire')
+                        navigate("/extendyourempire");
                       }}
                       disabled={isDisabled ? true : false}
                     >
@@ -332,7 +331,6 @@ function ExtendYourEmpire() {
             </div>
           </Card>
         </div>
-
 
         <Footer />
       </div>
