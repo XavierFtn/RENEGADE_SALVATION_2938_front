@@ -54,6 +54,9 @@ body {
 .colorRed{
   color: rgb(248, 73, 73);
 }
+.colorYellow{
+  color: rgb(250, 194, 28);
+}
 .hm-gradient {
   background-image: linear-gradient(to top, #f3e7e9 0%, #e3eeff 99%, #e3eeff 100%);
 }
