@@ -20,7 +20,7 @@ function ForgetPWD() {
     e.preventDefault();
     // console.log('request ok ForgetPWD 21');
     try {
-      const response = await fetch("/api/forget-password", {
+      const response = await fetch("http://127.0.0.1:8000/api/forget-password", {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -31,7 +31,7 @@ function ForgetPWD() {
       const data = await response.json();
       setStatus(data.status);
     } catch (error) {
-      console.error('Error:', error);
+      // console.error('Error:', error);
       setStatus('Something went wrong 💥 please try again later 💫');
     }
   };  
