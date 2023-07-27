@@ -2,8 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { Stage, Layer, Circle } from 'react-konva';
 
 function Map() {
-  const [user1Coords, setUser1Coords] = useState({ x: 0, y: 0 });
-  const [user2Coords, setUser2Coords] = useState({ x: 0, y: 0 });
+  const [user1Coords, setUser1Coords] = useState({ x: 222, y: 22 });
+  const [user2Coords, setUser2Coords] = useState({ x: 250, y: 50 });
 
   useEffect(() => {
     // Faites une requête à votre API pour récupérer les coordonnées des utilisateurs
