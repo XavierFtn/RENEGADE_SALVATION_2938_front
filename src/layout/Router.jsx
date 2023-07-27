@@ -1,15 +1,15 @@
 /**
-    * @description      : 
-    * @author           : 
-    * @group            : 
-    * @created          : 24/07/2023 - 09:33:00
-    * 
-    * MODIFICATION LOG
-    * - Version         : 1.0.0
-    * - Date            : 24/07/2023
-    * - Author          : 
-    * - Modification    : 
-**/
+ * @description      :
+ * @author           :
+ * @group            :
+ * @created          : 24/07/2023 - 09:33:00
+ *
+ * MODIFICATION LOG
+ * - Version         : 1.0.0
+ * - Date            : 24/07/2023
+ * - Author          :
+ * - Modification    :
+ **/
 import Home from "../pages/home";
 import BuildYourEmpire from "../pages/BuildYourEmpire";
 import YourEmpire from "../pages/YourEmpire";
@@ -20,6 +20,7 @@ import ExtendYourEmpire from "../pages/ExtendYourEmpire";
 import Disconnect from "../pages/Disconnect";
 import Battle from "../pages/Battle";
 import EditProfil from "../pages/Edit";
+import DeleteProfile from "../pages/Delete";
 
 const router = createBrowserRouter([
   {
@@ -45,11 +46,10 @@ const router = createBrowserRouter([
   {
     path: "/yourempire",
     element: <YourEmpire />,
-      },
+  },
   {
     path: "/extendyourempire",
     element: <ExtendYourEmpire />,
-
   },
   {
     path: "/battle",
@@ -58,6 +58,10 @@ const router = createBrowserRouter([
   {
     path: "/editprofil",
     element: <EditProfil />,
+  },
+  {
+    path: "/deleteprofile",
+    element: <DeleteProfile />,
   },
 ]);
 

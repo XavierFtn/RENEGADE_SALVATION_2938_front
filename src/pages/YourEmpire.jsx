@@ -17,7 +17,7 @@ import ViewRessources from "../Components/Ressources/ViewRessources";
 import BackgroundVideo from "../models/ModelsBackground.jsx";
 /*import MShips from "../models/warfleet/ModelShips.jsx";*/
 import { Card } from "react-bootstrap";
-import GridComponent from "../Components/Ships/GridComponent";
+import React from "react";
 
 function YourEmpire() {
   return (
@@ -33,10 +33,7 @@ function YourEmpire() {
               <Card.Header className="py-0 ">
                 <h1 className="orbitron">You are here:</h1>
               </Card.Header>
-              <Card.Body>
-                afficher carte
-                <GridComponent />
-              </Card.Body>
+              <Card.Body></Card.Body>
             </Card>
           </div>
           <div className="col-md-6">

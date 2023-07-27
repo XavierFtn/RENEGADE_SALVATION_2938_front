@@ -116,7 +116,7 @@
 
 //         const messagePending = () => { 
 //             return pending.length === 0 ? <p>You have no constructions pending.</p> : null;
-//     }
+//     }²
 
 //         return (
 //             <>
