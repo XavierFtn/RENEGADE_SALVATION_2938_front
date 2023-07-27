@@ -1,3 +1,15 @@
+/**
+    * @description      : 
+    * @author           : 
+    * @group            : 
+    * @created          : 27/07/2023 - 13:54:27
+    * 
+    * MODIFICATION LOG
+    * - Version         : 1.0.0
+    * - Date            : 27/07/2023
+    * - Author          : 
+    * - Modification    : 
+**/
 
 import {  Badge, ListGroup} from "react-bootstrap";
 import PropTypes from "prop-types";
@@ -11,7 +23,7 @@ function ModelShips(props) {
         className="d-flex justify-content-between align-items-start"
       >
         <div className="ms-2 me-auto">
-          <div className="fw-bold colorBisque">Nb de {props.type} <Badge bg="success" pill>
+          <div className="fw-bold colorBisque"> {props.type} <Badge bg="success" pill>
           {props.quantity}
         </Badge></div>
           
