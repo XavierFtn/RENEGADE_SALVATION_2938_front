@@ -15,7 +15,7 @@ import Footer from "../models/ModelsFooter";
 // import Warehouses from "../models/ModelsBuildings/
 import ViewRessources from "../Components/Ressources/ViewRessources";
 import BackgroundVideo from "../models/ModelsBackground.jsx";
-/*import MShips from "../models/warfleet/ModelShips.jsx";*/
+import MShips from "../models/Ships/ModelShips.jsx";
 import { Card } from "react-bootstrap";
 
 function YourEmpire() {
@@ -57,7 +57,7 @@ function YourEmpire() {
                                 <h1 className="orbitron">Your ships:</h1>
                             </Card.Header>
                             <Card.Body>
-                                {/* <MShips/>   */}
+                                <MShips/>
                             </Card.Body>
                         </Card>
                     </div> 
