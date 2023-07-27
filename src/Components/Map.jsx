@@ -2,17 +2,12 @@ import React, { useState, useEffect } from 'react';
 import { Stage, Layer, Circle } from 'react-konva';
 
 function Map() {
-  const [user1Coords, setUser1Coords] = useState({ x: 50, y: 60 });
-  const [user2Coords, setUser2Coords] = useState({ x: 150, y: 100 });
+  const [user1Coords, setUser1Coords] = useState({ x: 0, y: 0 });
+  const [user2Coords, setUser2Coords] = useState({ x: 0, y: 0 });
 
   useEffect(() => {
     // Faites une requête à votre API pour récupérer les coordonnées des utilisateurs
-    fetch('/system/', {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    })
+    fetch('/api/planetary-systems')
       .then(response => response.json())
       .then(data => {
         // Supposons que votre API renvoie les données au format JSON avec les clés "user1" et "user2"
