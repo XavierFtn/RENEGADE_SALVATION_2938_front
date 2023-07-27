@@ -84,6 +84,11 @@ function Header(props) {
                     <NavDropdown.Divider />
                     <NavDropdown.Item href="/extendyourempire">
                       🔭 Extend Your Empire
+
+                    </NavDropdown.Item>
+                    <NavDropdown.Item href="/battle">
+                      🛸 Battle 🛸
+
                     </NavDropdown.Item>
                     <NavDropdown.Item href="/battle">
                       Battle
