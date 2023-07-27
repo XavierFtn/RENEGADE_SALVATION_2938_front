@@ -9,8 +9,16 @@ import Createship from "../Components/Ships/CreateShips";
 import { useEffect, useState } from "react";
 import Map from "../Components/Map";
 
+import fighter from "../components/img/Ships/fighter.png";
+import frigate from "../components/img/Ships/frigate.png";
+import cruiser from "../components/img/Ships/cruiser.png";
+import destroyer from "../components/img/Ships/destroyer.png";
+
+import { useNavigate } from "react-router-dom";
+
 function ExtendYourEmpire() {
-  
+  const navigate = useNavigate();
+
   const [showfi, setShowfi] = useState(false);
   const [showfr, setShowfr] = useState(false);
   const [showcr, setShowcr] = useState(false);
@@ -90,6 +98,7 @@ function ExtendYourEmpire() {
                   <Ships type={"fighter"} />
                 </h1>
               </Card.Header>
+              <img src={fighter} alt="fighter" />
               <div className="p-0">
                 <Button
                   variant="btn-dark"
@@ -122,6 +131,7 @@ function ExtendYourEmpire() {
                       onClick={() => {
                         Createship("fighter");
                         handleClosefi();
+                        navigate("/extendyourempire");
                       }}
                       disabled={isDisabled ? true : false}
                     >
@@ -139,6 +149,7 @@ function ExtendYourEmpire() {
                   <Ships type={"frigate"} />
                 </h1>
               </Card.Header>
+              <img src={frigate} alt="frigate" />
               <div className="py-0">
                 <Button
                   variant="btn-dark"
@@ -190,7 +201,7 @@ function ExtendYourEmpire() {
                   <Ships type={"cruiser"} />
                 </h1>
               </Card.Header>
-
+              <img src={cruiser} alt="cruiser" />
               <div className="py-0">
                 <Button
                   variant="btn-dark"
@@ -242,7 +253,7 @@ function ExtendYourEmpire() {
                   <Ships type={"destroyer"} />
                 </h1>
               </Card.Header>
-
+              <img src={destroyer} alt="destroyer" />
               <div className="py-0">
                 <Button
                   variant="btn-dark"
@@ -304,7 +315,7 @@ function ExtendYourEmpire() {
               </div>
             </Card.Header>
             <Card.Body className="py-0 ">
-             <Map/>
+              <Map />
             </Card.Body>
           </Card>
         </div>
@@ -320,7 +331,6 @@ function ExtendYourEmpire() {
             </div>
           </Card>
         </div>
-        
 
         <Footer />
       </div>

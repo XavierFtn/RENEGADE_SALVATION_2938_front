@@ -1,104 +1,107 @@
-/**
-    * @description      : 
-    * @author           : 
-    * @group            : 
-    * @created          : 27/07/2023 - 09:12:33
-    * 
-    * MODIFICATION LOG
-    * - Version         : 1.0.0
-    * - Date            : 27/07/2023
-    * - Author          : 
-    * - Modification    : 
-**/
-import React, { useState } from "react";
-import BattleItem from "./BattleItem";
-import "bootstrap/dist/css/bootstrap.min.css";
+import React, { useEffect, useState } from "react";
 
 const Battle = () => {
-    const [attackerShips, setAttackerShips] = useState([
-        { type: "Chasseur", quantity: 10 },
-        { type: "Fregate", quantity: 5 },
-    ]);
-    const [defenderShips, setDefenderShips] = useState([
-        { type: "Chasseur", quantity: 8 },
-        { type: "Fregate", quantity: 6 },
-    ]);
-    const [battleResult, setBattleResult] = useState(null);
+    const [ships, setShips] = useState({});
+    const [planetarySystems, setPlanetarySystems] = useState([]);
+    const [selectedSystem, setSelectedSystem] = useState(null);
+    const token = JSON.parse(sessionStorage.getItem("token")); // Retrieve the token from session storage
 
-    const calculateAttackPoints = (ships) => {
-        return ships.reduce((total, ship) => total + ship.quantity, 0);
-    };
-
-    const calculateDefensePoints = (ships) => {
-        return ships.reduce((total, ship) => total + ship.quantity, 0);
-    };
-
-    const handleBattle = () => {
-        const attackerPoints = calculateAttackPoints(attackerShips);
-        const defenderPoints = calculateDefensePoints(defenderShips);
-
-        let rounds = 1;
-
-        while (attackerShips.length > 0 && defenderShips.length > 0) {
-            if (attackerPoints > defenderPoints) {
-                // Attacker wins the round
-                const shipsDestroyed = Math.ceil(defenderShips.length * 0.3);
-                defenderShips.splice(0, shipsDestroyed);
-            } else if (attackerPoints < defenderPoints) {
-                // Defender wins the round
-                const shipsDestroyed = Math.ceil(attackerShips.length * 0.3);
-                attackerShips.splice(0, shipsDestroyed);
-            } else {
-                // Draw, both sides lose 30% of their ships
-                const attackerShipsDestroyed = Math.ceil(attackerShips.length * 0.3);
-                const defenderShipsDestroyed = Math.ceil(defenderShips.length * 0.3);
-                attackerShips.splice(0, attackerShipsDestroyed);
-                defenderShips.splice(0, defenderShipsDestroyed);
-            }
-
-            attackerPoints = calculateAttackPoints(attackerShips);
-            defenderPoints = calculateDefensePoints(defenderShips);
-
-            rounds++;
-        }
-
-        // Determine the battle result
-        if (attackerShips.length > 0) {
-            setBattleResult("Win !");
-        } else if (defenderShips.length > 0) {
-            setBattleResult("Lose !");
-        } else {
-            setBattleResult("Draw !");
+    // Function to fetch ships data from the backend
+    const fetchShips = async () => {
+        try {
+            const response = await fetch("http://127.0.0.1:8000/api/ships", {
+                headers: {
+                    Authorization: `Bearer ${token}`, // Include the token in the headers
+                },
+            });
+            const data = await response.json();
+            setShips(data.ships); // We update 'ships' with the 'ships' object from the response
+        } catch (error) {
+            console.error("Erreur lors de la récupération des vaisseaux:", error);
         }
     };
+
+    // Function to fetch planetary systems data from the backend
+    const fetchPlanetarySystems = async () => {
+        try {
+            const response = await fetch(
+                "http://localhost:8000/api/planetary-systems",
+                {
+                    headers: {
+                        Authorization: `Bearer ${token}`, // Include the token in the headers
+                    },
+                }
+            );
+            const data = await response.json();
+            setPlanetarySystems(data.planetarySystems);
+        } catch (error) {
+            console.error(
+                "Erreur lors de la récupération des systèmes planétaires:",
+                error
+            );
+        }
+    };
+
+    // Function to handle selecting a planetary system as a target
+    const handleSelectSystem = (system) => {
+        setSelectedSystem(system);
+    };
+
+    // // Function to handle sending the ships to battle
+    // const handleSendShips = async (defenderId) => {
+    //   try {
+    //     const response = await fetch("http://127.0.0.1:8000/api/battle", {
+    //       method: "POST",
+    //       headers: {
+    //         "Content-Type": "application/json",
+    //         Authorization: `Bearer ${token}`, // Include the token in the headers
+    //       },
+    //       body: JSON.stringify({ user_id: defenderId }),
+    //     });
+    //     const data = await response.json();
+    //     console.log(data.message); // Battle result message from the backend
+    //     fetchShips(); // Refresh ships data after the battle
+    //   } catch (error) {
+    //     console.error("Erreur lors de l'envoi des vaisseaux:", error);
+    //     setShips([]); // Set an empty array as a fallback on error
+    //   }
+    // };
+
+    useEffect(() => {
+        fetchShips();
+        fetchPlanetarySystems();
+    }, []);
 
     return (
-
-        <div className=" row ">
-
-            <div>
-                <div className="row mt-5 pt-2">
-                    <div className="col d-flex justify-content-center">
-                        <h1 className="orbitron">Battle!</h1>
-                    </div>
+        <div>
+            <h1>Flotte</h1>
+            <ul>
+                {Object.entries(ships).map(([shipType, quantity]) => (
+                    <li key={shipType}>
+                        Type: {shipType} - Quantity: {quantity}
+                    </li>
+                ))}
+            </ul>
+            <h1>Attaque</h1>
+            <ul>
+                {planetarySystems.map((system) => (
+                    <li key={system.id}>
+                        {system.name} (X: {system.x_coord}, Y: {system.y_coord})
+                        <button onClick={() => handleSelectSystem(system)}>Select</button>
+                    </li>
+                ))}
+            </ul>
+            {selectedSystem && (
+                <div>
+                    <h2>Selected System</h2>
+                    <p>Name: {selectedSystem.name}</p>
+                    <p>X Coord: {selectedSystem.x_coord}</p>
+                    <p>Y Coord: {selectedSystem.y_coord}</p>
+                    {/* Add more information about the selected system */}
                 </div>
-
-                <button className="btn btn-dark border border-warning" onClick={handleBattle}>Start Battle</button>
-                {battleResult && <p>Result Battle : {battleResult}</p>}
-
-                <h3 className="orbitron">Attackers :</h3>
-                {attackerShips.map((ship, index) => (
-                    <BattleItem className="orbitron" key={index} type={ship.type} quantity={ship.quantity} />
-                ))}
-
-                <h3 className="orbitron">Defenders:</h3>
-                {defenderShips.map((ship, index) => (
-                    <BattleItem className="orbitron" key={index} type={ship.type} quantity={ship.quantity} />
-                ))}
-            </div>
+            )};
+            )
         </div>
-
     );
 };
-
 export default Battle;
