@@ -43,6 +43,8 @@ function ForgetPWD() {
                 <div className="col-md-5">
                     <div className="card">
                         <div className="card-body">
+                          {!status ? (
+                          <>
                             <h5 className="card-title">Reset Password</h5>
                                 <div className="form-group">
                                     <form onSubmit={handleSubmit}>
@@ -56,6 +58,11 @@ function ForgetPWD() {
                                         {status && <div className="mt-2 text-light">{status}</div>}
                                     </form>
                                 </div>
+                          </>) :
+                            <>
+                              <h5>Nous venons de vous envoyer un mail</h5>
+                            </>
+                            }
                             </div>
                         </div>
                     </div>
