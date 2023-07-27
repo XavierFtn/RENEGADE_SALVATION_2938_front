@@ -47,25 +47,25 @@ const Battle = () => {
         setSelectedSystem(system);
     };
 
-    // // Function to handle sending the ships to battle
-    // const handleSendShips = async (defenderId) => {
-    //   try {
-    //     const response = await fetch("http://127.0.0.1:8000/api/battle", {
-    //       method: "POST",
-    //       headers: {
-    //         "Content-Type": "application/json",
-    //         Authorization: `Bearer ${token}`, // Include the token in the headers
-    //       },
-    //       body: JSON.stringify({ user_id: defenderId }),
-    //     });
-    //     const data = await response.json();
-    //     console.log(data.message); // Battle result message from the backend
-    //     fetchShips(); // Refresh ships data after the battle
-    //   } catch (error) {
-    //     console.error("Erreur lors de l'envoi des vaisseaux:", error);
-    //     setShips([]); // Set an empty array as a fallback on error
-    //   }
-    // };
+    // Function to handle sending the ships to battle
+    const handleSendShips = async (defenderId) => {
+        try {
+            const response = await fetch("http://127.0.0.1:8000/api/attack", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    Authorization: `Bearer ${token}`, // Include the token in the headers
+                },
+                body: JSON.stringify({ user_id: defenderId }),
+            });
+            const data = await response.json();
+            console.log(data.message); // Battle result message from the backend
+            fetchShips(); // Refresh ships data after the battle
+        } catch (error) {
+            console.error("Erreur lors de l'envoi des vaisseaux:", error);
+            setShips([]); // Set an empty array as a fallback on error
+        }
+    };
 
     useEffect(() => {
         fetchShips();
@@ -76,20 +76,22 @@ const Battle = () => {
         <div>
             <h1>Flotte</h1>
             <ul>
-                {Object.entries(ships).map(([shipType, quantity]) => (
-                    <li key={shipType}>
-                        Type: {shipType} - Quantity: {quantity}
-                    </li>
-                ))}
+                {ships &&
+                    Object.entries(ships).map(([shipType, quantity]) => (
+                        <li key={shipType}>
+                            Type: {shipType} - Quantity: {quantity}
+                        </li>
+                    ))}
             </ul>
             <h1>Attaque</h1>
             <ul>
-                {planetarySystems.map((system) => (
-                    <li key={system.id}>
-                        {system.name} (X: {system.x_coord}, Y: {system.y_coord})
-                        <button onClick={() => handleSelectSystem(system)}>Select</button>
-                    </li>
-                ))}
+                {planetarySystems &&
+                    planetarySystems.map((system) => (
+                        <li key={system.id}>
+                            {system.name} (X: {system.x_coord}, Y: {system.y_coord})
+                            <button onClick={() => handleSelectSystem(system)}>Select</button>
+                        </li>
+                    ))}
             </ul>
             {selectedSystem && (
                 <div>
@@ -98,10 +100,11 @@ const Battle = () => {
                     <p>X Coord: {selectedSystem.x_coord}</p>
                     <p>Y Coord: {selectedSystem.y_coord}</p>
                     {/* Add more information about the selected system */}
+                    <button onClick={() => handleSendShips(selectedSystem.user_id)}>Attack</button>
                 </div>
-            )};
-            )
+            )}
         </div>
     );
 };
+
 export default Battle;
