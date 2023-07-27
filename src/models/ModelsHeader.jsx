@@ -90,9 +90,6 @@ function Header(props) {
                       🛸 Battle 🛸
 
                     </NavDropdown.Item>
-                    <NavDropdown.Item href="/battle">
-                      Battle
-                    </NavDropdown.Item>
 
                   </NavDropdown>
                 </Nav>
