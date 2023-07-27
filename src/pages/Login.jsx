@@ -1,3 +1,15 @@
+/**
+ * @description      :
+ * @author           :
+ * @group            :
+ * @created          : 25/07/2023 - 14:46:02
+ *
+ * MODIFICATION LOG
+ * - Version         : 1.0.0
+ * - Date            : 25/07/2023
+ * - Author          :
+ * - Modification    :
+ **/
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import swal from "sweetalert";
@@ -27,15 +39,26 @@ function Login() {
       const data = await response.json();
 
       if (data.status === "success") {
-
-        sessionStorage.setItem("token", JSON.stringify(data.authorisation.token));
-        sessionStorage.setItem("firstname", JSON.stringify(data.user.firstname));
+        sessionStorage.setItem(
+          "token",
+          JSON.stringify(data.authorisation.token)
+        );
+        sessionStorage.setItem(
+          "firstname",
+          JSON.stringify(data.user.firstname)
+        );
         sessionStorage.setItem("lastname", JSON.stringify(data.user.lastname));
         sessionStorage.setItem("email", JSON.stringify(data.user.email));
-        sessionStorage.setItem("date_of_birth", JSON.stringify(data.user.date_of_birth));
+        sessionStorage.setItem(
+          "date_of_birth",
+          JSON.stringify(data.user.date_of_birth)
+        );
         sessionStorage.setItem("user", JSON.stringify(data.user.username));
-        sessionStorage.setItem("planet",JSON.stringify(data.user.planetary_system_name));
-        sessionStorage.setItem("avatar",JSON.stringify(data.user.picture));
+        sessionStorage.setItem(
+          "planet",
+          JSON.stringify(data.user.planetary_system_name)
+        );
+        sessionStorage.setItem("avatar", JSON.stringify(data.user.picture));
 
         swal("Welcome!", "You are connected!", "success");
         navigate("/");
@@ -72,6 +95,7 @@ function Login() {
                   className="form-control"
                   placeholder="Password"
                 />
+                <a href="/forget-password">Forgot your password?</a>
               </div>
               <button
                 className="btn btn-dark border border-warning"
