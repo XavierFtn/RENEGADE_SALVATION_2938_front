@@ -21,6 +21,8 @@ import Disconnect from "../pages/Disconnect";
 import Battle from "../pages/Battle";
 import EditProfil from "../pages/Edit";
 import DeleteProfile from "../pages/Delete";
+import ForgetPWD from "../Components/ForgetPWD";
+import ResetPWD from "../Components/ResetPWD";
 
 const router = createBrowserRouter([
   {
@@ -60,8 +62,13 @@ const router = createBrowserRouter([
     element: <EditProfil />,
   },
   {
-    path: "/deleteprofile",
-    element: <DeleteProfile />,
+    path: "/forget-password",
+    element: <ForgetPWD />,
+  },
+  {
+    path: "/reset-password/{token}",
+    // path: "/reset-password/:token",
+    element: <ResetPWD />,
   },
 ]);
 

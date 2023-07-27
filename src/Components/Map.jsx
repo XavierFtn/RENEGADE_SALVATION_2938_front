@@ -1,8 +1,5 @@
-import { map } from "leaflet";
-import { ListGroup } from "react-bootstrap";
-import { Stage, Layer, Circle, Image as KonvaImage } from "react-konva";
-import { json } from "react-router-dom";
-//import radarImage from "../assets/radar.jpg";
+import { Stage, Layer, Circle } from "react-konva";
+// import radarImage from '../assets/radar.jpg';
 
 function Map() {
   return (

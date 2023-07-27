@@ -1,4 +1,4 @@
-import { Button, Card, Col, Form, Row } from "react-bootstrap";
+import { Card, Col, Form, Row } from "react-bootstrap";
 import Footer from "../models/ModelsFooter";
 import Header from "../models/ModelsHeader";
 import Avatar1 from "../components/img/Avatar/image1.jpg";
@@ -10,33 +10,27 @@ import Avatar6 from "../components/img/Avatar/image6.jpg";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import DeleteUser from "./Delete";
+import swal from "sweetalert";
 
 function EditProfil() {
   const navigate = useNavigate();
-  const [userData, setUserData] = useState({
-    firstname: "",
-    lastname: "",
-    email: "",
-    password: "",
-    username: "",
-    date_of_birth: "",
-    name: "",
-    picture: "",
-  });
   const firstname = JSON.parse(sessionStorage.getItem("firstname"));
   const lastname = JSON.parse(sessionStorage.getItem("lastname"));
+  const planet = JSON.parse(sessionStorage.getItem("planet"));
   const username = JSON.parse(sessionStorage.getItem("user"));
   const date_of_birth = JSON.parse(sessionStorage.getItem("date_of_birth"));
   const email = JSON.parse(sessionStorage.getItem("email"));
+  const picture = JSON.parse(sessionStorage.getItem("avatar"));
+  const token = JSON.parse(sessionStorage.getItem("token"));
+  const [userData, setUserData] = useState({
+    firstname: firstname,
+    lastname: lastname,
+    email: email,
+    password: "",
+    username: username,
+    picture: picture,
+  });
 
-  const handleAvatarChange = (e) => {
-    // Assuming you have the images located in /Components/img/Avatar/ folder
-    const selectedPicture = e.target.value;
-    setUserData((prevData) => ({
-      ...prevData,
-      picture: `/src/components/img/Avatar/${selectedPicture}.jpg`, // Adjust the file extension based on the actual file format
-    }));
-  };
   const handleChange = (e) => {
     const { name, value } = e.target;
     setUserData((prevData) => ({
@@ -44,9 +38,84 @@ function EditProfil() {
       [name]: value,
     }));
   };
+
+  const handleAvatarChange = (e) => {
+    const selectedPicture = e.target.value;
+    setUserData((prevData) => ({
+      ...prevData,
+      picture: `/src/components/img/Avatar/${selectedPicture}.jpg`, // Adjust the file extension based on the actual file format
+    }));
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    try {
+      var myHeaders = new Headers();
+      myHeaders.append("Authorization", `Bearer ${token}`);
+      var formdata = new FormData();
+      formdata.append("firstname", userData.firstname);
+      formdata.append("lastname", userData.lastname);
+      formdata.append("email", userData.email);
+      formdata.append("password", userData.password);
+      formdata.append("username", userData.username);
+      formdata.append("picture", userData.picture);
+
+      var requestOptions = {
+        method: "POST",
+        headers: myHeaders,
+        body: formdata,
+        redirect: "follow",
+      };
+
+      const response = await fetch(
+        "http://127.0.0.1:8000/api/update",
+        requestOptions
+      );
+      const data = await response.json();
+      console.log("data", data);
+      if (data.status === "success") {
+        // Récupérer le nom du système planétaire choisi
+        sessionStorage.clear();
+        sessionStorage.setItem(
+          "token",
+          JSON.stringify(data.authorisation.token)
+        );
+        sessionStorage.setItem(
+          "firstname",
+          JSON.stringify(data.user.firstname)
+        );
+        sessionStorage.setItem("lastname", JSON.stringify(data.user.lastname));
+        sessionStorage.setItem("email", JSON.stringify(data.user.email));
+        sessionStorage.setItem(
+          "date_of_birth",
+          JSON.stringify(data.user.date_of_birth)
+        );
+        sessionStorage.setItem("user", JSON.stringify(data.user.username));
+        sessionStorage.setItem(
+          "planet",
+          JSON.stringify(data.user.planetary_system_name)
+        );
+        sessionStorage.setItem("avatar", JSON.stringify(data.user.picture));
+
+        swal(
+          "Edition successful!",
+          `Your Planetary System ${data.user.planetary_system_name} was updated!`,
+          "success"
+        );
+        navigate("/");
+      } else {
+        swal("Edition failed!", data.message, "error");
+      }
+    } catch (error) {
+      console.error("Error during Edition:", error);
+      swal("Error", "An error occurred during Edition", "error");
+    }
+  };
+
   return (
     <div className="container-fluid">
-      <Header name="Edit Your Profil" />
+      <Header name="Edit Your Profile" />
       <div className="row mb-5 pt-2"></div>
       <div className="row wrap">
         <Card>
@@ -72,17 +141,14 @@ function EditProfil() {
                 />
               </Form.Group>
               <Form.Group as={Col}>
-                <Form.Label>Lastname:</Form.Label>
+                <Form.Label>Date of Birth:</Form.Label>
                 <Form.Control
                   name="date_of_birth"
-                  defaultValue={date_of_birth}
-                  onChange={handleChange}
+                  value={date_of_birth}
                   type="date"
+                  disabled
                 />
               </Form.Group>
-            </Row>
-
-            <Row className="mb-3">
               <Form.Group as={Col}>
                 <Form.Label>Username:</Form.Label>
                 <Form.Control
@@ -91,6 +157,13 @@ function EditProfil() {
                   onChange={handleChange}
                   type="text"
                 />
+              </Form.Group>
+            </Row>
+
+            <Row className="mb-3">
+              <Form.Group as={Col}>
+                <Form.Label>System Name:</Form.Label>
+                <Form.Control value={planet} type="text" disabled />
               </Form.Group>
 
               <Form.Group as={Col}>
@@ -103,10 +176,9 @@ function EditProfil() {
                 />
               </Form.Group>
               <Form.Group as={Col}>
-                <Form.Label>Password:</Form.Label>
+                <Form.Label>password:</Form.Label>
                 <Form.Control
                   name="password"
-                  value={userData.password}
                   onChange={handleChange}
                   type="password"
                 />
@@ -179,13 +251,12 @@ function EditProfil() {
               </div>
             </Row>
 
-            <Button variant="success" type="submit">
+            <button
+              className="btn btn-dark border border-warning"
+              onClick={handleSubmit}
+            >
               Submit
-            </Button>
-            <Button variant="success" type="submit">
-              <DeleteUser />
-              Delete
-            </Button>
+            </button>
           </Form>
         </Card>
       </div>

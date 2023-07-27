@@ -1,3 +1,15 @@
+/**
+    * @description      : 
+    * @author           : 
+    * @group            : 
+    * @created          : 25/07/2023 - 14:46:02
+    * 
+    * MODIFICATION LOG
+    * - Version         : 1.0.0
+    * - Date            : 25/07/2023
+    * - Author          : 
+    * - Modification    : 
+**/
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import swal from "sweetalert";
@@ -23,7 +35,7 @@ function Login() {
         }),
       };
 
-      const response = await fetch("http://127.0.0.1:8000/api/login", options);
+      const response = await fetch("/api/login", options);
       const data = await response.json();
 
       if (data.status === "success") {
@@ -72,6 +84,7 @@ function Login() {
                   className="form-control"
                   placeholder="Password"
                 />
+                <a href ='/forget-password'>Forgot your password?</a>
               </div>
               <button
                 className="btn btn-dark border border-warning"
