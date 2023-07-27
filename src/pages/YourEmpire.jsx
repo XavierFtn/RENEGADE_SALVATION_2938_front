@@ -15,8 +15,10 @@ import Footer from "../models/ModelsFooter";
 // import Warehouses from "../models/ModelsBuildings/
 import ViewRessources from "../Components/Ressources/ViewRessources";
 import BackgroundVideo from "../models/ModelsBackground.jsx";
-import MShips from "../models/Ships/ModelShips.jsx";
+import Ships from "../Components/Ships/ViewShips";
+import Map from "../Components/Map";
 import { Card } from "react-bootstrap";
+
 
 function YourEmpire() {
 
@@ -34,7 +36,7 @@ function YourEmpire() {
                             <h1 className="orbitron">You are here:</h1>
                         </Card.Header>
                         <Card.Body>
-                            afficher carte
+                        <Map />
                         </Card.Body>
                     </Card>
                 </div>
@@ -57,7 +59,10 @@ function YourEmpire() {
                                 <h1 className="orbitron">Your ships:</h1>
                             </Card.Header>
                             <Card.Body>
-                                <MShips/>
+                            <Ships type={"fighter"} />
+                            <Ships type={"frigate"} />
+                            <Ships type={"cruiser"} />
+                            <Ships type={"destroyer"} />
                             </Card.Body>
                         </Card>
                     </div> 
