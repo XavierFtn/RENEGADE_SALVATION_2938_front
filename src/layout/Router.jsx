@@ -59,10 +59,12 @@ const router = createBrowserRouter([
     element: <Battle />,
   },
   {
+
     path: "/historyofbattle",
     element: <History />,
   },
   {
+
     path: "/editprofile",
     element: <EditProfil />,
   },

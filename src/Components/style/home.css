@@ -83,9 +83,11 @@ body {
 .colorRed {
   color: rgb(248, 73, 73);
 }
+
 .colorYellow{
   color: rgb(250, 194, 28);
 }
+
 .hm-gradient {
   background-image: linear-gradient(
     to top,

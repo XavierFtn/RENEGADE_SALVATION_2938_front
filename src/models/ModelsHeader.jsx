@@ -85,6 +85,7 @@ function Header(props) {
                     </NavDropdown.Item>
                     
                     <NavDropdown.Item href="/extendyourempire">
+
                     <span className="orbitron4">🔭 Extend Your Empire</span>
 
                     </NavDropdown.Item>
@@ -95,6 +96,7 @@ function Header(props) {
                     </NavDropdown.Item>
                     <NavDropdown.Item href="/battle">
                       <span className="colorRed orbitron3"> ⚔️ <strong>Battle!</strong> </span>
+
                     </NavDropdown.Item>
                   </NavDropdown>
                 </Nav>
@@ -121,11 +123,13 @@ function Header(props) {
                     </NavDropdown.Item>
                     <NavDropdown.Divider />
                     <NavDropdown.Item href="/">
+
                     <span className="colorYellow"><strong> 🪙 Premium Access </strong></span>
                     </NavDropdown.Item>
                     <NavDropdown.Divider />
                     <NavDropdown.Item href="/disconnect">
                       <span className="colorRed"><strong>🪧 Logout</strong></span>
+
                     </NavDropdown.Item>
                   </NavDropdown>
                 </Nav>

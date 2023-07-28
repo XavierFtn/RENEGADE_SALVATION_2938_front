@@ -1,3 +1,15 @@
+/**
+    * @description      : 
+    * @author           : 
+    * @group            : 
+    * @created          : 28/07/2023 - 11:14:40
+    * 
+    * MODIFICATION LOG
+    * - Version         : 1.0.0
+    * - Date            : 28/07/2023
+    * - Author          : 
+    * - Modification    : 
+**/
 import React from 'react';
 import { ComposableMap, Geographies, Geography } from 'react-simple-maps';
 
