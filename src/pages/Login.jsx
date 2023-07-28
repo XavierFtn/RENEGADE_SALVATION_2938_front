@@ -16,6 +16,8 @@ import swal from "sweetalert";
 import "bootstrap/dist/css/bootstrap.min.css";
 import login from "../Components/img/login.jpg";
 import "../Components/style/login.css";
+import Header from "../models/ModelsHeader";
+import Footer from "../models/ModelsFooter";
 
 function Login() {
   const [email, setEmail] = useState("");
@@ -47,6 +49,7 @@ function Login() {
           "firstname",
           JSON.stringify(data.user.firstname)
         );
+        sessionStorage.setItem("id", JSON.stringify(data.user.id));
         sessionStorage.setItem("lastname", JSON.stringify(data.user.lastname));
         sessionStorage.setItem("email", JSON.stringify(data.user.email));
         sessionStorage.setItem(
@@ -73,6 +76,8 @@ function Login() {
 
   return (
     <div className="container">
+      <Header />
+      <div className="row mb-5 pt-2"></div>
       <div className="row justify-content-center mt-5">
         <div className="col-md-6">
           <div className="card">
@@ -95,8 +100,8 @@ function Login() {
                   className="form-control"
                   placeholder="Password"
                 />
-                <a href="/forget-password">Forgot your password?</a>
-              </div>
+                <strong><a href="/forget-password" className="linkForget font-weight-bolder font-size-medium text-danger text-decoration-none">Forgot your password?</a>
+                </strong></div>
               <button
                 className="btn btn-dark border border-warning"
                 onClick={handleSubmit}
@@ -107,6 +112,7 @@ function Login() {
           </div>
         </div>
       </div>
+      <Footer />
     </div>
   );
 }

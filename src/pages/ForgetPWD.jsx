@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import { useState } from "react";
+import swal from "sweetalert";
 
 function ForgetPWD() {
   const [email, setEmail] = useState("");
@@ -22,8 +23,12 @@ function ForgetPWD() {
       const data = await response.json();
       setStatus(data.status);
     } catch (error) {
-      // console.error('Error:', error);
-      setStatus("Something went wrong 💥 please try again later 💫");
+      swal(
+        "Error",
+        "Something went wrong 💥 please try again later 💫",
+        "error"
+      );
+      setStatus("try again later :");
     }
   }
 
@@ -50,7 +55,7 @@ function ForgetPWD() {
                     >
                       Send me an e-mail{" "}
                     </button>
-                    {status && <div className="mt-2 text-light">{status}</div>}
+                    {status && <div>{status}</div>}
                   </form>
                 </div>
               </div>
