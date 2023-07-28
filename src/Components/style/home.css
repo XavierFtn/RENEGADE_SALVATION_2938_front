@@ -56,7 +56,13 @@ body {
 .colorRed {
   color: rgb(248, 73, 73);
 }
+<<<<<<< HEAD
+.colorYellow{
+  color: rgb(250, 194, 28);
+}
+=======
 
+>>>>>>> Dev2
 .hm-gradient {
   background-image: linear-gradient(
     to top,

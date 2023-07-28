@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import swal from "sweetalert";
 
@@ -24,37 +23,47 @@ function ForgetPWD() {
       const data = await response.json();
       setStatus(data.status);
     } catch (error) {
-      swal("Error", "Something went wrong 💥 please try again later 💫", "error");
+      swal(
+        "Error",
+        "Something went wrong 💥 please try again later 💫",
+        "error"
+      );
       setStatus("try again later :");
     }
   }
 
   return (
     <div>
-      {status && <div>{status}</div>}
-        <div className="container">
-            <div className="row justify-content-center mt-5">
-                <div className="col-md-5">
-                    <div className="card">
-                        <div className="card-body">
-                            <h5 className="card-title">Reset Password</h5>
-                                <div className="form-group">
-                                    <form onSubmit={handleSubmit}>
-                                        <input
-                                            value={email} required
-                                            onChange={(e) => setEmail(e.target.value)}
-                                            className="form-control"
-                                            placeholder="Enter your e-mail"
-                                            />
-                                        <button type="submit" className="btn btn-dark border border-warning mt-2">Send me an e-mail </button>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+      <div className="container">
+        <div className="row justify-content-center mt-5">
+          <div className="col-md-5">
+            <div className="card">
+              <div className="card-body">
+                <h5 className="card-title">Reset Password</h5>
+                <div className="form-group">
+                  <form onSubmit={handleSubmit}>
+                    <input
+                      value={email}
+                      required
+                      onChange={(e) => setEmail(e.target.value)}
+                      className="form-control"
+                      placeholder="Enter your e-mail"
+                    />
+                    <button
+                      type="submit"
+                      className="btn btn-dark border border-warning mt-2"
+                    >
+                      Send me an e-mail{" "}
+                    </button>
+                    {status && <div>{status}</div>}
+                  </form>
                 </div>
-            </div> 
+              </div>
+            </div>
+          </div>
         </div>
+      </div>
+    </div>
   );
 }
 
