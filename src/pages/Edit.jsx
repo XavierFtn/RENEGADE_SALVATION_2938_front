@@ -108,7 +108,7 @@ function EditProfil() {
         swal("Edition failed!", data.message, "error");
       }
     } catch (error) {
-      console.error("Error during Edition:", error);
+      console.error("Error during Edition", error);
       swal("Error", "An error occurred during Edition", "error");
     }
   };

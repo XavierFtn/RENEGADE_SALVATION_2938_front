@@ -6,14 +6,7 @@ function MShipsDetails(props) {
       <Card.Img variant="top" src={props.image} />
       <Card.Body>
         <Card.Title>{props.title}</Card.Title>
-        <Card.Text>
-          <p>
-            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Possimus
-            reprehenderit voluptatibus magnam, debitis ut quasi officia
-            molestiae facere repudiandae harum iure quia doloremque, fugit
-            accusantium? Excepturi animi consequatur fuga saepe.
-          </p>
-        </Card.Text>
+        <Card.Text></Card.Text>
       </Card.Body>
       <ListGroup className="list-group-flush">
         <ListGroup.Item>{props.quantity}</ListGroup.Item>
