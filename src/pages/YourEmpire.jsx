@@ -72,11 +72,13 @@ function YourEmpire() {
               style={{
                 backgroundImage: 'url("/src/components/img/radar.gif")',
                 backgroundSize: "cover",
+                backgroundPosition: "center center", // Centrer l'image horizontalement et verticalement
+                backgroundRepeat: "no-repeat", // Empêcher la répétition de l'image
                 opacity: 0.7,
               }}
             >
               <Card.Header className="py-0">
-                <h1 className="orbitron">You are here:</h1>
+                <h1 className="orbitron text-center">You are here:</h1>
               </Card.Header>
               <Card.Body>
                 <MapUser />
