@@ -1,11 +1,17 @@
 import React, { useEffect, useState } from "react";
+import Ships from "../Components/Ships/ViewShips";
+import Header from "../models/ModelsHeader";
+import Footer from "../models/ModelsFooter";
+import { Card } from "react-bootstrap";
 
 const Battle = () => {
     const [ships, setShips] = useState({});
     const [planetarySystems, setPlanetarySystems] = useState([]);
     const [selectedSystem, setSelectedSystem] = useState(null);
+    const [selectedShips, setSelectedShips] = useState({});
+    const [defenderInfo, setDefenderInfo] = useState(null);
     const token = JSON.parse(sessionStorage.getItem("token")); // Retrieve the token from session storage
-
+    const [battleResult, setBattleResult] = useState(null);
     // Function to fetch ships data from the backend
     const fetchShips = async () => {
         try {
@@ -24,49 +30,79 @@ const Battle = () => {
     // Function to fetch planetary systems data from the backend
     const fetchPlanetarySystems = async () => {
         try {
-            const response = await fetch(
-                "http://localhost:8000/api/planetary-systems",
-                {
-                    headers: {
-                        Authorization: `Bearer ${token}`, // Include the token in the headers
-                    },
-                }
-            );
+            const response = await fetch("http://localhost:8000/api/planetary-systems", {
+                headers: {
+                    Authorization: `Bearer ${token}`, // Include the token in the headers
+                },
+            });
             const data = await response.json();
             setPlanetarySystems(data.planetarySystems);
         } catch (error) {
-            console.error(
-                "Erreur lors de la récupération des systèmes planétaires:",
-                error
-            );
+            console.error("Erreur lors de la récupération des systèmes planétaires:", error);
         }
     };
 
     // Function to handle selecting a planetary system as a target
     const handleSelectSystem = (system) => {
         setSelectedSystem(system);
+        if (system && system.user_id) {
+            fetchDefenderInfo(system.user_id);
+        } else {
+            setDefenderInfo(null);
+        }
     };
 
-    // // Function to handle sending the ships to battle
-    // const handleSendShips = async (defenderId) => {
-    //   try {
-    //     const response = await fetch("http://127.0.0.1:8000/api/battle", {
-    //       method: "POST",
-    //       headers: {
-    //         "Content-Type": "application/json",
-    //         Authorization: `Bearer ${token}`, // Include the token in the headers
-    //       },
-    //       body: JSON.stringify({ user_id: defenderId }),
-    //     });
-    //     const data = await response.json();
-    //     console.log(data.message); // Battle result message from the backend
-    //     fetchShips(); // Refresh ships data after the battle
-    //   } catch (error) {
-    //     console.error("Erreur lors de l'envoi des vaisseaux:", error);
-    //     setShips([]); // Set an empty array as a fallback on error
-    //   }
-    // };
+    // Function to fetch defender's information from the backend
+    const fetchDefenderInfo = async (defenderId) => {
+        try {
+            const response = await fetch(`http://127.0.0.1:8000/api/users/${defenderId}`, {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                },
+            });
+            const data = await response.json();
+            setDefenderInfo(data.user);
+        } catch (error) {
+            console.error("Erreur lors de la récupération des informations de l'utilisateur:", error);
+        }
+    };
 
+    // Function to handle selecting ships for attack
+    const handleSelectShips = (shipType, quantity) => {
+        setSelectedShips({ ...selectedShips, [shipType]: quantity });
+    };
+
+
+    // Function to handle sending the ships to attack
+    const handleSendShips = async (defenderId) => {
+        if (Object.keys(selectedShips).length === 0) {
+            console.log("Victoire ! Vous avez gagné votre adversaire nas pas de flotte.");
+            return;
+        }
+
+        try {
+            const response = await fetch("http://127.0.0.1:8000/api/attack", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    Authorization: `Bearer ${token}`,
+                },
+                body: JSON.stringify({
+                    user_id: defenderId,
+                    ships: selectedShips,
+                }),
+            });
+            const data = await response.json();
+            console.log(battleResult, 'result');
+            // Mettre à jour l'état selectedShips avec les résultats de la bataille
+            setBattleResult(data.message);
+
+            // Rafraîchir les données des vaisseaux après la bataille
+            fetchShips();
+        } catch (error) {
+            console.error("Erreur lors de l'envoi des vaisseaux:", error);
+        }
+    };
     useEffect(() => {
         fetchShips();
         fetchPlanetarySystems();
@@ -74,34 +110,80 @@ const Battle = () => {
 
     return (
         <div>
-            <h1>Flotte</h1>
-            <ul>
-                {Object.entries(ships).map(([shipType, quantity]) => (
-                    <li key={shipType}>
-                        Type: {shipType} - Quantity: {quantity}
-                    </li>
-                ))}
-            </ul>
-            <h1>Attaque</h1>
-            <ul>
-                {planetarySystems.map((system) => (
-                    <li key={system.id}>
-                        {system.name} (X: {system.x_coord}, Y: {system.y_coord})
-                        <button onClick={() => handleSelectSystem(system)}>Select</button>
-                    </li>
-                ))}
-            </ul>
-            {selectedSystem && (
-                <div>
-                    <h2>Selected System</h2>
-                    <p>Name: {selectedSystem.name}</p>
-                    <p>X Coord: {selectedSystem.x_coord}</p>
-                    <p>Y Coord: {selectedSystem.y_coord}</p>
-                    {/* Add more information about the selected system */}
+            <Header name="Build Your Empire" />
+            <div className="col-md-4">
+                <div className="py-0 p-1 pt-5">
+                    <Card className="text-center p-1 ">
+                        <Card.Header className="py-0 ">
+                            <h1 className="orbitron">
+                                <h1>Flotte</h1>
+                            </h1>
+                        </Card.Header>
+                        <ul >
+                            <Ships className="text-center p-1" type={"fighter"} />
+                            <Ships type={"frigate"} />
+                            <Ships type={"cruiser"} />
+                            <Ships type={"destroyer"} />
+                            {ships &&
+                                Object.entries(ships).map(([shipType, quantity]) => (
+                                    <li key={shipType}>
+                                        Type: {shipType} - Quantity: {quantity}
+                                        <input
+                                            type="number"
+                                            min="0"
+                                            max={quantity}
+                                            value={selectedShips[shipType] || 0}
+                                            onChange={(e) => handleSelectShips(shipType, parseInt(e.target.value))}
+                                        />
+                                    </li>
+                                ))}
+                        </ul>
+                    </Card>
                 </div>
-            )};
-            )
+            </div>
+            <div className="col-md-4">
+                <Card className="text-center p-1">
+                    <Card.Header className="py-0 ">
+                        <h1 className="orbitron">Selected System</h1>
+
+                    </Card.Header>
+                    <ul>
+                        {planetarySystems &&
+                            planetarySystems.map((system) => (
+                                <li key={system.id}>
+                                    {system.name} (X: {system.x_coord}, Y: {system.y_coord})
+                                    <button onClick={() => handleSelectSystem(system)}>Select</button>
+                                </li>
+                            ))}
+                    </ul>
+                </Card>
+            </div>
+            <div className="py-0 p-6">
+                {selectedSystem && (
+                    <div>
+                        <h2>Attaque</h2>
+                        <p>Name: {selectedSystem.name}</p>
+                        <p>X Coord: {selectedSystem.x_coord}</p>
+                        <p>Y Coord: {selectedSystem.y_coord}</p>
+                        {defenderInfo && (
+                            <p>Defender: {defenderInfo.name}</p>
+                        )}
+                        <button onClick={() => selectedSystem.user_id && handleSendShips(selectedSystem.user_id)}>Attack</button>
+                    </div>
+                )}
+            </div>
+            <div className="py-0 p-8">
+                {battleResult && (
+                    <div>
+                        <h2>Résultats de la bataille</h2>
+
+                        <p>{battleResult}</p>
+                    </div>
+                )}
+            </div>
+            <Footer />
         </div>
     );
 };
+
 export default Battle;
