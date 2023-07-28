@@ -29,6 +29,7 @@ function ForgetPWD() {
 
   return (
     <div>
+      {status && <div>{status}</div>}
       <div className="container">
         <div className="row justify-content-center mt-5">
           <div className="col-md-5">
@@ -50,7 +51,6 @@ function ForgetPWD() {
                     >
                       Send me an e-mail{" "}
                     </button>
-                    {status && <div className="mt-2 text-light">{status}</div>}
                   </form>
                 </div>
               </div>
