@@ -1,3 +1,4 @@
+import moment from "moment/moment";
 import { Accordion, Card } from "react-bootstrap";
 
 function ModelBattles(props) {
@@ -7,13 +8,13 @@ function ModelBattles(props) {
     let issues = "";
  let attacker ="";
     if (props.is_defender == 0){
-        attacker = `You fight the planet ${props.planet}`;
+        attacker = `You fight the planet ${props.planetary_system_name}`;
     }
     else {
-        attacker = ` The planet ${props.planet} attack you `;
+        attacker = ` The planet ${props.planetary_system_name} attack you `;
     }
 
-  if ( props.loose > props.win){
+  if ( props.is_winner == 0){
     issues = `And..... You Fail 🪦`;
     text = isLoose;
   }
@@ -21,15 +22,15 @@ function ModelBattles(props) {
     issues = `And..... You Win! 😌`;
     text = isWin;
   }
+ const date = moment(props.created_at).format("dddd, MMMM Do YYYY");
 
   return (
     <Accordion.Item eventKey={props.id}>
       <Accordion.Header>
-      👨‍🚀 {attacker}   {issues}
+      {date}👨‍🚀 {attacker}   {issues}
       </Accordion.Header>
       <Accordion.Body>
         <Card> <span> <strong>Fighters left : </strong> {props.nb_fighter} | <strong> Frigates left : </strong>{props.nb_frigate}  |  <strong>Cruisers left : </strong> {props.nb_cruiser} |  <strong> Destroyers left : </strong>{props.nb_destroyer}</span></Card>
-
         {text}
       </Accordion.Body>
     </Accordion.Item>
