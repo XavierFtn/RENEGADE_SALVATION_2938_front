@@ -1,23 +1,22 @@
-
-
 body {
   background-color: black;
   cursor: url("./src/Components/img/cursor.cur"), auto;
 }
+
 .card {
   display: flex;
-    justify-content: center;
-    margin: 0 auto;
-    background-color: rgb(16 13 13 / 60%);
-    padding: 30px;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-    gap: 10px;
+  justify-content: center;
+  margin: 0 auto;
+  background-color: rgb(16 13 13 / 60%);
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  gap: 10px;
 
 }
 
 .homepage {
-  height:50%;
+  height: 50%;
   margin: 0 auto;
   background-color: rgba(255, 255, 255, 0.1);
   padding: 45px;
@@ -25,18 +24,21 @@ body {
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
 }
 
-.orbitron{
-  -webkit-text-stroke: 2px black; /*pour la bordure du texte*/
-  color:bisque;
-  font-weight: 700;
+.orbitron {
+  -webkit-text-stroke: 2px black;
+  /*pour la bordure du texte*/
+  color: bisque;
+  font-weight: 650;
   font-size: 30px;
   font-family: 'Orbitron', sans-serif;
 }
-.orbitron2{
-  -webkit-text-stroke: 1px rgb(7, 2, 2); /*pour la bordure du texte*/
-  color:rgb(9, 243, 9);
-  font-weight: 700;
-  font-size: 23px;
+
+.orbitron2 {
+  -webkit-text-stroke: 1px rgb(7, 2, 2);
+  /*pour la bordure du texte*/
+  color: rgb(9, 243, 9);
+  font-weight: 650;
+  font-size: 20px;
   font-family: 'Orbitron', sans-serif;
 }
 
@@ -47,22 +49,28 @@ body {
   gap: 1vw;
 }
 
-.colorBisque{
-  color:bisque;
+.colorBisque {
+  color: bisque;
 }
 
-.colorRed{
+.colorRed {
   color: rgb(248, 73, 73);
 }
+<<<<<<< HEAD
 .colorYellow{
   color: rgb(250, 194, 28);
 }
+=======
+
+>>>>>>> Dev2
 .hm-gradient {
   background-image: linear-gradient(to top, #f3e7e9 0%, #e3eeff 99%, #e3eeff 100%);
 }
+
 .navbar .dropdown-menu a:hover {
   color: #616161 !important;
 }
+
 .darken-grey-text {
   color: #2E2E2E;
 }

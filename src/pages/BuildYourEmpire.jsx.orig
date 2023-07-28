@@ -1,28 +1,18 @@
-/**
-    * @description      : 
-    * @author           : 
-    * @group            : 
-    * @created          : 24/07/2023 - 14:53:58
-    * 
-    * MODIFICATION LOG
-    * - Version         : 1.0.0
-    * - Date            : 24/07/2023
-    * - Author          : 
-    * - Modification    : 
-**/
 import Header from "../models/ModelsHeader";
 import Footer from "../models/ModelsFooter";
 import Buildings from "../Components/Buildings/ViewBuildings";
 import Cbuilding from "../Components/Buildings/CreateBuildings";
 import { Card } from "react-bootstrap";
 import ViewRessources from "../Components/Ressources/ViewRessources";
-import ViewShipyards from "../Components/Ships/ViewShipyards";
 
 function BuildYourEmpire() {
   return (
     <div className="container-fluid">
-      <Header name="Build Your Empire" />
-      <div className="row mb-5 pt-2">
+      <Header />
+      <div className="row mt-5 pt-2">
+        <div className="col d-flex justify-content-center">
+          <h1 className="orbitron">Build Your Empire!</h1>
+        </div>
       </div>
       <div className="row wrap">
         <div className="col-md-6">
@@ -41,7 +31,9 @@ function BuildYourEmpire() {
               <h1 className="orbitron">List of Ressources</h1>
             </Card.Header>
             <Card.Body>
-              <ViewRessources />
+
+              <ViewRessources/>
+
             </Card.Body>
           </Card>
         </div>
@@ -89,9 +81,10 @@ function BuildYourEmpire() {
             <Card.Header className="py-0 ">
               <h1 className="orbitron">Shipyard</h1>
             </Card.Header>
-            <Card.Body> 
-              <ViewShipyards/>
-              
+            <Card.Body>
+              <div className="scroll">
+                <Buildings type={"shipyard"} />
+              </div>
             </Card.Body>
           </Card>
         </div>

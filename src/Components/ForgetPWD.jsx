@@ -1,15 +1,3 @@
-/**
- * @description      :
- * @author           :
- * @group            :
- * @created          : 26/07/2023 - 15:25:15
- *
- * MODIFICATION LOG
- * - Version         : 1.0.0
- * - Date            : 26/07/2023
- * - Author          :
- * - Modification    :
- **/
 import React, { useState } from "react";
 
 function ForgetPWD() {
@@ -62,8 +50,7 @@ function ForgetPWD() {
                     >
                       Send me an e-mail{" "}
                     </button>
-                    <br />
-                    {status && <div>{status}</div>}
+                    {status && <div className="mt-2 text-light">{status}</div>}
                   </form>
                 </div>
               </div>
