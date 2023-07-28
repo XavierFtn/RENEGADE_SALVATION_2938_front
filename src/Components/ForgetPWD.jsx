@@ -29,36 +29,32 @@ function ForgetPWD() {
 
   return (
     <div>
-      <div className="container">
-        <div className="row justify-content-center mt-5">
-          <div className="col-md-5">
-            <div className="card">
-              <div className="card-body">
-                <h5 className="card-title">Reset Password</h5>
-                <div className="form-group">
-                  <form onSubmit={handleSubmit}>
-                    <input
-                      value={email}
-                      required
-                      onChange={(e) => setEmail(e.target.value)}
-                      className="form-control"
-                      placeholder="Enter your e-mail"
-                    />
-                    <button
-                      type="submit"
-                      className="btn btn-dark border border-warning mt-2"
-                    >
-                      Send me an e-mail{" "}
-                    </button>
-                    {status && <div className="mt-2 text-light">{status}</div>}
-                  </form>
+
+      {status && <div>{status}</div>}
+        <div className="container">
+            <div className="row justify-content-center mt-5">
+                <div className="col-md-5">
+                    <div className="card">
+                        <div className="card-body">
+                            <h5 className="card-title">Reset Password</h5>
+                                <div className="form-group">
+                                    <form onSubmit={handleSubmit}>
+                                        <input
+                                            value={email} required
+                                            onChange={(e) => setEmail(e.target.value)}
+                                            className="form-control"
+                                            placeholder="Enter your e-mail"
+                                            />
+                                        <button type="submit" className="btn btn-dark border border-warning mt-2">Send me an e-mail </button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
-              </div>
-            </div>
-          </div>
+            </div> 
         </div>
-      </div>
-    </div>
   );
 }
 
