@@ -1,15 +1,3 @@
-/**
- * @description      :
- * @author           :
- * @group            :
- * @created          : 26/07/2023 - 15:25:15
- *
- * MODIFICATION LOG
- * - Version         : 1.0.0
- * - Date            : 26/07/2023
- * - Author          :
- * - Modification    :
- **/
 import React, { useState } from "react";
 
 function ForgetPWD() {
@@ -41,6 +29,7 @@ function ForgetPWD() {
 
   return (
     <div>
+
       {status && <div>{status}</div>}
         <div className="container">
             <div className="row justify-content-center mt-5">
@@ -62,6 +51,7 @@ function ForgetPWD() {
                             </div>
                         </div>
                     </div>
+
                 </div>
             </div> 
         </div>
