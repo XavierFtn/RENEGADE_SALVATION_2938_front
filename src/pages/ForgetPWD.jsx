@@ -1,6 +1,5 @@
 
 import { useState } from "react";
-import "../Components/style/home.css";
 import swal from "sweetalert";
 
 function ForgetPWD() {
