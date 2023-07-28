@@ -20,8 +20,9 @@ import ExtendYourEmpire from "../pages/ExtendYourEmpire";
 import Disconnect from "../pages/Disconnect";
 import Battle from "../pages/Battle";
 import EditProfil from "../pages/Edit";
-import ForgetPWD from "../components/ForgetPWD";
-import ResetPWD from "../Components/ResetPWD";
+import ResetPWD from "../pages/ResetPWD";
+import ForgetPWD from "../pages/ForgetPWD";
+
 
 const router = createBrowserRouter([
   {
@@ -62,7 +63,7 @@ const router = createBrowserRouter([
   },
   {
     path: "/forget-password",
-    element: <ForgetPWD />,
+    element: <ForgetPWD/>,
   },
   {
     path: "/reset-password/:token",

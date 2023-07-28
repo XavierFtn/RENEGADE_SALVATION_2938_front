@@ -3,6 +3,7 @@ body {
   cursor: url("./src/Components/img/cursor.cur"), auto;
 }
 
+
 .card {
   display: flex;
   justify-content: center;
@@ -12,7 +13,6 @@ body {
   border-radius: 10px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
   gap: 10px;
-
 }
 
 .homepage {
@@ -30,7 +30,7 @@ body {
   color: bisque;
   font-weight: 650;
   font-size: 30px;
-  font-family: 'Orbitron', sans-serif;
+  font-family: "Orbitron", sans-serif;
 }
 
 .orbitron2 {
@@ -39,7 +39,7 @@ body {
   color: rgb(9, 243, 9);
   font-weight: 650;
   font-size: 20px;
-  font-family: 'Orbitron', sans-serif;
+  font-family: "Orbitron", sans-serif;
 }
 
 .buttonsHome {
@@ -58,7 +58,12 @@ body {
 }
 
 .hm-gradient {
-  background-image: linear-gradient(to top, #f3e7e9 0%, #e3eeff 99%, #e3eeff 100%);
+  background-image: linear-gradient(
+    to top,
+    #f3e7e9 0%,
+    #e3eeff 99%,
+    #e3eeff 100%
+  );
 }
 
 .navbar .dropdown-menu a:hover {
@@ -66,5 +71,5 @@ body {
 }
 
 .darken-grey-text {
-  color: #2E2E2E;
+  color: #2e2e2e;
 }
