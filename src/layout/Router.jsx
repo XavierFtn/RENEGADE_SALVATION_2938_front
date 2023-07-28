@@ -1,3 +1,15 @@
+/**
+    * @description      : 
+    * @author           : 
+    * @group            : 
+    * @created          : 27/07/2023 - 22:19:55
+    * 
+    * MODIFICATION LOG
+    * - Version         : 1.0.0
+    * - Date            : 27/07/2023
+    * - Author          : 
+    * - Modification    : 
+**/
 import Home from "../pages/home";
 import BuildYourEmpire from "../pages/BuildYourEmpire";
 import YourEmpire from "../pages/YourEmpire";
@@ -54,6 +66,10 @@ const router = createBrowserRouter([
   },
   {
     path: "/reset-password/:token",
+    element: <ResetPWD />,
+  },
+  {
+    path: "/reset-password/",
     element: <ResetPWD />,
   },
 ]);
