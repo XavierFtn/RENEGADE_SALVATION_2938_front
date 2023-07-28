@@ -1,7 +1,4 @@
 import React, { useEffect, useState } from "react";
-import Header from "../models/ModelsHeader";
-import Footer from "../models/ModelsFooter";
-import { Card } from "react-bootstrap";
 
 const Battle = () => {
     const [ships, setShips] = useState({});
@@ -35,11 +32,7 @@ const Battle = () => {
                 },
             });
             const data = await response.json();
-            // Assuming the response from the backend contains a 'user' property for each system
-            setPlanetarySystems(data.planetarySystems.map(system => ({
-                ...system,
-                user_name: system.user ? system.user.name : "Unknown User",
-            })));
+            setPlanetarySystems(data.planetarySystems);
         } catch (error) {
             console.error("Erreur lors de la récupération des systèmes planétaires:", error);
         }
@@ -103,8 +96,6 @@ const Battle = () => {
     }, []);
 
     return (
-        <div className="container-fluid">
-      <Header name="Build Your Empire" />
         <div>
             <h1>Flotte</h1>
             <ul>
@@ -127,29 +118,25 @@ const Battle = () => {
                 {planetarySystems &&
                     planetarySystems.map((system) => (
                         <li key={system.id}>
-                            {system.name} (X: {system.x_coord}, Y: {system.y_coord}) - Defender: {system.user_name}
+                            {system.name} (X: {system.x_coord}, Y: {system.y_coord})
                             <button onClick={() => handleSelectSystem(system)}>Select</button>
                         </li>
                     ))}
             </ul>
-
             {selectedSystem && (
                 <div>
                     <h2>Selected System</h2>
-                    {defenderInfo && (
-                        <p>Defender: {defenderInfo.name}</p>)}
                     <p>Name: {selectedSystem.name}</p>
                     <p>X Coord: {selectedSystem.x_coord}</p>
                     <p>Y Coord: {selectedSystem.y_coord}</p>
+                    {defenderInfo && (
+                        <p>Defender: {defenderInfo.name}</p>
+                    )}
+                    {/* Add more information about the selected system */}
                     <button onClick={() => selectedSystem.user_id && handleSendShips(selectedSystem.user_id)}>Attack</button>
                 </div>
-            )
-            }
-        </div >
+            )}
         </div>
-
-<Footer />
-</div >
     );
 };
 
