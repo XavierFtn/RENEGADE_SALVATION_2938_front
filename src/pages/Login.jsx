@@ -49,6 +49,7 @@ function Login() {
           "firstname",
           JSON.stringify(data.user.firstname)
         );
+        sessionStorage.setItem("id", JSON.stringify(data.user.id));
         sessionStorage.setItem("lastname", JSON.stringify(data.user.lastname));
         sessionStorage.setItem("email", JSON.stringify(data.user.email));
         sessionStorage.setItem(
