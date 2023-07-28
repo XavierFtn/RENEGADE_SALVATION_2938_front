@@ -5,16 +5,18 @@ import MBuildings from "../../models/buildings/ModelsBuildings";
 import { useEffect, useState } from "react";
 import {useNavigate } from "react-router-dom";
 import PropTypes from "prop-types";
+import { Spinner } from "react-bootstrap";
 
 
 
 function Buildings(props) {
   const navigate = useNavigate();
   const [building, setBuilding] = useState({});
-  
+    const [loading, setLoading] = useState(true);
   async function Mbuilding1() {
     var myHeaders = new Headers();
     const items = JSON.parse(sessionStorage.getItem("token"));
+  
     myHeaders.append("Authorization", `Bearer ${items} `);
 
     var requestOptions = {
@@ -28,6 +30,7 @@ function Buildings(props) {
       requestOptions
     );
     console.log("reponse Builiding", response);
+    setLoading(false);
     let donnees = await response.json();
     
       //permet d'intercepter quand le token est expiré
@@ -77,7 +80,10 @@ function Buildings(props) {
     } else {
       b = building.powerplant || [];
     }
-   
+    if (loading) {
+      return <Spinner animation="border" variant="warning" />;
+    }
+  
     return b.map((item, id) => (
       <MBuildings
         key={id}
@@ -100,7 +106,7 @@ function Buildings(props) {
 }
 // évite les erreur de type: id is missing in props validation
 Buildings.propTypes = {
-  id: PropTypes.number.isRequired,
+  id: PropTypes.number,
   type: PropTypes.string,
   level: PropTypes.number,
   energy_consumption: PropTypes.number,
