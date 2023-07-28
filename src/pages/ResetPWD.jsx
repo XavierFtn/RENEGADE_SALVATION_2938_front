@@ -1,6 +1,9 @@
-
-import  { useState } from "react";
+import { useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
+import Header2 from "../models/ModelsHeader2";
+import Footer from "../models/ModelsFooter";
+import "../Components/style/home.css";
+import swal from "sweetalert";
 
 const ResetPWD = () => {
   const navigate = useNavigate();
@@ -10,42 +13,39 @@ const ResetPWD = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [passwordConfirmation, setPasswordConfirmation] = useState("");
-  const [status, setStatus] = useState("");
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    
-   
-      const response = await fetch(`http://127.0.0.1:8000/api/reset-password/`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ 
-          email: email, 
-          password: password, 
-          passwordConfirmation: passwordConfirmation, 
-          token: token,
-        }),
-      });
-  
-      if (response.ok) {
-        const data = await response.json();
-        console.log("body", data);
-        setStatus(data.status);
-        navigate('/login');
-      } else {
-        const errorText = await response.text();
-        console.error("Error:", response.status, errorText);
-        setStatus("Something went wrong 💥 please try again later 💫");
-      }
-    
+
+    const response = await fetch(`http://127.0.0.1:8000/api/reset-password/`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        email: email,
+        password: password,
+        passwordConfirmation: passwordConfirmation,
+        token: token,
+      }),
+    });
+
+    if (response.ok) {
+      const data = await response.json();
+      console.log("body", data);
+      navigate("/login");
+    } else {
+      const errorText = await response.text();
+      console.error("Error:", response.status, errorText);
+      swal("Error", "Something went wrong 💥 please try again later 💫", "error");
+    }
   };
-  
-  
+
   return (
-    <div>
-      <div className="container">
+
+      <div className="container-fluid">
+        <Header2 name="Reset Your Password" />
+        <div className="row mb-5 pt-2"></div>
         <div className="row justify-content-center mt-5">
           <div className="col-md-5">
             <div className="card">
@@ -90,10 +90,10 @@ const ResetPWD = () => {
             </div>
           </div>
         </div>
+        <Footer />
       </div>
-    </div>
+
   );
 };
-
 
 export default ResetPWD;

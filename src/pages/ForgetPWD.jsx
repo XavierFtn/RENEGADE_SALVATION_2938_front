@@ -1,16 +1,7 @@
-/**
- * @description      :
- * @author           :
- * @group            :
- * @created          : 26/07/2023 - 15:25:15
- *
- * MODIFICATION LOG
- * - Version         : 1.0.0
- * - Date            : 26/07/2023
- * - Author          :
- * - Modification    :
- **/
-import React, { useState } from "react";
+
+import { useState } from "react";
+import "../Components/style/home.css";
+import swal from "sweetalert";
 
 function ForgetPWD() {
   const [email, setEmail] = useState("");
@@ -34,8 +25,8 @@ function ForgetPWD() {
       const data = await response.json();
       setStatus(data.status);
     } catch (error) {
-      // console.error('Error:', error);
-      setStatus("Something went wrong 💥 please try again later 💫");
+      swal("Error", "Something went wrong 💥 please try again later 💫", "error");
+      setStatus("try again later :");
     }
   }
 
