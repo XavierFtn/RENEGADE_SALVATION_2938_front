@@ -299,8 +299,8 @@ function ExtendYourEmpire() {
             </Card>
           </div>
         </div>
-        <div className="col-md-10 mt-3">
-          <Card className="text-center p-0 pt-2">
+        <div className="col-md-12 mt-3">
+          <Card className="text-center p-3 pt-2">
             <Card.Header className="py-0 ">
               <div className="col d-flex justify-content-center">
                 <h1 className="orbitron">Ressources : </h1>
@@ -326,18 +326,7 @@ function ExtendYourEmpire() {
             </Card.Body>
           </Card>
         </div>
-        <div className="col-md-2 mt-3 ">
-          <Card className="text-center px-0 pt-2">
-            <Card.Header className="py-0 ">
-              <div className="col d-flex justify-content-center">
-                <h1 className="orbitron">Shipyards</h1>
-              </div>
-            </Card.Header>
-            <div className="py-0 p-0">
-              <ViewShipyards />
-            </div>
-          </Card>
-        </div>
+
         <Footer />
       </div>
     </div>

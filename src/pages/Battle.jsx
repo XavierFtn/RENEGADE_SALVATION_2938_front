@@ -1,5 +1,9 @@
 import React, { useEffect, useState } from "react";
 import Ships from "../Components/Ships/ViewShips";
+import Header from "../models/ModelsHeader";
+import Footer from "../models/ModelsFooter";
+import { Card } from "react-bootstrap";
+
 const Battle = () => {
     const [ships, setShips] = useState({});
     const [planetarySystems, setPlanetarySystems] = useState([]);
@@ -68,11 +72,11 @@ const Battle = () => {
         setSelectedShips({ ...selectedShips, [shipType]: quantity });
     };
 
-    // Function to handle sending the ships to battle
+
     // Function to handle sending the ships to attack
     const handleSendShips = async (defenderId) => {
         if (Object.keys(selectedShips).length === 0) {
-            console.log("Victoire ! Vous avez gagné car vous n'avez pas envoyé de vaisseaux à l'attaque.");
+            console.log("Victoire ! Vous avez gagné votre adversaire nas pas de flotte.");
             return;
         }
 
@@ -106,39 +110,53 @@ const Battle = () => {
 
     return (
         <div>
-            <div className="py-0 p-1">
-                <h1>Flotte</h1>
-                <ul>
-                    <Ships type={"fighter"} />
-                    <Ships type={"frigate"} />
-                    <Ships type={"cruiser"} />
-                    <Ships type={"destroyer"} />
-                    {ships &&
-                        Object.entries(ships).map(([shipType, quantity]) => (
-                            <li key={shipType}>
-                                Type: {shipType} - Quantity: {quantity}
-                                <input
-                                    type="number"
-                                    min="0"
-                                    max={quantity}
-                                    value={selectedShips[shipType] || 0}
-                                    onChange={(e) => handleSelectShips(shipType, parseInt(e.target.value))}
-                                />
-                            </li>
-                        ))}
-                </ul>
+            <Header name="Build Your Empire" />
+            <div className="col-md-4">
+                <div className="py-0 p-1 pt-5">
+                    <Card className="text-center p-1 ">
+                        <Card.Header className="py-0 ">
+                            <h1 className="orbitron">
+                                <h1>Flotte</h1>
+                            </h1>
+                        </Card.Header>
+                        <ul >
+                            <Ships className="text-center p-1" type={"fighter"} />
+                            <Ships type={"frigate"} />
+                            <Ships type={"cruiser"} />
+                            <Ships type={"destroyer"} />
+                            {ships &&
+                                Object.entries(ships).map(([shipType, quantity]) => (
+                                    <li key={shipType}>
+                                        Type: {shipType} - Quantity: {quantity}
+                                        <input
+                                            type="number"
+                                            min="0"
+                                            max={quantity}
+                                            value={selectedShips[shipType] || 0}
+                                            onChange={(e) => handleSelectShips(shipType, parseInt(e.target.value))}
+                                        />
+                                    </li>
+                                ))}
+                        </ul>
+                    </Card>
+                </div>
             </div>
-            <div className="py-0 p-4">
-                <h1>Selected System</h1>
-                <ul>
-                    {planetarySystems &&
-                        planetarySystems.map((system) => (
-                            <li key={system.id}>
-                                {system.name} (X: {system.x_coord}, Y: {system.y_coord})
-                                <button onClick={() => handleSelectSystem(system)}>Select</button>
-                            </li>
-                        ))}
-                </ul>
+            <div className="col-md-4">
+                <Card className="text-center p-1">
+                    <Card.Header className="py-0 ">
+                        <h1 className="orbitron">Selected System</h1>
+
+                    </Card.Header>
+                    <ul>
+                        {planetarySystems &&
+                            planetarySystems.map((system) => (
+                                <li key={system.id}>
+                                    {system.name} (X: {system.x_coord}, Y: {system.y_coord})
+                                    <button onClick={() => handleSelectSystem(system)}>Select</button>
+                                </li>
+                            ))}
+                    </ul>
+                </Card>
             </div>
             <div className="py-0 p-6">
                 {selectedSystem && (
@@ -163,6 +181,7 @@ const Battle = () => {
                     </div>
                 )}
             </div>
+            <Footer />
         </div>
     );
 };
