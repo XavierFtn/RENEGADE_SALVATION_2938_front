@@ -2,11 +2,11 @@
  * @description      :
  * @author           :
  * @group            :
- * @created          : 24/07/2023 - 09:33:00
+ * @created          : 27/07/2023 - 22:19:55
  *
  * MODIFICATION LOG
  * - Version         : 1.0.0
- * - Date            : 24/07/2023
+ * - Date            : 27/07/2023
  * - Author          :
  * - Modification    :
  **/
@@ -20,9 +20,8 @@ import ExtendYourEmpire from "../pages/ExtendYourEmpire";
 import Disconnect from "../pages/Disconnect";
 import Battle from "../pages/Battle";
 import EditProfil from "../pages/Edit";
-import DeleteProfile from "../pages/Delete";
-import ForgetPWD from "../Components/ForgetPWD";
-import ResetPWD from "../Components/ResetPWD";
+import ResetPWD from "../pages/ResetPWD";
+import ForgetPWD from "../pages/ForgetPWD";
 
 const router = createBrowserRouter([
   {
@@ -58,7 +57,7 @@ const router = createBrowserRouter([
     element: <Battle />,
   },
   {
-    path: "/editprofil",
+    path: "/editprofile",
     element: <EditProfil />,
   },
   {
@@ -66,8 +65,11 @@ const router = createBrowserRouter([
     element: <ForgetPWD />,
   },
   {
-    path: "/reset-password/{token}",
-    // path: "/reset-password/:token",
+    path: "/reset-password/:token",
+    element: <ResetPWD />,
+  },
+  {
+    path: "/reset-password/",
     element: <ResetPWD />,
   },
 ]);

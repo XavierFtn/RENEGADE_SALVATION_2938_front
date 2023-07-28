@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Stage, Layer, Circle, Text } from "react-konva";
 
-function Map() {
+function MapUser() {
   const [userCoords, setUserCoords] = useState([]);
   const token = JSON.parse(sessionStorage.getItem("token"));
 
@@ -20,20 +20,26 @@ function Map() {
     const data = await response.json();
     const { planetarySystems } = data;
 
-    // Mettre à jour les coordonnées des utilisateurs avec les informations supplémentaires
+    // Déchiffrer le token pour obtenir l'identifiant de l'utilisateur connecté
+    const userId = JSON.parse(atob(token.split(".")[1])).sub;
+    console.log(userId);
+
+    // Filtrer les coordonnées pour n'afficher que celles de l'utilisateur actuel
     setUserCoords(
-      planetarySystems.map((system) => ({
-        id: system.id,
-        x: system.x_coord,
-        y: system.y_coord,
-        name: system.planetary_system_name,
-      }))
+      planetarySystems
+        .filter((system) => system.user_id === userId)
+        .map((system) => ({
+          id: system.id,
+          x: system.x_coord,
+          y: system.y_coord,
+          name: system.planetary_system_name,
+        }))
     );
   };
 
   useEffect(() => {
     getMyPoints();
-  }, []);
+  }, [token]); // Rafraîchir les coordonnées lorsque le token change (l'utilisateur se connecte)
 
   const getRandomColor = () => {
     const color = `rgb(${Math.random() * 255}, ${Math.random() * 255}, ${
@@ -79,4 +85,4 @@ function Map() {
   );
 }
 
-export default Map;
+export default MapUser;

@@ -69,7 +69,8 @@ function Header(props) {
                 <Nav
                   className="me-auto my-2 my-lg-0"
                   style={{ maxHeight: "100px" }}
-                  navbarScroll>
+                  navbarScroll
+                >
                   <Nav.Link href="/"> 🏚️ Home</Nav.Link>
                   <NavDropdown
                     title="Your Empire"
@@ -84,20 +85,22 @@ function Header(props) {
                     <NavDropdown.Divider />
                     <NavDropdown.Item href="/extendyourempire">
                       🔭 Extend Your Empire
-
                     </NavDropdown.Item>
                     <NavDropdown.Item href="/battle">
                       🛸 Battle 🛸
-
                     </NavDropdown.Item>
                     <NavDropdown.Item href="/battle">
-                      Battle
+                      <span className="colorRed">
+                        {" "}
+                        ⚔️ <strong>Battle!</strong>{" "}
+                      </span>
                     </NavDropdown.Item>
-
                   </NavDropdown>
                 </Nav>
               )}
-              <Nav className="me-auto my-5 my-lg-0"><p className="orbitron ">{props.name}</p></Nav>
+              <Nav className="me-auto my-5 my-lg-0">
+                <p className="orbitron ">{props.name}</p>
+              </Nav>
               {connected && (
                 <Nav
                   className="ms-auto me-3 my-2 my-lg-0"
@@ -112,17 +115,27 @@ function Header(props) {
                     title={UserMenu}
                     id="navbarScrollingDropdown2"
                   >
-                    <NavDropdown.Item href="/editprofil">🔍 Edit your profil</NavDropdown.Item>
+                    <NavDropdown.Item href="/editprofile">
+                      🔍 Edit your profile
+                    </NavDropdown.Item>
                     <NavDropdown.Divider />
-                    <NavDropdown.Item href="/">🪙 Premium Access</NavDropdown.Item>
+                    <NavDropdown.Item href="/">
+                      <span className="colorYellow">
+                        <strong> 🪙 Premium Access </strong>
+                      </span>
+                    </NavDropdown.Item>
                     <NavDropdown.Divider />
-                    <NavDropdown.Item href="/disconnect"><span className="colorRed">🪧 Logout</span></NavDropdown.Item>
+                    <NavDropdown.Item href="/disconnect">
+                      <span className="colorRed">
+                        <strong>🪧 Logout</strong>
+                      </span>
+                    </NavDropdown.Item>
                   </NavDropdown>
                 </Nav>
               )}
 
               {disconnected && (
-                <Navbar.Collapse >
+                <Navbar.Collapse>
                   <Nav.Link href="/register">
                     <span className="colorRed"> 📑 Register</span>
                   </Nav.Link>

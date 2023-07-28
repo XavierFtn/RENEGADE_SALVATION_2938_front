@@ -12,7 +12,7 @@ import Map from "../Components/Map";
 import fighter from "../components/img/Ships/fighter.png";
 import frigate from "../components/img/Ships/frigate.png";
 import cruiser from "../components/img/Ships/cruiser.png";
-import destroyer from "../components/img/Ships/destroyer(1).png";
+import destroyer from "../components/img/Ships/destroyer.png";
 
 import { useNavigate } from "react-router-dom";
 
@@ -299,7 +299,7 @@ function ExtendYourEmpire() {
             </Card>
           </div>
         </div>
-        <div className="col-md-10 mt-3 ">
+        <div className="col-md-12 mt-3">
           <Card className="text-center p-0 pt-2">
             <Card.Header className="py-0 ">
               <div className="col d-flex justify-content-center">
@@ -308,30 +308,24 @@ function ExtendYourEmpire() {
               </div>
             </Card.Header>
           </Card>
-          <Card className="text-center p-0 pt-2">
+          <Card className="text-center p-3 pt-2 ">
             <Card.Header className="py-0 ">
               <div className="col d-flex justify-content-center">
                 <h1 className="orbitron">Map : </h1>
               </div>
             </Card.Header>
-            <Card.Body className="py-0 ">
+            <Card.Body
+              className="py-0 opacity-1"
+              style={{
+                backgroundImage: 'url("/src/components/img/radar.gif")',
+                backgroundSize: "cover",
+                opacity: 0.7,
+              }}
+            >
               <Map />
             </Card.Body>
           </Card>
         </div>
-        <div className="col-md-2 mt-3 ">
-          <Card className="text-center px-0 pt-2">
-            <Card.Header className="py-0 ">
-              <div className="col d-flex justify-content-center">
-                <h1 className="orbitron">Shipyards</h1>
-              </div>
-            </Card.Header>
-            <div className="py-0 p-0">
-              <ViewShipyards />
-            </div>
-          </Card>
-        </div>
-
         <Footer />
       </div>
     </div>
