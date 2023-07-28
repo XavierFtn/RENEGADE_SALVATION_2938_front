@@ -1,3 +1,15 @@
+/**
+    * @description      : 
+    * @author           : 
+    * @group            : 
+    * @created          : 27/07/2023 - 22:19:55
+    * 
+    * MODIFICATION LOG
+    * - Version         : 1.0.0
+    * - Date            : 27/07/2023
+    * - Author          : 
+    * - Modification    : 
+**/
 import Home from "../pages/home";
 import BuildYourEmpire from "../pages/BuildYourEmpire";
 import YourEmpire from "../pages/YourEmpire";
@@ -8,8 +20,9 @@ import ExtendYourEmpire from "../pages/ExtendYourEmpire";
 import Disconnect from "../pages/Disconnect";
 import Battle from "../pages/Battle";
 import EditProfil from "../pages/Edit";
-import ForgetPWD from "../components/ForgetPWD";
-import ResetPWD from "../Components/ResetPWD";
+import ResetPWD from "../pages/ResetPWD";
+import ForgetPWD from "../pages/ForgetPWD";
+
 
 const router = createBrowserRouter([
   {
@@ -50,11 +63,14 @@ const router = createBrowserRouter([
   },
   {
     path: "/forget-password",
-    element: <ForgetPWD />,
+    element: <ForgetPWD/>,
   },
   {
-    path: "/reset-password/{token}",
-    // path: "/reset-password/:token",
+    path: "/reset-password/:token",
+    element: <ResetPWD />,
+  },
+  {
+    path: "/reset-password/",
     element: <ResetPWD />,
   },
 ]);
