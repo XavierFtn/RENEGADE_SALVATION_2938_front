@@ -16,6 +16,8 @@ import swal from "sweetalert";
 import "bootstrap/dist/css/bootstrap.min.css";
 import login from "../Components/img/login.jpg";
 import "../Components/style/login.css";
+import Header from "../models/ModelsHeader";
+import Footer from "../models/ModelsFooter";
 
 function Login() {
   const [email, setEmail] = useState("");
@@ -73,6 +75,8 @@ function Login() {
 
   return (
     <div className="container">
+      <Header />
+      <div className="row mb-5 pt-2"></div>
       <div className="row justify-content-center mt-5">
         <div className="col-md-6">
           <div className="card">
@@ -107,6 +111,7 @@ function Login() {
           </div>
         </div>
       </div>
+      <Footer />
     </div>
   );
 }
