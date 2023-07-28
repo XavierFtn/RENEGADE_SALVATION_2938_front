@@ -35,7 +35,7 @@ function ViewWarehourse() {
   }, []);
 
   if (loading) {
-    return <Spinner animation="border" variant="warning" />;
+    return <Spinner size="m" animation="border" variant="warning" />;
   }
 
   return (

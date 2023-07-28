@@ -22,6 +22,7 @@ import Battle from "../pages/Battle";
 import EditProfil from "../pages/Edit";
 import ResetPWD from "../pages/ResetPWD";
 import ForgetPWD from "../pages/ForgetPWD";
+import History from "../pages/History";
 
 
 const router = createBrowserRouter([
@@ -56,6 +57,10 @@ const router = createBrowserRouter([
   {
     path: "/battle",
     element: <Battle />,
+  },
+  {
+    path: "/historyofbattle",
+    element: <History />,
   },
   {
     path: "/editprofile",
