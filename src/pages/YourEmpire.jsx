@@ -16,9 +16,8 @@ import Footer from "../models/ModelsFooter";
 import ViewRessources from "../Components/Ressources/ViewRessources";
 import BackgroundVideo from "../models/ModelsBackground.jsx";
 import Ships from "../Components/Ships/ViewShips";
-import Map from "../Components/Map";
+import YourMap from "../Components/YourMap";
 import { Card } from "react-bootstrap";
-
 
 function YourEmpire() {
 
@@ -36,7 +35,7 @@ function YourEmpire() {
                             <h1 className="orbitron">You are here:</h1>
                         </Card.Header>
                         <Card.Body>
-                        <Map />
+                        <YourMap />
                         </Card.Body>
                     </Card>
                 </div>
