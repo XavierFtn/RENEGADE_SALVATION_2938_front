@@ -58,7 +58,7 @@ const Battle = () => {
  
 
   // Function to handle sending the ships to attack
-  const handleSendShips = async (selectedSystem.) => {
+  const handleSendShips = async (selectedSystem) => {
 
     try {
       const response = await fetch("http://127.0.0.1:8000/api/attack", {
