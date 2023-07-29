@@ -328,8 +328,6 @@ function ExtendYourEmpire() {
             </Card.Body>
           </Card>
         </div>
-
-        <Footer />
       </div>
     </div>
   );
