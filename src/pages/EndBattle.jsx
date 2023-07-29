@@ -19,11 +19,7 @@ function EndBattle(props) {
   }
 
   return (
-    <div className="container-fluid">
-      <Header name="Space Ranger Report  " />
-      <div className="col">
-        <div className="row  mb-5"></div>
-        <div className=" col-auto ">
+    
           <Card
             bg={color}
             text="white"
@@ -40,9 +36,7 @@ function EndBattle(props) {
               </Card.Text>
             </Card.Body>
           </Card>
-        </div>
-      </div>
-    </div>
+       
   );
 }
 export default EndBattle;
