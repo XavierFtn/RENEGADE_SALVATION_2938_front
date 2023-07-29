@@ -65,8 +65,8 @@ function Map() {
               y={userCoord.y}
               radius={10}
               fill={getRandomColor()}
-              stroke="green"
-              strokeWidth={1}
+              stroke="red"
+              strokeWidth={2}
             />
             <Text
               x={userCoord.x + 12}
