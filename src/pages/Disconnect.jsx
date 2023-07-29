@@ -1,6 +1,17 @@
+/**
+    * @description      : 
+    * @author           : 
+    * @group            : 
+    * @created          : 29/07/2023 - 16:04:01
+    * 
+    * MODIFICATION LOG
+    * - Version         : 1.0.0
+    * - Date            : 29/07/2023
+    * - Author          : 
+    * - Modification    : 
+**/
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
-
 
 function Disconnect() {
   const navigate = useNavigate();

@@ -16,8 +16,9 @@ import Footer from "../models/ModelsFooter";
 import ViewRessources from "../Components/Ressources/ViewRessources";
 import BackgroundVideo from "../models/ModelsBackground.jsx";
 import Ships from "../Components/Ships/ViewShips";
-import MapUser from "../components/MapUser";
+import MapUser from "../Components/MapUser";
 import { Card } from "react-bootstrap";
+import ViewWarehouse from "../Components/Buildings/ViewWarehouse";
 
 function YourEmpire() {
   return (
@@ -56,12 +57,9 @@ function YourEmpire() {
             </Card>
           </div>
           <div className="col-md-6 mb-3">
-            <Card className="text-center">
-              <Card.Header className="py-0">
-                <h1 className="orbitron">Your warehouses:</h1>
-              </Card.Header>
-              <Card.Body>{/* <Warehouses/> */}</Card.Body>
-            </Card>
+            <Card className="text-center px-0 pt-2 pb-1">
+             <h1 className="orbitron">Warehouse : <span><ViewWarehouse/></span></h1>
+          </Card>
           </div>
         </div>
 
