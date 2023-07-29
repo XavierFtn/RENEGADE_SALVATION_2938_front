@@ -22,6 +22,7 @@ import Avatar6 from "../components/img/Avatar/image6.jpg";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import swal from "sweetalert";
+import Swal from "sweetalert2";
 
 function EditProfil() {
   const navigate = useNavigate();
@@ -113,54 +114,72 @@ function EditProfil() {
     }
   };
 
-  function DeleteUser() {
-    const navigate = useNavigate();
-    const token = JSON.parse(sessionStorage.getItem("token"));
-  
-    var myHeaders = new Headers();
-    myHeaders.append("Authorization", `Bearer ${token} `);
-  
-    var requestOptions = {
-      method: 'DELETE',
-      headers: myHeaders,
-      redirect: 'follow'
-    };
-  
-    fetch("http://127.0.0.1:8000/api/delete", requestOptions)
-      .then(response => {
-        if (response.ok) {
-          navigate("/");
-          Swal.fire("Good-Bye Space Ranger", "User deleted", "success");
-          sessionStorage.clear();
-        } 
-        else{
-          sessionStorage.clear();
-          navigate("/");
-        }
-      })
-      .catch(error => {
-        console.error(error);
-         
-        Swal.fire("Error", "An unexpected error occurred", "error");
-      });
-     
-  }
 
 function swalDelete() {
-  swal({
-    title: 'Do you want to delete your profile?',
-    buttons: true,
-    confirmButton: 'Delete Profile',
-    denyButton: `Keep Profile`,
+  const swalWithBootstrapButtons = Swal.mixin({
+    customClass: {
+      confirmButton: 'btn btn-success',
+      cancelButton: 'btn btn-danger'
+    },
+    buttonsStyling: false
+  })
+  
+  swalWithBootstrapButtons.fire({
+    title: 'Are you sure?',
+    text: "You won't be able to revert this!",
+    icon: 'warning',
+    showCancelButton: true,
+    confirmButtonText: 'Yes, delete it!',
+    cancelButtonText: 'No, cancel!',
+    reverseButtons: true
   }).then((result) => {
     if (result.isConfirmed) {
-    DeleteUser();
-    } 
-    else if (result.isDenied) {
-      swal('❌ Failed to delete user. ❌', '', 'info')
+      swalWithBootstrapButtons.fire(
+        'Deleted!',
+        'Good Bye Space Ranger.',
+        'success'
+      )
+      
+      const token = JSON.parse(sessionStorage.getItem("token"));
+    
+      var myHeaders = new Headers();
+      myHeaders.append("Authorization", `Bearer ${token} `);
+    
+      var requestOptions = {
+        method: 'DELETE',
+        headers: myHeaders,
+        redirect: 'follow'
+      };
+    
+      fetch("http://127.0.0.1:8000/api/delete", requestOptions)
+        .then(response => {
+          console.log('response', response);
+          if (response.ok) {
+            navigate("/");
+            Swal.fire("Good-Bye Space Ranger", "User deleted", "success");
+            sessionStorage.clear();
+          } 
+          else{
+            Swal.fire("Error", "An unexpected error occurred", "error")
+          }
+        })
+        .catch(error => {
+          console.error(error);
+           
+          Swal.fire("Error", "An unexpected error occurred", "error");
+        });
+    } else if (
+      /* Read more about handling dismissals below */
+      result.dismiss === Swal.DismissReason.cancel
+    ) {
+      swalWithBootstrapButtons.fire(
+        'Cancelled',
+        'Your System is safe :)',
+        'error'
+      )
     }
+  })
   }
-  )};
 
   return (
     <div className="container-fluid">
