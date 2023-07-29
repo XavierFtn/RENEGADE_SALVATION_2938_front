@@ -37,6 +37,7 @@ const Battle = () => {
           headers: {
             Authorization: `Bearer ${token}`, // Include the token in the headers
           },
+
         }
       );
       const data = await response.json();
@@ -48,6 +49,7 @@ const Battle = () => {
       );
     }
   };
+
 
   // Function to handle selecting a planetary system as a target
   const handleSelectSystem = (system) => {
@@ -168,6 +170,7 @@ const Battle = () => {
                 ))}
             </ListGroup>
           </Card>
+
         </div>
         <div className="col-4">
           {selectedSystem && (
