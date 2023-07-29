@@ -1,3 +1,15 @@
+/**
+    * @description      : 
+    * @author           : 
+    * @group            : 
+    * @created          : 29/07/2023 - 17:46:23
+    * 
+    * MODIFICATION LOG
+    * - Version         : 1.0.0
+    * - Date            : 29/07/2023
+    * - Author          : 
+    * - Modification    : 
+**/
 import { useState } from "react";
 import swal from "sweetalert";
 
@@ -7,7 +19,6 @@ function ForgetPWD() {
 
   async function handleSubmit(e) {
     e.preventDefault();
-    // console.log('request ok ForgetPWD 21');
     try {
       const response = await fetch(
         "http://127.0.0.1:8000/api/forget-password",

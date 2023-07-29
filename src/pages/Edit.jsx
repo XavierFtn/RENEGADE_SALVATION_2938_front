@@ -1,3 +1,15 @@
+/**
+    * @description      : 
+    * @author           : 
+    * @group            : 
+    * @created          : 29/07/2023 - 17:26:02
+    * 
+    * MODIFICATION LOG
+    * - Version         : 1.0.0
+    * - Date            : 29/07/2023
+    * - Author          : 
+    * - Modification    : 
+**/
 import { Card, Col, Form, Row } from "react-bootstrap";
 import Footer from "../models/ModelsFooter";
 import Header from "../models/ModelsHeader";
@@ -100,6 +112,55 @@ function EditProfil() {
       swal("Error", "An error occurred during Edition", "error");
     }
   };
+
+  function DeleteUser() {
+    const navigate = useNavigate();
+    const token = JSON.parse(sessionStorage.getItem("token"));
+  
+    var myHeaders = new Headers();
+    myHeaders.append("Authorization", `Bearer ${token} `);
+  
+    var requestOptions = {
+      method: 'DELETE',
+      headers: myHeaders,
+      redirect: 'follow'
+    };
+  
+    fetch("http://127.0.0.1:8000/api/delete", requestOptions)
+      .then(response => {
+        if (response.ok) {
+          navigate("/");
+          Swal.fire("Good-Bye Space Ranger", "User deleted", "success");
+          sessionStorage.clear();
+        } 
+        else{
+          sessionStorage.clear();
+          navigate("/");
+        }
+      })
+      .catch(error => {
+        console.error(error);
+         
+        Swal.fire("Error", "An unexpected error occurred", "error");
+      });
+     
+  }
+
+function swalDelete() {
+  swal({
+    title: 'Do you want to delete your profile?',
+    buttons: true,
+    confirmButton: 'Delete Profile',
+    denyButton: `Keep Profile`,
+  }).then((result) => {
+    if (result.isConfirmed) {
+    DeleteUser();
+    } 
+    else if (result.isDenied) {
+      swal('❌ Failed to delete user. ❌', '', 'info')
+    }
+  }
+  )};
 
   return (
     <div className="container-fluid">
@@ -238,14 +299,17 @@ function EditProfil() {
                 </div>
               </div>
             </Row>
-
             <button
               className="btn btn-dark border border-warning"
               onClick={handleSubmit}
             >
               Submit
             </button>
-          </Form>
+            </Form>
+            <div>
+            <button onClick={()=>swalDelete()} className="btn btn-dark border border-danger mt-2 mb-2">Delete User</button>
+        </div>
+          
         </Card>
       </div>
       <Footer />

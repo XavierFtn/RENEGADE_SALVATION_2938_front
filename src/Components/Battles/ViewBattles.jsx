@@ -1,3 +1,15 @@
+/**
+    * @description      : 
+    * @author           : 
+    * @group            : 
+    * @created          : 29/07/2023 - 18:12:13
+    * 
+    * MODIFICATION LOG
+    * - Version         : 1.0.0
+    * - Date            : 29/07/2023
+    * - Author          : 
+    * - Modification    : 
+**/
 import { useNavigate } from "react-router";
 import ModelBattles from "../../models/battles/ModelBattles";
 import { useEffect, useState } from "react";
