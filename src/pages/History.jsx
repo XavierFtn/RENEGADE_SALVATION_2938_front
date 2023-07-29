@@ -6,7 +6,7 @@ import ViewBattles from "../Components/Battles/ViewBattles";
 function History() {
   return (
     <div className="container-fluid">
-      <Header name="History of You Battle " />
+      <Header name="Battle History " />
       <div className="col">
         <div className="row  mb-5">
             

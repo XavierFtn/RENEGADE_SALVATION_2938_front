@@ -90,8 +90,8 @@ function Header(props) {
 
                     </NavDropdown.Item>
                     <NavDropdown.Divider />
-                    <NavDropdown.Item href="/historyofbattle">
-                    <span className="orbitron5">📜 History of Battle</span>
+                    <NavDropdown.Item href="/battlehistory">
+                    <span className="orbitron5">📜 Battle  History </span>
 
                     </NavDropdown.Item>
                     <NavDropdown.Item href="/battle">

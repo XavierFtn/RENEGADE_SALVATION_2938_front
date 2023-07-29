@@ -53,6 +53,7 @@ function ViewBattles() {
       <ModelBattles
         key={id}
         id={id}
+        created_at ={item.created_at}
         user_id={item.user_id}
         is_defender={item.is_defender}
         is_winner={item.is_winner}
