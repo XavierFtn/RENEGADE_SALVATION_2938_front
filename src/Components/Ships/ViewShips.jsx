@@ -3,7 +3,6 @@ import { useEffect, useState } from "react";
 import ModelShips from "../../models/Ships/ModelShips";
 import {useNavigate } from "react-router-dom";
 import swal from "sweetalert";
-import PropTypes from "prop-types";
 
 function Ships(props) {
   const [ship, setShip] = useState([]);
@@ -63,10 +62,6 @@ function Ships(props) {
   );
 }
 // évite les erreur de type: id is missing in props validation
-Ships.propTypes = {
-  id: PropTypes.number.isRequired,
-  type: PropTypes.string,
-  quantity: PropTypes.number,
-};
+
 
 export default Ships;

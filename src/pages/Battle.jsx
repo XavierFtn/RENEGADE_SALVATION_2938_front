@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import Ships from "../Components/Ships/ViewShips";
 import Header from "../models/ModelsHeader";
 import Footer from "../models/ModelsFooter";
@@ -8,27 +8,52 @@ const Battle = () => {
   const [ships, setShips] = useState({});
   const [planetarySystems, setPlanetarySystems] = useState([]);
   const [selectedSystem, setSelectedSystem] = useState(null);
-  const [selectedShips, setSelectedShips] = useState({});
-  const [defenderInfo, setDefenderInfo] = useState(null);
+  const [selectedFighter, setSelectedFighter] = useState(0);
+  const [selectedFrigate, setSelectedFrigate] = useState(0);
+  const [selectedCruiser, setSelectedCruiser] = useState(0);
+  const [selectedDestroyer, setSelectedDestroyer] = useState(0);
   const token = JSON.parse(sessionStorage.getItem("token")); // Retrieve the token from session storage
   const [battleResult, setBattleResult] = useState(null);
-  // Function to fetch ships data from the backend
+  const user_id = JSON.parse(sessionStorage.getItem("id"));
+
+  const [maxfighter, setMaxFighter] = useState();
+  const [maxfrigate, setMaxFrigate] = useState();
+  const [maxcruiser, setMaxCruiser] = useState();
+  const [maxdestroyer, setMaxDestroyer] = useState();
+  const [color, setColor] = useState();
+  const [win, setWin] = useState();
+  const [title, setTitle] = useState();
+  // Fetch des Vaisseaux
   const fetchShips = async () => {
     try {
-      const response = await fetch("http://127.0.0.1:8000/api/ships", {
-        headers: {
-          Authorization: `Bearer ${token}`, // Include the token in the headers
-        },
-      });
-      const data = await response.json();
-      console.log("ships", data);
-      setShips(data.ships); // We update 'ships' with the 'ships' object from the response
+      var myHeaders = new Headers();
+      const items = JSON.parse(sessionStorage.getItem("token"));
+      myHeaders.append("Authorization", `Bearer ${items} `);
+
+      var requestOptions = {
+        method: "GET",
+        headers: myHeaders,
+        redirect: "follow",
+      };
+      let response = await fetch(
+        `http://127.0.0.1:8000/api/ships/`,
+        requestOptions
+      );
+
+      let data = await response.json();
+      setMaxFighter(data.fighter[0].quantity);
+      setMaxFrigate(data.frigate[0].quantity);
+      setMaxCruiser(data.cruiser[0].quantity);
+      setMaxDestroyer(data.destroyer[0].quantity);
+      // opération booléen pour vérifier si il y a des vaisseaux pour attaquer
+      //  setCanAttack( maxfighter > 0 || maxfrigate > 0 || maxcruiser > 0 || maxdestroyer > 0);
+      setShips(data.ships); 
     } catch (error) {
       console.error("Erreur lors de la récupération des vaisseaux:", error);
     }
   };
 
-  // Function to fetch planetary systems data from the backend
+  // Affichage du système planète
   const fetchPlanetarySystems = async () => {
     try {
       const response = await fetch(
@@ -37,11 +62,11 @@ const Battle = () => {
           headers: {
             Authorization: `Bearer ${token}`, // Include the token in the headers
           },
-
         }
       );
       const data = await response.json();
-      setPlanetarySystems(data.planetarySystems);
+      const dataps = data.planetarySystems.filter((f) => f.user_id != user_id);
+      setPlanetarySystems(dataps);
     } catch (error) {
       console.error(
         "Erreur lors de la récupération des systèmes planétaires:",
@@ -50,36 +75,46 @@ const Battle = () => {
     }
   };
 
-
-  // Function to handle selecting a planetary system as a target
+  // Selection du Système
   const handleSelectSystem = (system) => {
     setSelectedSystem(system);
-   
   };
-
- 
-
-  // Function to handle sending the ships to attack
-  const handleSendShips = async (selectedSystem) => {
-
+  
+  // Attaque
+  const handleSendShips = async (defenderId) => {
     try {
-      const response = await fetch("http://127.0.0.1:8000/api/attack", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
-        },
-        body: JSON.stringify({
-          user_id: defenderId,
-          ships: selectedShips,
-          fuel: 20,
-        }),
-      });
-      const data = await response.json();
-      console.log(battleResult, "result");
-      // Mettre à jour l'état selectedShips avec les résultats de la bataille
-      setBattleResult(data.message);
+      var myHeaders = new Headers();
+      myHeaders.append("Authorization", `Bearer ${token} `);
+      var formdata = new FormData();
+      formdata.append("defender_id", defenderId);
+      formdata.append("nb_fighter",  selectedFighter);
+      formdata.append("nb_frigate", selectedFrigate);
+      formdata.append("nb_cruiser",  selectedCruiser);
+      formdata.append("nb_destroyer",  selectedDestroyer);
+      formdata.append("fuel_needed",  "20");
 
+      var requestOptions = {
+        method: 'POST',
+        headers: myHeaders,
+        body: formdata,
+        redirect: 'follow'
+      };
+      const response = await fetch("http://127.0.0.1:8000/api/attack", requestOptions);
+      const data = await response.json();
+     
+      // Mettre à jour l'état selectedShips avec les résultats de la bataille
+      setBattleResult(data);
+
+      if (data.attack_ship_remaining == 0){
+        setColor("danger");
+        setWin("Oh no!  You Fail🪦")
+        setTitle("God")
+      }
+      else {
+        setColor("success");
+        setWin("Oh yes!  You Win Space Ranger!😌")
+        setTitle("Congrats!")
+      }
       // Rafraîchir les données des vaisseaux après la bataille
       fetchShips();
     } catch (error) {
@@ -109,7 +144,16 @@ const Battle = () => {
                 </span>
               </div>
               <div className="col-3">
-                <input placeholder="ships" type="number"  min="1" max="20" />
+                <input
+                  value={selectedFighter}
+                  name="nb_fighter"
+                  id="fighter"
+                  placeholder="ships"
+                  type="number"
+                  min="0"
+                  max={maxfighter}
+                  onChange={e =>  setSelectedFighter(e.target.value)}
+                />
               </div>
             </div>
             <div className="row">
@@ -119,7 +163,16 @@ const Battle = () => {
                 </span>
               </div>
               <div className="col-3">
-                <input placeholder="ships" type="number"  min="1" max="20" />
+                <input
+                  value={selectedFrigate}
+                  name="nb_frigate"
+                  id="frigate"
+                  placeholder="ships"
+                  type="number"
+                  min="0"
+                  max={maxfrigate}
+                  onChange={e => setSelectedFrigate(e.target.value)}
+                />
               </div>
             </div>
             <div className="row">
@@ -129,7 +182,16 @@ const Battle = () => {
                 </span>
               </div>
               <div className="col-3">
-                <input placeholder="ships" type="number"  min="1" max="20" />
+                <input
+                  value={selectedCruiser}
+                  name="nb_cruiser"
+                  id="cruiser"
+                  placeholder="ships"
+                  type="number"
+                  min="0"
+                  max={maxcruiser}
+                  onChange={e =>  setSelectedCruiser(e.target.value)}
+                />
               </div>
             </div>
             <div className="row">
@@ -139,7 +201,16 @@ const Battle = () => {
                 </span>
               </div>
               <div className="col-3">
-                <input placeholder="ships" type="number" min="1" max="20" />
+                <input
+                  value={selectedDestroyer}
+                  name="nb_destroyer"
+                  id="destroyer"
+                  placeholder="ships"
+                  type="number"
+                  min="0"
+                  max={maxdestroyer}
+                  onChange={e => setSelectedDestroyer(e.target.value)}
+                />
               </div>
             </div>
           </Card>
@@ -162,7 +233,8 @@ const Battle = () => {
                     <div className="col-3">
                       <Button
                         variant="light"
-                        onClick={() => handleSelectSystem(system)}>
+                        onClick={() => handleSelectSystem(system)}
+                      >
                         Select
                       </Button>
                     </div>
@@ -170,7 +242,6 @@ const Battle = () => {
                 ))}
             </ListGroup>
           </Card>
-
         </div>
         <div className="col-4">
           {selectedSystem && (
@@ -183,43 +254,45 @@ const Battle = () => {
                 <p>X Coord: {selectedSystem.x_coord}</p>
                 <p>Y Coord: {selectedSystem.y_coord}</p>
               </span>
-              
-              
             </Card>
           )}
-          
         </div>
         {selectedSystem && !battleResult && (
-        <Card>
-        
-          <Button
-                variant="light"
-                onClick={() =>
-                  selectedSystem.user_id &&
-                  handleSendShips(selectedSystem.user_id)
-                }
-              >
-                Attack
-              </Button>
-          </Card>)}{" "}
-          {battleResult && ( <Card>
-            <Card
-            bg={color}
-            text="white"
-            style={{ width: "60rem" }}
-            className="mb-2"
-          >
-            <Card.Header></Card.Header>
-            <Card.Body>
-              <Card.Title></Card.Title>
-              <Card.Text>
-                You attacked {battleResult.planet_defender_system},
-                {battleResult.attack_ship_remaining} came back in your system,
-                {battleResult.defender_ships_remaining} came back in the {battleResult.planet_defender_system} system.
-              </Card.Text>
-            </Card.Body>
+          <Card>
+            <Button
+              variant="light"
+              onClick={() =>
+                selectedSystem.user_id &&
+                handleSendShips(selectedSystem.user_id)
+              }
+            >
+              Attack
+            </Button>
           </Card>
-          </Card> )}
+        )}{" "}
+        {battleResult && (
+          <Card>
+            <Card
+              bg={color}
+              text="white"
+              style={{ width: "60rem" }}
+              className="mb-2"
+            >
+              <Card.Header>{win}</Card.Header>
+              <Card.Body>
+                <Card.Title>{title}</Card.Title>
+                <Card.Text>
+                <span className="orbitron4">
+                  <p>You attacked <span className="orbitron5">{battleResult.planet_defender_system}</span></p> 
+                  <p><span className="orbitron5">{battleResult.attack_ship_remaining}</span> came back in your system,</p>
+                  <p><span className="orbitron5">{battleResult.defender_ship_remaining}</span> came back in the 
+                  <span className="orbitron5"> {battleResult.planet_defender_system} </span>system.</p>
+                  </span>
+                </Card.Text>
+              </Card.Body>
+            </Card>
+          </Card>
+        )}
       </div>
 
       <Footer />

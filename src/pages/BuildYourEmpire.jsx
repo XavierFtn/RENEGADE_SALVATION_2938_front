@@ -20,6 +20,12 @@ import ViewShipyards from "../Components/Ships/ViewShipyards";
 import ViewWarehourse from "../Components/Buildings/ViewWarehouse";
 
 function BuildYourEmpire() {
+
+
+
+
+
+  
   return (
     <div className="container-fluid">
       <Header name="Build Your Empire" />
