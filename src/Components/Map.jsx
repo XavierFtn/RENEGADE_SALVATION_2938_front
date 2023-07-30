@@ -1,38 +1,20 @@
 import React, { useState, useEffect } from "react";
 import { Stage, Layer, Circle, Text } from "react-konva";
-
+import { getPlanetary1 } from "../Components/Api/backend_helper";
 function Map() {
   const [userCoords, setUserCoords] = useState([]);
-  const token = JSON.parse(sessionStorage.getItem("token"));
-
-  const getMyPoints = async () => {
-    const options = {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`,
-      },
-    };
-    const response = await fetch(
-      "http://127.0.0.1:8000/api/planetary-systems",
-      options
-    );
-    const data = await response.json();
-    const { planetarySystems } = data;
-
-    // Mettre à jour les coordonnées des utilisateurs avec les informations supplémentaires
-    setUserCoords(
-      planetarySystems.map((system) => ({
-        id: system.id,
-        x: system.x_coord,
-        y: system.y_coord,
-        name: system.planetary_system_name,
-      }))
-    );
-  };
 
   useEffect(() => {
-    getMyPoints();
+    getPlanetary1().then((result) => {
+      setUserCoords(
+        result.planetarySystems.map((system) => ({
+          id: system.id,
+          x: system.x_coord,
+          y: system.y_coord,
+          name: system.planetary_system_name,
+        }))
+      );
+    });
   }, []);
 
   const getRandomColor = () => {
