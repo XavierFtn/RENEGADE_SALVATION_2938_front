@@ -9,7 +9,6 @@ import Avatar5 from "../components/img/Avatar/image5.jpg";
 import Avatar6 from "../components/img/Avatar/image6.jpg";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
-import DeleteUser from "./Delete";
 import swal from "sweetalert";
 
 function EditProfil() {

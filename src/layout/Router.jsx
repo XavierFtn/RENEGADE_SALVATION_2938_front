@@ -22,6 +22,7 @@ import Battle from "../pages/Battle";
 import EditProfil from "../pages/Edit";
 import ResetPWD from "../pages/ResetPWD";
 import ForgetPWD from "../pages/ForgetPWD";
+import Stripe from "../Components/Stripe/Stripe";
 
 const router = createBrowserRouter([
   {
@@ -71,6 +72,10 @@ const router = createBrowserRouter([
   {
     path: "/reset-password/",
     element: <ResetPWD />,
+  },
+  {
+    path: "/Stripe/",
+    element: <Stripe />,
   },
 ]);
 
