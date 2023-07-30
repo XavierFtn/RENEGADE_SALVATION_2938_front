@@ -70,7 +70,7 @@ function MapUser() {
             <Text
               x={userCoord.x + 12}
               y={userCoord.y - 5}
-              text={userCoord.name} // Assuming you still have this property
+              text={userCoord.name}
               fontSize={14}
               fontWeight="bold"
               fill="white"
