@@ -4,8 +4,7 @@ import Button from "react-bootstrap/Button";
 import { useNavigate } from "react-router-dom";
 import swal from "sweetalert";
 
-function CreateBuilding() {
-  const navigate = useNavigate();
+function CreateBuilding(props) {
   const [showm, setShowm] = useState(false);
   const [showr, setShowr] = useState(false);
   const [showp, setShowp] = useState(false);
@@ -16,7 +15,6 @@ function CreateBuilding() {
   const handleClosep = () => setShowp(false);
   const handleCloses = () => setShows(false);
   const handleClosew = () => setShoww(false);
-  const [ore, setOre] = useState(0);
   const [isDisabled, setIsDisabled] = useState(true);
   const oreMine = 300;
   const oreRaffinery = 300;
@@ -26,7 +24,7 @@ function CreateBuilding() {
   // Verification des minerais , activation ou non du bouton create
 
   function handleShowm() {
-    if (ore >= oreMine) {
+    if (props.ore >= oreMine) {
       setIsDisabled(false);
     } else {
       setIsDisabled(true);
@@ -35,7 +33,7 @@ function CreateBuilding() {
   }
   // Verification des minerais , activation ou non du bouton create
   function handleShowr() {
-    if (ore >= oreRaffinery) {
+    if (props.ore >= oreRaffinery) {
       setIsDisabled(false);
     } else {
       setIsDisabled(true);
@@ -44,7 +42,7 @@ function CreateBuilding() {
   }
   // Verification des minerais , activation ou non du bouton create
   function handleShows() {
-    if (ore >= oreShipyard) {
+    if (props.ore >= oreShipyard) {
       setIsDisabled(false);
     } else {
       setIsDisabled(true);
@@ -53,7 +51,7 @@ function CreateBuilding() {
   }
   // Verification des minerais , activation ou non du bouton create
   function handleShowp() {
-    if (ore >= orePowerplant) {
+    if (props.ore >= orePowerplant) {
       setIsDisabled(false);
     } else {
       setIsDisabled(true);
@@ -62,64 +60,17 @@ function CreateBuilding() {
   }
   // Verification des minerais , activation ou non du bouton create
   function handleShoww() {
-    if (ore >= oreWarehouse) {
+    if (props.ore >= oreWarehouse) {
       setIsDisabled(false);
     } else {
       setIsDisabled(true);
     }
     setShoww(true);
   }
-  function ReadOre() {
-    var myHeaders = new Headers();
-    const token = JSON.parse(sessionStorage.getItem("token"));
 
-    myHeaders.append("Authorization", `Bearer ${token}`);
 
-    var requestOptions = {
-      method: "GET",
-      headers: myHeaders,
-      redirect: "follow",
-    };
-
-    fetch("http://127.0.0.1:8000/api/ressources/", requestOptions)
-      .then((response) => response.json())
-      .then((result) => {
-        setOre(result.ore);
-        console.log("result", result);
-      })
-      .catch((error) => console.log("error", error));
-  }
-
-  useEffect(() => {
-    ReadOre();
-  }, []);
-
-  function Create(building) {
-    var myHeaders = new Headers();
-    const items = JSON.parse(sessionStorage.getItem("token"));
-    myHeaders.append("Authorization", `Bearer ${items} `);
-
-    var requestOptions = {
-      method: "POST",
-      headers: myHeaders,
-      redirect: "follow",
-    };
-
-    fetch(`http://127.0.0.1:8000/api/structures/${building}`, requestOptions)
-      .then((response) => {
-        //permet d'intercepter quand le token est expiré
-        if (response.status === 401) {
-          swal("Error", "Session Expired, please connect again", "error");
-          navigate("/login");
-        }
-        return response.json();
-      })
-      .then((result) => {
-        console.log(result);
-        // Reload à modifier, CreateBuilding Component en dehors du composant principal,pour éviter d'avoir le renderMyArray au même endroit que les boutons
-        window.location.reload();
-      })
-      .catch((error) => console.log("error", error));
+  function Create(type) {
+    props.onCreate(type);
   }
 
   return (
@@ -143,7 +94,7 @@ function CreateBuilding() {
           </Modal.Body>
           <Modal.Footer>
             <p>
-              You have 🪨: <strong>{ore}</strong> Ore Units
+              You have 🪨: <strong>{props.ore}</strong> Ore Units
             </p>
             <Button variant="secondary" onClick={handleClosem}>
               Close
@@ -183,7 +134,7 @@ function CreateBuilding() {
           </Modal.Body>
           <Modal.Footer>
             <p>
-              You have 🪨: <strong>{ore}</strong> Ore Units
+              You have 🪨: <strong>{props.ore}</strong> Ore Units
             </p>
             <Button variant="secondary" onClick={handleClosep}>
               Close
@@ -221,7 +172,7 @@ function CreateBuilding() {
           </Modal.Body>
           <Modal.Footer>
             <p>
-              You have 🪨: <strong>{ore}</strong> Ore Units
+              You have 🪨: <strong>{props.ore}</strong> Ore Units
             </p>
             <Button variant="secondary" onClick={handleCloser}>
               Close
@@ -259,7 +210,7 @@ function CreateBuilding() {
           </Modal.Body>
           <Modal.Footer>
             <p>
-              You have 🪨: <strong>{ore}</strong> Ore Units
+              You have 🪨: <strong>{props.ore}</strong> Ore Units
             </p>
             <Button variant="secondary" onClick={handleCloses}>
               Close
@@ -297,7 +248,7 @@ function CreateBuilding() {
           </Modal.Body>
           <Modal.Footer>
             <p>
-              You have 🪨: <strong>{ore}</strong> Ore Units
+              You have 🪨: <strong>{props.ore}</strong> Ore Units
             </p>
             <Button variant="secondary" onClick={handleClosew}>
               Close

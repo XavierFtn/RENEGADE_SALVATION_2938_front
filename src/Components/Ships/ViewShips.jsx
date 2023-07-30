@@ -1,55 +1,23 @@
+/* eslint-disable react/prop-types */
 /* eslint-disable react-hooks/exhaustive-deps */
-import { useEffect, useState } from "react";
 import ModelShips from "../../models/Ships/ModelShips";
-import {useNavigate } from "react-router-dom";
-import swal from "sweetalert";
+
 
 function Ships(props) {
-  const [ship, setShip] = useState([]);
-  const navigate = useNavigate();
 
-  async function MShips1() {
-    var myHeaders = new Headers();
-    const items = JSON.parse(sessionStorage.getItem("token"));
-    myHeaders.append("Authorization", `Bearer ${items} `);
-
-    var requestOptions = {
-      method: "GET",
-      headers: myHeaders,
-      redirect: "follow",
-    };
-    let response = await fetch(
-      `http://127.0.0.1:8000/api/ships/`,
-      requestOptions
-    );
-    console.log("reponse ships", response);
-    let donnees = await response.json();
-    
-      //permet d'intercepter quand le token est expiré
-      if (response.status === 401){
-        sessionStorage.clear();
-        swal("Error", "Session Expired, please connect again", "error");
-        navigate('/');
-      }
-     
-    console.log("données ships", donnees);
-    setShip(donnees);
-  }
-
-  useEffect(() => {
-    MShips1();
-  }, []);
 
   const RenderMyArray = () => {
     let s = [];
+    // eslint-disable-next-line react/prop-types
     if (props.type === "cruiser") {
-      s = ship.cruiser || [];
+      s = props.ships.cruiser || [];
     } else if (props.type === "destroyer") {
-      s = ship.destroyer || [];
+      // eslint-disable-next-line react/prop-types
+      s = props.ships.destroyer || [];
     } else if (props.type === "fighter") {
-      s = ship.fighter || [];
+      s = props.ships.fighter || [];
     } else {
-      s = ship.frigate || [];
+      s = props.ships.frigate || [];
     }
     return s.map((item, id) => {
       return <ModelShips key={id} type={item.type}  quantity={item.quantity} />;
