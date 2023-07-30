@@ -4,7 +4,7 @@ import { Stage, Layer, Circle, Text } from "react-konva";
 function MapUser() {
   const [userCoords, setUserCoords] = useState([]);
   const token = JSON.parse(sessionStorage.getItem("token"));
-  const userId = JSON.parse(sessionStorage.getItem("id")).toString(); // Convert userId to string
+  const userId = JSON.parse(sessionStorage.getItem("id"));
 
   const getPlanetarySystems = async () => {
     const options = {
@@ -64,13 +64,13 @@ function MapUser() {
               y={userCoord.y}
               radius={10}
               fill={getRandomColor()}
-              stroke="green"
+              stroke="red"
               strokeWidth={1}
             />
             <Text
               x={userCoord.x + 12}
               y={userCoord.y - 5}
-              text={userCoord.name}
+              text={userCoord.name} // Assuming you still have this property
               fontSize={14}
               fontWeight="bold"
               fill="white"

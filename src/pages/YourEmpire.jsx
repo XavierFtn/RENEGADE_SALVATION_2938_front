@@ -1,15 +1,3 @@
-/**
- * @description      :
- * @author           :
- * @group            :
- * @created          : 24/07/2023 - 15:37:26
- *
- * MODIFICATION LOG
- * - Version         : 1.0.0
- * - Date            : 24/07/2023
- * - Author          :
- * - Modification    :
- **/
 import Header from "../models/ModelsHeader";
 import Footer from "../models/ModelsFooter";
 // import Warehouses from "../models/ModelsBuildings/
@@ -75,8 +63,8 @@ function YourEmpire() {
               style={{
                 backgroundImage: 'url("/src/components/img/radar.gif")',
                 backgroundSize: "cover",
-                backgroundPosition: "center center", // Centrer l'image horizontalement et verticalement
-                backgroundRepeat: "no-repeat", // Empêcher la répétition de l'image
+                backgroundPosition: "center center",
+                backgroundRepeat: "no-repeat",
                 opacity: 0.7,
               }}
             >
