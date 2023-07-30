@@ -1,16 +1,3 @@
-/**
-    * @description      : 
-    * @author           : 
-    * @group            : 
-    * @created          : 28/07/2023 - 11:05:08
-    * 
-    * MODIFICATION LOG
-    * - Version         : 1.0.0
-    * - Date            : 28/07/2023
-    * - Author          : 
-    * - Modification    : 
-**/
-
 import React, { useState, useEffect } from "react";
 import { Stage, Layer, Circle, Text } from "react-konva";
 
@@ -66,14 +53,13 @@ function Map() {
               radius={10}
               fill={getRandomColor()}
               stroke="red"
-              strokeWidth={2}
+              strokeWidth={1}
             />
             <Text
               x={userCoord.x + 12}
               y={userCoord.y - 5}
               text={userCoord.name}
               fontSize={14}
-              font
               fontWeight="bold"
               fill="white"
             />
