@@ -1,5 +1,5 @@
 import { Badge, ListGroup } from "react-bootstrap";
-import PropTypes from "prop-types";
+
 
 function ModelShips(props) {
   return (
@@ -21,11 +21,5 @@ function ModelShips(props) {
     </div>
   );
 }
-// évite les erreur de type: id is missing in props validation
-ModelShips.propTypes = {
-  id: PropTypes.number.isRequired,
-  type: PropTypes.string,
-  quantity: PropTypes.string,
-};
 
 export default ModelShips;

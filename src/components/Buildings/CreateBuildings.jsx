@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Modal } from "react-bootstrap";
 import Button from "react-bootstrap/Button";
-import {useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import swal from "sweetalert";
 
 function CreateBuilding() {
@@ -10,15 +10,18 @@ function CreateBuilding() {
   const [showr, setShowr] = useState(false);
   const [showp, setShowp] = useState(false);
   const [shows, setShows] = useState(false);
+  const [showw, setShoww] = useState(false);
   const handleClosem = () => setShowm(false);
   const handleCloser = () => setShowr(false);
   const handleClosep = () => setShowp(false);
   const handleCloses = () => setShows(false);
+  const handleClosew = () => setShoww(false);
   const [ore, setOre] = useState(0);
   const [isDisabled, setIsDisabled] = useState(true);
   const oreMine = 300;
   const oreRaffinery = 300;
   const orePowerplant = 500;
+  const oreWarehouse = 500;
   const oreShipyard = 1000;
   // Verification des minerais , activation ou non du bouton create
 
@@ -57,6 +60,15 @@ function CreateBuilding() {
     }
     setShowp(true);
   }
+  // Verification des minerais , activation ou non du bouton create
+  function handleShoww() {
+    if (ore >= oreWarehouse) {
+      setIsDisabled(false);
+    } else {
+      setIsDisabled(true);
+    }
+    setShoww(true);
+  }
   function ReadOre() {
     var myHeaders = new Headers();
     const token = JSON.parse(sessionStorage.getItem("token"));
@@ -94,13 +106,13 @@ function CreateBuilding() {
     };
 
     fetch(`http://127.0.0.1:8000/api/structures/${building}`, requestOptions)
-      .then((response) =>{ 
+      .then((response) => {
         //permet d'intercepter quand le token est expiré
-        if (response.status === 401){
+        if (response.status === 401) {
           swal("Error", "Session Expired, please connect again", "error");
-          navigate('/login');
+          navigate("/login");
         }
-        return response.json()
+        return response.json();
       })
       .then((result) => {
         console.log(result);
@@ -112,7 +124,7 @@ function CreateBuilding() {
 
   return (
     <div className="row">
-      <div className="col-3">
+      <div className="col-2">
         <Button
           variant="btn-dark"
           className="btn btn-dark border border-warning"
@@ -150,7 +162,7 @@ function CreateBuilding() {
           </Modal.Footer>
         </Modal>
       </div>
-      <div className="col-3">
+      <div className="col-2">
         <Button
           variant="btn-dark"
           className="btn btn-dark border border-warning"
@@ -190,7 +202,7 @@ function CreateBuilding() {
           </Modal.Footer>
         </Modal>
       </div>
-      <div className="col-3">
+      <div className="col-2">
         <Button
           variant="btn-dark"
           className="btn btn-dark border border-warning"
@@ -228,7 +240,7 @@ function CreateBuilding() {
           </Modal.Footer>
         </Modal>
       </div>
-      <div className="col-3">
+      <div className="col-2">
         <Button
           variant="btn-dark"
           className="btn btn-dark border border-warning"
@@ -258,6 +270,44 @@ function CreateBuilding() {
               onClick={() => {
                 Create("shipyard");
                 handleCloses();
+              }}
+              disabled={isDisabled ? true : false}
+            >
+              Create 🏗️
+            </Button>
+          </Modal.Footer>
+        </Modal>
+      </div>
+      <div className="col-2">
+        <Button
+          variant="btn-dark"
+          className="btn btn-dark border border-warning"
+          onClick={handleShoww}
+        >
+          Warehouse
+        </Button>
+        <Modal show={showw} onHide={handleClosew}>
+          <Modal.Header closeButton>
+            <Modal.Title>*Men at work*</Modal.Title>
+          </Modal.Header>
+          <Modal.Body>Do you really want to create this Warehouse ?</Modal.Body>
+          <Modal.Body>
+            🪨: <strong>{oreWarehouse}</strong> Ore Units <br /> ⚡:
+            <strong>0</strong> Energy Unit <br /> 🕐:<strong>Immediate</strong>
+          </Modal.Body>
+          <Modal.Footer>
+            <p>
+              You have 🪨: <strong>{ore}</strong> Ore Units
+            </p>
+            <Button variant="secondary" onClick={handleClosew}>
+              Close
+            </Button>
+            <Button
+              variant="success"
+              id={oreWarehouse}
+              onClick={() => {
+                Create("warehouse");
+                handleClosew();
               }}
               disabled={isDisabled ? true : false}
             >

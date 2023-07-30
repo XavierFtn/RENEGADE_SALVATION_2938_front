@@ -52,7 +52,7 @@ function Map() {
               y={userCoord.y}
               radius={10}
               fill={getRandomColor()}
-              stroke="green"
+              stroke="red"
               strokeWidth={1}
             />
             <Text
@@ -60,7 +60,6 @@ function Map() {
               y={userCoord.y - 5}
               text={userCoord.name}
               fontSize={14}
-              font
               fontWeight="bold"
               fill="white"
             />

@@ -2,9 +2,11 @@ import { useEffect, useState } from "react";
 import MRessources from "../../models/ressources/ModelRessources";
 import swal from "sweetalert";
 import { useNavigate } from "react-router-dom";
+import { Spinner } from "react-bootstrap";
 
 function ViewRessources() {
   const [ressources, setRessources] = useState([]);
+  const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
 
   function ShowRessources() {
@@ -32,6 +34,7 @@ function ViewRessources() {
       .then((result) => {
         const resourcesArray = [result];
         setRessources(resourcesArray);
+        setLoading(false);
         console.log("result", resourcesArray);
       })
       .catch((error) => console.log("error", error));
@@ -42,6 +45,9 @@ function ViewRessources() {
   }, []);
 
   const RenderMyArray = () => {
+    if (loading) {
+      return <Spinner animation="border" variant="warning" />;
+    }
     return ressources.map((item, id) => (
       <MRessources
         key={id}

@@ -4,8 +4,9 @@ import { Stage, Layer, Circle, Text } from "react-konva";
 function MapUser() {
   const [userCoords, setUserCoords] = useState([]);
   const token = JSON.parse(sessionStorage.getItem("token"));
+  const userId = JSON.parse(sessionStorage.getItem("id")).toString(); // Convert userId to string
 
-  const getMyPoints = async () => {
+  const getPlanetarySystems = async () => {
     const options = {
       method: "GET",
       headers: {
@@ -13,33 +14,38 @@ function MapUser() {
         Authorization: `Bearer ${token}`,
       },
     };
+
     const response = await fetch(
       "http://127.0.0.1:8000/api/planetary-systems",
       options
     );
     const data = await response.json();
-    const { planetarySystems } = data;
+    return data.planetarySystems;
+  };
 
-    // Déchiffrer le token pour obtenir l'identifiant de l'utilisateur connecté
-    const userId = JSON.parse(atob(token.split(".")[1])).sub;
-    console.log(userId);
+  useEffect(() => {
+    const fetchPlanetarySystems = async () => {
+      const planetarySystems = await getPlanetarySystems();
+      console.log("userId:", userId);
+      console.log("planetarySystems:", planetarySystems);
 
-    // Filtrer les coordonnées pour n'afficher que celles de l'utilisateur actuel
-    setUserCoords(
-      planetarySystems
-        .filter((system) => system.user_id === userId)
-        .map((system) => ({
+      const filteredCoords = planetarySystems.filter(
+        (system) => system.user_id === userId
+      );
+      console.log("filteredCoords:", filteredCoords);
+
+      setUserCoords(
+        filteredCoords.map((system) => ({
           id: system.id,
           x: system.x_coord,
           y: system.y_coord,
           name: system.planetary_system_name,
         }))
-    );
-  };
+      );
+    };
 
-  useEffect(() => {
-    getMyPoints();
-  }, [token]); // Rafraîchir les coordonnées lorsque le token change (l'utilisateur se connecte)
+    fetchPlanetarySystems();
+  }, [token, userId]);
 
   const getRandomColor = () => {
     const color = `rgb(${Math.random() * 255}, ${Math.random() * 255}, ${
@@ -66,7 +72,6 @@ function MapUser() {
               y={userCoord.y - 5}
               text={userCoord.name}
               fontSize={14}
-              font
               fontWeight="bold"
               fill="white"
             />

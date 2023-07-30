@@ -19,6 +19,7 @@ import Ships from "../Components/Ships/ViewShips";
 import MapUser from "../components/MapUser";
 import { Card } from "react-bootstrap";
 import React from "react";
+import ViewWarehouse from "../Components/Buildings/ViewWarehouse";
 
 function YourEmpire() {
   return (
@@ -57,11 +58,13 @@ function YourEmpire() {
             </Card>
           </div>
           <div className="col-md-6 mb-3">
-            <Card className="text-center">
-              <Card.Header className="py-0">
-                <h1 className="orbitron">Your warehouses:</h1>
-              </Card.Header>
-              <Card.Body>{/* <Warehouses/> */}</Card.Body>
+            <Card className="text-center px-0 pt-2 pb-1">
+              <h1 className="orbitron">
+                Warehouse :{" "}
+                <span>
+                  <ViewWarehouse />
+                </span>
+              </h1>
             </Card>
           </div>
         </div>
@@ -73,6 +76,8 @@ function YourEmpire() {
               style={{
                 backgroundImage: 'url("/src/components/img/radar.gif")',
                 backgroundSize: "cover",
+                backgroundPosition: "center center", // Centrer l'image horizontalement et verticalement
+                backgroundRepeat: "no-repeat", // Empêcher la répétition de l'image
                 opacity: 0.7,
               }}
             >

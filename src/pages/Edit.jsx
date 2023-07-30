@@ -1,3 +1,15 @@
+/**
+    * @description      : 
+    * @author           : 
+    * @group            : 
+    * @created          : 29/07/2023 - 17:26:02
+    * 
+    * MODIFICATION LOG
+    * - Version         : 1.0.0
+    * - Date            : 29/07/2023
+    * - Author          : 
+    * - Modification    : 
+**/
 import { Card, Col, Form, Row } from "react-bootstrap";
 import Footer from "../models/ModelsFooter";
 import Header from "../models/ModelsHeader";
@@ -10,6 +22,7 @@ import Avatar6 from "../components/img/Avatar/image6.jpg";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import swal from "sweetalert";
+import Swal from "sweetalert2";
 
 function EditProfil() {
   const navigate = useNavigate();
@@ -111,6 +124,73 @@ function EditProfil() {
       swal("Error", "An error occurred during Edition", "error");
     }
   };
+
+
+function swalDelete() {
+  const swalWithBootstrapButtons = Swal.mixin({
+    customClass: {
+      confirmButton: 'btn btn-success',
+      cancelButton: 'btn btn-danger'
+    },
+    buttonsStyling: false
+  })
+  
+  swalWithBootstrapButtons.fire({
+    title: 'Are you sure?',
+    text: "You won't be able to revert this!",
+    icon: 'warning',
+    showCancelButton: true,
+    confirmButtonText: 'Yes, delete it!',
+    cancelButtonText: 'No, cancel!',
+    reverseButtons: true
+  }).then((result) => {
+    if (result.isConfirmed) {
+      swalWithBootstrapButtons.fire(
+        'Deleted!',
+        'Good Bye Space Ranger.',
+        'success'
+      )
+      
+      const token = JSON.parse(sessionStorage.getItem("token"));
+    
+      var myHeaders = new Headers();
+      myHeaders.append("Authorization", `Bearer ${token} `);
+    
+      var requestOptions = {
+        method: 'DELETE',
+        headers: myHeaders,
+        redirect: 'follow'
+      };
+    
+      fetch("http://127.0.0.1:8000/api/delete", requestOptions)
+        .then(response => {
+          console.log('response', response);
+          if (response.ok) {
+            navigate("/");
+            Swal.fire("Good-Bye Space Ranger", "User deleted", "success");
+            sessionStorage.clear();
+          } 
+          else{
+            Swal.fire("Error", "An unexpected error occurred", "error")
+          }
+        })
+        .catch(error => {
+          console.error(error);
+           
+          Swal.fire("Error", "An unexpected error occurred", "error");
+        });
+    } else if (
+      /* Read more about handling dismissals below */
+      result.dismiss === Swal.DismissReason.cancel
+    ) {
+      swalWithBootstrapButtons.fire(
+        'Cancelled',
+        'Your System is safe :)',
+        'error'
+      )
+    }
+  })
+  }
 
   return (
     <div className="container-fluid">
@@ -249,21 +329,17 @@ function EditProfil() {
                 </div>
               </div>
             </Row>
-
             <button
               className="btn btn-dark border border-warning"
               onClick={handleSubmit}
             >
               Submit
             </button>
-            <button
-              className="btn btn-dark border border-warning"
-              onClick={handleSubmit}
-            >
-              <DeleteUser />
-              Delete Account
-            </button>
-          </Form>
+            </Form>
+            <div>
+            <button onClick={()=>swalDelete()} className="btn btn-dark border border-danger mt-2 mb-2">Delete User</button>
+        </div>
+          
         </Card>
       </div>
       <Footer />

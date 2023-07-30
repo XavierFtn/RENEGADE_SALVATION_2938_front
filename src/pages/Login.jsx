@@ -49,6 +49,7 @@ function Login() {
           "firstname",
           JSON.stringify(data.user.firstname)
         );
+        sessionStorage.setItem("id", JSON.stringify(data.user.id));
         sessionStorage.setItem("lastname", JSON.stringify(data.user.lastname));
         sessionStorage.setItem("email", JSON.stringify(data.user.email));
         sessionStorage.setItem(
@@ -99,8 +100,8 @@ function Login() {
                   className="form-control"
                   placeholder="Password"
                 />
-                <a href="/forget-password">Forgot your password?</a>
-              </div>
+                <strong><a href="/forget-password" className="linkForget font-weight-bolder font-size-medium text-danger text-decoration-none">Forgot your password?</a>
+                </strong></div>
               <button
                 className="btn btn-dark border border-warning"
                 onClick={handleSubmit}

@@ -4,6 +4,7 @@ body {
 }
 
 
+
 .card {
   display: flex;
   justify-content: center;
@@ -41,7 +42,39 @@ body {
   font-size: 20px;
   font-family: "Orbitron", sans-serif;
 }
+.orbitron3 {
+  -webkit-text-stroke: 1px rgb(7, 2, 2);
+  /*pour la bordure du texte*/
+  color: rgb(9, 243, 9);
+  font-weight: 650;
+  font-size: 17px;
+  font-family: "Orbitron", sans-serif;
+}
 
+.orbitron4 {
+  -webkit-text-stroke: 1px rgb(7, 2, 2);
+  /*pour la bordure du texte*/
+  color: rgb(255, 255, 255);
+  font-weight: 650;
+  font-size: 17px;
+  font-family: "Orbitron", sans-serif;
+}
+.orbitron5 {
+  -webkit-text-stroke: 1px rgb(7, 2, 2);
+  /*pour la bordure du texte*/
+  color: rgb(249, 198, 11);
+  font-weight: 650;
+  font-size: 17px;
+  font-family: "Orbitron", sans-serif;
+}
+.orbitron6 {
+  -webkit-text-stroke: 1px rgb(7, 2, 2);
+  /*pour la bordure du texte*/
+  color: rgb(42, 132, 241);
+  font-weight: 650;
+  font-size: 17px;
+  font-family: "Orbitron", sans-serif;
+}
 .buttonsHome {
   display: flex;
   justify-content: center;
@@ -52,17 +85,17 @@ body {
 .colorBisque {
   color: bisque;
 }
-
+.darker{
+  background-color: #212529;
+}
 .colorRed {
   color: rgb(248, 73, 73);
 }
-<<<<<<< HEAD
+
 .colorYellow{
   color: rgb(250, 194, 28);
 }
-=======
 
->>>>>>> Dev2
 .hm-gradient {
   background-image: linear-gradient(
     to top,

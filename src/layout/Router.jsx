@@ -23,6 +23,10 @@ import EditProfil from "../pages/Edit";
 import ResetPWD from "../pages/ResetPWD";
 import ForgetPWD from "../pages/ForgetPWD";
 import Stripe from "../Components/Stripe/Stripe";
+import History from "../pages/History";
+import EndBattle from "../pages/EndBattle";
+import Ranking from "../pages/Ranking";
+
 
 const router = createBrowserRouter([
   {
@@ -58,6 +62,19 @@ const router = createBrowserRouter([
     element: <Battle />,
   },
   {
+    path: "/ranking",
+    element: <Ranking />,
+  },
+  {
+    path: "/endofbattle",
+    element: <EndBattle />
+  },
+  {
+    path: "/battlehistory",
+    element: <History />,
+  },
+  {
+
     path: "/editprofile",
     element: <EditProfil />,
   },

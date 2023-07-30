@@ -14,11 +14,18 @@ import Header from "../models/ModelsHeader";
 import Footer from "../models/ModelsFooter";
 import Buildings from "../Components/Buildings/ViewBuildings";
 import Cbuilding from "../Components/Buildings/CreateBuildings";
-import { Card } from "react-bootstrap";
+import { Badge, Card } from "react-bootstrap";
 import ViewRessources from "../Components/Ressources/ViewRessources";
 import ViewShipyards from "../Components/Ships/ViewShipyards";
+import ViewWarehourse from "../Components/Buildings/ViewWarehouse";
 
 function BuildYourEmpire() {
+
+
+
+
+
+  
   return (
     <div className="container-fluid">
       <Header name="Build Your Empire" />
@@ -50,7 +57,7 @@ function BuildYourEmpire() {
       <div className="row wrap">
         <div className="col-md-3 ">
           <Card className="text-center px-0 pt-2">
-            <Card.Header className="py-0 ">
+            <Card.Header className="py-0  ">
               <h1 className="orbitron">Mine</h1>
             </Card.Header>
             <Card.Body>
@@ -72,10 +79,10 @@ function BuildYourEmpire() {
             </Card.Body>
           </Card>
         </div>
-        <div className="col-md-3">
-          <Card className="text-center px-0 pt-2">
+        <div className="col-md-3 ">
+          <Card className="text-center  px-0 pt-2">
             <Card.Header className="py-0 ">
-              <h1 className="orbitron">raffinery</h1>
+              <h1 className="orbitron">Raffinery</h1>
             </Card.Header>
             <Card.Body>
               <div className="scroll">
@@ -85,7 +92,10 @@ function BuildYourEmpire() {
           </Card>
         </div>
         <div className="col-md-3">
-          <Card className="text-center px-0 pt-2">
+        <Card className="text-center px-0 pt-2 pb-1">
+             <h1 className="orbitron">Warehouse : <span> <Badge bg="dark"><ViewWarehourse/></Badge></span></h1>
+          </Card>
+          <Card className="text-center mt-2 px-0 pt-2">
             <Card.Header className="py-0 ">
               <h1 className="orbitron">Shipyard</h1>
             </Card.Header>
