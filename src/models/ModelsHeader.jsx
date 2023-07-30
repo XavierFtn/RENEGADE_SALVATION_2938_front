@@ -77,7 +77,7 @@ function Header(props) {
                     id="navbarScrollingDropdown1"
                   >
                     <NavDropdown.Item href="/yourempire">
-                    <span className="orbitron4"> 🛕 {planet}</span>
+                    <span className="orbitron4"> 🛕 {planet} &apos; system</span>
                     </NavDropdown.Item>
                     <NavDropdown.Divider />
                     <NavDropdown.Item href="/buildyourempire">
@@ -96,6 +96,11 @@ function Header(props) {
                     </NavDropdown.Item>
                     <NavDropdown.Item href="/battle">
                       <span className="colorRed orbitron3"> ⚔️ <strong>Battle!</strong> </span>
+
+                    </NavDropdown.Item>
+                    <NavDropdown.Divider />
+                    <NavDropdown.Item href="/ranking">
+                    <span className="orbitron6">🏆 World Ranking </span>
 
                     </NavDropdown.Item>
                   </NavDropdown>

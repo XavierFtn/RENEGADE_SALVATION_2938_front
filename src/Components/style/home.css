@@ -67,6 +67,14 @@ body {
   font-size: 17px;
   font-family: "Orbitron", sans-serif;
 }
+.orbitron6 {
+  -webkit-text-stroke: 1px rgb(7, 2, 2);
+  /*pour la bordure du texte*/
+  color: rgb(42, 132, 241);
+  font-weight: 650;
+  font-size: 17px;
+  font-family: "Orbitron", sans-serif;
+}
 .buttonsHome {
   display: flex;
   justify-content: center;
