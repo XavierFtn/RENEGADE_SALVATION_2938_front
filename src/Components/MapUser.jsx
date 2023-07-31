@@ -1,51 +1,25 @@
 import React, { useState, useEffect } from "react";
 import { Stage, Layer, Circle, Text } from "react-konva";
-
+import { getPlanetary1 } from "../Components/Api/backend_helper";
 function MapUser() {
   const [userCoords, setUserCoords] = useState([]);
-  const token = JSON.parse(sessionStorage.getItem("token"));
   const userId = JSON.parse(sessionStorage.getItem("id")).toString(); // Convert userId to string
 
-  const getPlanetarySystems = async () => {
-    const options = {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`,
-      },
-    };
-
-    const response = await fetch(
-      "http://127.0.0.1:8000/api/planetary-systems",
-      options
-    );
-    const data = await response.json();
-    return data.planetarySystems;
-  };
-
   useEffect(() => {
-    const fetchPlanetarySystems = async () => {
-      const planetarySystems = await getPlanetarySystems();
-      console.log("userId:", userId);
-      console.log("planetarySystems:", planetarySystems);
-
-      const filteredCoords = planetarySystems.filter(
-        (system) => system.user_id === userId
+    getPlanetary1().then((result) => {
+      const filterResult = result.planetarySystems.filter(
+        (f) => f.user_id == userId
       );
-      console.log("filteredCoords:", filteredCoords);
-
       setUserCoords(
-        filteredCoords.map((system) => ({
+        filterResult.map((system) => ({
           id: system.id,
           x: system.x_coord,
           y: system.y_coord,
           name: system.planetary_system_name,
         }))
       );
-    };
-
-    fetchPlanetarySystems();
-  }, [token, userId]);
+    });
+  }, []);
 
   const getRandomColor = () => {
     const color = `rgb(${Math.random() * 255}, ${Math.random() * 255}, ${
@@ -64,7 +38,7 @@ function MapUser() {
               y={userCoord.y}
               radius={10}
               fill={getRandomColor()}
-              stroke="green"
+              stroke="red"
               strokeWidth={1}
             />
             <Text

@@ -24,6 +24,7 @@ import ResetPWD from "../pages/ResetPWD";
 import ForgetPWD from "../pages/ForgetPWD";
 import History from "../pages/History";
 import EndBattle from "../pages/EndBattle";
+import Ranking from "../pages/Ranking";
 
 
 const router = createBrowserRouter([
@@ -58,6 +59,10 @@ const router = createBrowserRouter([
   {
     path: "/battle",
     element: <Battle />,
+  },
+  {
+    path: "/ranking",
+    element: <Ranking />,
   },
   {
     path: "/endofbattle",
