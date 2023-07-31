@@ -1,15 +1,3 @@
-/**
-    * @description      : 
-    * @author           : 
-    * @group            : 
-    * @created          : 27/07/2023 - 22:19:55
-    * 
-    * MODIFICATION LOG
-    * - Version         : 1.0.0
-    * - Date            : 27/07/2023
-    * - Author          : 
-    * - Modification    : 
-**/
 import Home from "../pages/home";
 import BuildYourEmpire from "../pages/BuildYourEmpire";
 import YourEmpire from "../pages/YourEmpire";
@@ -23,7 +11,6 @@ import EditProfil from "../pages/Edit";
 import ResetPWD from "../pages/ResetPWD";
 import ForgetPWD from "../pages/ForgetPWD";
 import History from "../pages/History";
-import EndBattle from "../pages/EndBattle";
 import Ranking from "../pages/Ranking";
 
 
@@ -63,10 +50,6 @@ const router = createBrowserRouter([
   {
     path: "/ranking",
     element: <Ranking />,
-  },
-  {
-    path: "/endofbattle",
-    element: <EndBattle />
   },
   {
     path: "/battlehistory",
