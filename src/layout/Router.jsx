@@ -10,7 +10,7 @@ import Battle from "../pages/Battle";
 import EditProfil from "../pages/Edit";
 import ResetPWD from "../pages/ResetPWD";
 import ForgetPWD from "../pages/ForgetPWD";
-import Stripe from "../Components/Stripe/Stripe";
+
 import History from "../pages/History";
 import Ranking from "../pages/Ranking";
 import Stripe from "../pages/Stripe";
