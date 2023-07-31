@@ -12,6 +12,7 @@ import ResetPWD from "../pages/ResetPWD";
 import ForgetPWD from "../pages/ForgetPWD";
 import History from "../pages/History";
 import Ranking from "../pages/Ranking";
+import Stripe from "../pages/Stripe";
 
 
 const router = createBrowserRouter([
@@ -46,6 +47,10 @@ const router = createBrowserRouter([
   {
     path: "/battle",
     element: <Battle />,
+  },
+  {
+    path: "/payment",
+    element: <Stripe />,
   },
   {
     path: "/ranking",
