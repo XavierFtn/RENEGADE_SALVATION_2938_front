@@ -19,26 +19,39 @@ function Stripe() {
 
         <div className=" col-auto ">
           <div className="row">
+            <div className=" col-4">
             <Card className="mb-5" style={{ width: "30rem" }}>
               <Card.Img variant="top" src="src\Components\img\stone.png" />
               <Card.Body>
                 <Card.Title className="orbitron2">Buy Ore</Card.Title>
-                <Card.Text className="orbitron5">Blbablablabla</Card.Text>
+                <Card.Text className="orbitron5">Price : 1€</Card.Text>
                 <Button className="orbitron5" variant="warning" href="">
                   Payment
                 </Button>
               </Card.Body>
-            </Card>
+            </Card></div>
+            <div className=" col-4">
             <Card className="mb-5" style={{ width: "30rem" }}>
               <Card.Img variant="top" src="src\Components\img\jerrycan.png" />
               <Card.Body>
                 <Card.Title className="orbitron2">Buy Fuel</Card.Title>
-                <Card.Text className="orbitron5">Blbablablabla</Card.Text>
+                <Card.Text className="orbitron5">Price : 1€</Card.Text>
                 <Button className="orbitron5" variant="warning" href="">
                   Payment
                 </Button>
               </Card.Body>
-            </Card>
+            </Card></div>
+            <div className=" col-4">
+            <Card className="mb-5" style={{ width: "30rem" }}>
+              <Card.Img variant="top" src="src\Components\img\energy.jpg" />
+              <Card.Body>
+                <Card.Title className="orbitron2">Buy Energy</Card.Title>
+                <Card.Text className="orbitron5">Price : 1€</Card.Text>
+                <Button className="orbitron5" variant="warning" href="">
+                  Payment
+                </Button>
+              </Card.Body>
+            </Card></div>
             <div className="row mb-5">
               <ViewRessources ressources={ressources} />
             </div>
