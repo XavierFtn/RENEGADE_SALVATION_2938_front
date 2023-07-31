@@ -1,6 +1,17 @@
+/**
+    * @description      : 
+    * @author           : 
+    * @group            : 
+    * @created          : 31/07/2023 - 11:37:27
+    * 
+    * MODIFICATION LOG
+    * - Version         : 1.0.0
+    * - Date            : 31/07/2023
+    * - Author          : 
+    * - Modification    : 
+**/
 import Header from "../models/ModelsHeader";
 import Footer from "../models/ModelsFooter";
-// import Warehouses from "../models/ModelsBuildings/
 import ViewRessources from "../Components/Ressources/ViewRessources";
 import BackgroundVideo from "../models/ModelsBackground.jsx";
 import Ships from "../Components/Ships/ViewShips";
@@ -92,18 +103,6 @@ function YourEmpire() {
             </Card.Body>
           </div>
         </div>
-
-        <div className="row m-3">
-          <div className="col-md-12 mb-3">
-            <Card className="text-center">
-              <Card.Header className="py-0">
-                <h1 className="orbitron">Your past battles:</h1>
-              </Card.Header>
-              <Card.Body>{/* <Battles/>   */}</Card.Body>
-            </Card>
-          </div>
-        </div>
-
         <Footer />
       </div>
     </div>
