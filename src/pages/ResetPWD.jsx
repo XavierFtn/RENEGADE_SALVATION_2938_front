@@ -1,3 +1,15 @@
+/**
+    * @description      : 
+    * @author           : 
+    * @group            : 
+    * @created          : 31/07/2023 - 11:35:01
+    * 
+    * MODIFICATION LOG
+    * - Version         : 1.0.0
+    * - Date            : 31/07/2023
+    * - Author          : 
+    * - Modification    : 
+**/
 import { useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import Header2 from "../models/ModelsHeader2";
@@ -58,7 +70,7 @@ const ResetPWD = () => {
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     placeholder="Enter your email"
-                    className="form-control"
+                    className="form-control m-2"
                     name="email"
                   />
                   <input
@@ -67,7 +79,7 @@ const ResetPWD = () => {
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                     placeholder="Enter your new password"
-                    className="form-control"
+                    className="form-control m-2"
                     name="password"
                   />
                   <input
@@ -76,7 +88,7 @@ const ResetPWD = () => {
                     value={passwordConfirmation}
                     onChange={(e) => setPasswordConfirmation(e.target.value)}
                     placeholder="Confirm your new password"
-                    className="form-control"
+                    className="form-control m-2"
                     name="passwordConfirmation"
                   />
                   <button

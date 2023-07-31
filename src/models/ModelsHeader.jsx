@@ -143,7 +143,7 @@ function Header(props) {
                     </NavDropdown.Item>
                     <NavDropdown.Divider />
                     <NavDropdown.Item>
-                      <Link to="/stripe">
+                      <Link to="/payment">
                         <span className="colorYellow">
                           <strong> 🪙 Premium Access </strong>
                         </span>

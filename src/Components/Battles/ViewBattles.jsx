@@ -1,3 +1,15 @@
+/**
+    * @description      : 
+    * @author           : 
+    * @group            : 
+    * @created          : 31/07/2023 - 11:38:47
+    * 
+    * MODIFICATION LOG
+    * - Version         : 1.0.0
+    * - Date            : 31/07/2023
+    * - Author          : 
+    * - Modification    : 
+**/
 import ModelBattles from "../../models/battles/ModelBattles";
 
 function ViewBattles(props) {
