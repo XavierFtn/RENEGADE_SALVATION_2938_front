@@ -1,15 +1,3 @@
-/**
-    * @description      : 
-    * @author           : 
-    * @group            : 
-    * @created          : 24/07/2023 - 09:33:00
-    * 
-    * MODIFICATION LOG
-    * - Version         : 1.0.0
-    * - Date            : 24/07/2023
-    * - Author          : 
-    * - Modification    : 
-**/
 import Home from "../pages/home";
 import BuildYourEmpire from "../pages/BuildYourEmpire";
 import YourEmpire from "../pages/YourEmpire";
@@ -19,6 +7,13 @@ import Register from "../pages/Register";
 import ExtendYourEmpire from "../pages/ExtendYourEmpire";
 import Disconnect from "../pages/Disconnect";
 import Battle from "../pages/Battle";
+import EditProfil from "../pages/Edit";
+import ResetPWD from "../pages/ResetPWD";
+import ForgetPWD from "../pages/ForgetPWD";
+import History from "../pages/History";
+import Ranking from "../pages/Ranking";
+import Stripe from "../pages/Stripe";
+
 
 const router = createBrowserRouter([
   {
@@ -44,15 +39,43 @@ const router = createBrowserRouter([
   {
     path: "/yourempire",
     element: <YourEmpire />,
-      },
+  },
   {
     path: "/extendyourempire",
     element: <ExtendYourEmpire />,
-
   },
   {
     path: "/battle",
     element: <Battle />,
+  },
+  {
+    path: "/payment",
+    element: <Stripe />,
+  },
+  {
+    path: "/ranking",
+    element: <Ranking />,
+  },
+  {
+    path: "/battlehistory",
+    element: <History />,
+  },
+  {
+
+    path: "/editprofile",
+    element: <EditProfil />,
+  },
+  {
+    path: "/forget-password",
+    element: <ForgetPWD/>,
+  },
+  {
+    path: "/reset-password/:token",
+    element: <ResetPWD />,
+  },
+  {
+    path: "/reset-password/",
+    element: <ResetPWD />,
   },
 ]);
 

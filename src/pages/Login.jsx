@@ -1,9 +1,23 @@
+/**
+ * @description      :
+ * @author           :
+ * @group            :
+ * @created          : 25/07/2023 - 14:46:02
+ *
+ * MODIFICATION LOG
+ * - Version         : 1.0.0
+ * - Date            : 25/07/2023
+ * - Author          :
+ * - Modification    :
+ **/
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import swal from "sweetalert";
 import "bootstrap/dist/css/bootstrap.min.css";
 import login from "../Components/img/login.jpg";
 import "../Components/style/login.css";
+import Header from "../models/ModelsHeader";
+import Footer from "../models/ModelsFooter";
 
 function Login() {
   const [email, setEmail] = useState("");
@@ -27,11 +41,27 @@ function Login() {
       const data = await response.json();
 
       if (data.status === "success") {
-
-        sessionStorage.setItem("token", JSON.stringify(data.authorisation.token));
-        sessionStorage.setItem("user", JSON.stringify(data.user.firstname));
-        sessionStorage.setItem("planet",JSON.stringify(data.user.planetary_system_name));
-        sessionStorage.setItem("avatar",JSON.stringify(data.user.picture));
+        sessionStorage.setItem(
+          "token",
+          JSON.stringify(data.authorisation.token)
+        );
+        sessionStorage.setItem(
+          "firstname",
+          JSON.stringify(data.user.firstname)
+        );
+        sessionStorage.setItem("id", JSON.stringify(data.user.id));
+        sessionStorage.setItem("lastname", JSON.stringify(data.user.lastname));
+        sessionStorage.setItem("email", JSON.stringify(data.user.email));
+        sessionStorage.setItem(
+          "date_of_birth",
+          JSON.stringify(data.user.date_of_birth)
+        );
+        sessionStorage.setItem("user", JSON.stringify(data.user.username));
+        sessionStorage.setItem(
+          "planet",
+          JSON.stringify(data.user.planetary_system_name)
+        );
+        sessionStorage.setItem("avatar", JSON.stringify(data.user.picture));
 
         swal("Welcome!", "You are connected!", "success");
         navigate("/");
@@ -46,6 +76,8 @@ function Login() {
 
   return (
     <div className="container">
+      <Header />
+      <div className="row mb-5 pt-2"></div>
       <div className="row justify-content-center mt-5">
         <div className="col-md-6">
           <div className="card">
@@ -68,7 +100,8 @@ function Login() {
                   className="form-control"
                   placeholder="Password"
                 />
-              </div>
+                <strong><a href="/forget-password" className="linkForget font-weight-bolder font-size-medium text-danger text-decoration-none">Forgot your password?</a>
+                </strong></div>
               <button
                 className="btn btn-dark border border-warning"
                 onClick={handleSubmit}
@@ -79,6 +112,7 @@ function Login() {
           </div>
         </div>
       </div>
+      <Footer />
     </div>
   );
 }

@@ -1,65 +1,26 @@
-import MShips from "../../models/Ships/ModelShips";
-import { useEffect, useState } from "react";
+/* eslint-disable react/prop-types */
+/* eslint-disable react-hooks/exhaustive-deps */
+import ModelShips from "../../models/Ships/ModelShips";
 
-function Ships() {
-  const [Ship, setShip] = useState([]);
-  const [updated, setUpdated] = useState();
-  useEffect(() => {
-    MShips1();
-  }, [updated]);
 
-  async function MShips1() {
-    var myHeaders = new Headers();
-    const items = JSON.parse(sessionStorage.getItem("token"));
-    myHeaders.append("Authorization", `Bearer ${items} `);
+function Ships(props) {
 
-    var requestOptions = {
-      method: "GET",
-      headers: myHeaders,
-      redirect: "follow",
-    };
-    let response = await fetch(
-      `http://127.0.0.1:8000/api/Ships/`,
-      requestOptions
-    );
-    console.log("reponse Ships", response);
-    let donnees = await response.json();
-    console.log("données Ships", donnees);
-    setShip(donnees);
-  }
-
-  useEffect(() => {
-    MShips1();
-  }, []);
-  async function ShipDelete(id) {
-    var myHeaders = new Headers();
-    const items = JSON.parse(localStorage.getItem("token"));
-    myHeaders.append("Authorization", `Bearer ${items} `);
-
-    var requestOptions = {
-      method: "DELETE",
-      headers: myHeaders,
-      redirect: "follow",
-    };
-
-    await fetch(`http://127.0.0.1:8000/api/Ships/${id}`, {
-      requestOptions,
-    });
-    MShips1();
-  }
 
   const RenderMyArray = () => {
-    return Ship.map((item, id) => {
-      return (
-        <MShips
-          key={id}
-          id={item.id}
-          type={item.type}
-          fuel={item.fuelConsumption}
-          energyConsumption={item.energyConsumption}
-          onDelete={() => ShipDelete(item.id)}
-        />
-      );
+    let s = [];
+    // eslint-disable-next-line react/prop-types
+    if (props.type === "cruiser") {
+      s = props.ships.cruiser || [];
+    } else if (props.type === "destroyer") {
+      // eslint-disable-next-line react/prop-types
+      s = props.ships.destroyer || [];
+    } else if (props.type === "fighter") {
+      s = props.ships.fighter || [];
+    } else {
+      s = props.ships.frigate || [];
+    }
+    return s.map((item, id) => {
+      return <ModelShips key={id} type={item.type}  quantity={item.quantity} />;
     });
   };
   return (
@@ -68,5 +29,7 @@ function Ships() {
     </div>
   );
 }
+// évite les erreur de type: id is missing in props validation
+
 
 export default Ships;

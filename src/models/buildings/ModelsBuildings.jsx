@@ -1,11 +1,11 @@
-import moment from "moment/moment";
+import moment from "moment";
 import { useEffect, useState } from "react";
 import { Button, ListGroup, Modal, ProgressBar } from "react-bootstrap";
 import Card from "react-bootstrap/Card";
 
 function MBuildings(props) {
-  //Utilisation de useState pour afficher la possibilité de Supprimer ou pas si
-  // le Batiment est encore en construction.Eviter le UseRef,qui affiche quand même la div.
+  //Utilisation de setShow pour afficher la possibilité de Supprimer ou pas si
+  // le Batiment est encore en construction. Eviter le UseRef,qui affiche quand même la div.
   const [showWait, setShowWait] = useState(true);
   const [showFinish, setShowFinish] = useState(false);
   //temps de création

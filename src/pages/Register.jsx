@@ -62,13 +62,27 @@ function Register() {
       if (data.status === "success") {
         // Récupérer le nom du système planétaire choisi
 
-        sessionStorage.setItem("token", JSON.stringify(data.authorisation.token));
-        sessionStorage.setItem("user", JSON.stringify(data.user.firstname));
+        sessionStorage.setItem(
+          "token",
+          JSON.stringify(data.authorisation.token)
+        );
+        sessionStorage.setItem("id", JSON.stringify(data.user.id));
+        sessionStorage.setItem(
+          "firstname",
+          JSON.stringify(data.user.firstname)
+        );
+        sessionStorage.setItem("lastname", JSON.stringify(data.user.lastname));
+        sessionStorage.setItem("email", JSON.stringify(data.user.email));
+        sessionStorage.setItem(
+          "date_of_birth",
+          JSON.stringify(data.user.date_of_birth)
+        );
+        sessionStorage.setItem("user", JSON.stringify(data.user.username));
         sessionStorage.setItem(
           "planet",
           JSON.stringify(data.user.planetary_system_name)
         );
-        sessionStorage.setItem("avatar", JSON.stringify(data.user.picture)); // Save the avatar path in local storage
+        sessionStorage.setItem("avatar", JSON.stringify(data.user.picture));
 
         swal(
           "Registration successful!",
