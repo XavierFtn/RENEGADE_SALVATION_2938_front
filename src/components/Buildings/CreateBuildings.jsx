@@ -1,8 +1,6 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Modal } from "react-bootstrap";
 import Button from "react-bootstrap/Button";
-import { useNavigate } from "react-router-dom";
-import swal from "sweetalert";
 
 function CreateBuilding(props) {
   const [showm, setShowm] = useState(false);
