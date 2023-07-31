@@ -94,18 +94,18 @@ function Header(props) {
                       </Link>
                     </NavDropdown.Item>
 
-                    <NavDropdown.Item >
-                    <Link to="/extendyourempire">
-                      <span className="orbitron4">🔭 Extend Your Empire</span>
+                    <NavDropdown.Item>
+                      <Link to="/extendyourempire">
+                        <span className="orbitron4">🔭 Extend Your Empire</span>
                       </Link>
                     </NavDropdown.Item>
                     <NavDropdown.Divider />
-                    <NavDropdown.Item >
+                    <NavDropdown.Item>
                       <Link to="/battlehistory">
                         <span className="orbitron5">📜 Battle History </span>
                       </Link>
                     </NavDropdown.Item>
-                    <NavDropdown.Item >
+                    <NavDropdown.Item>
                       <Link to="/battle">
                         <span className="colorRed orbitron3">
                           ⚔️ <strong>Battle!</strong>
@@ -150,11 +150,11 @@ function Header(props) {
                       </Link>
                     </NavDropdown.Item>
                     <NavDropdown.Divider />
-                    <NavDropdown.Item >
-                    <Link to="/disconnect">
-                      <span className="colorRed">
-                        <strong>🪧 Logout</strong>
-                      </span>
+                    <NavDropdown.Item>
+                      <Link to="/disconnect">
+                        <span className="colorRed">
+                          <strong>🪧 Logout</strong>
+                        </span>
                       </Link>
                     </NavDropdown.Item>
                   </NavDropdown>
@@ -163,18 +163,18 @@ function Header(props) {
 
               {disconnected && (
                 <Navbar.Collapse>
-                  <Nav.Link >
-                  <Link to="/register">
-                    <span className="colorRed"> 📑 Register</span>
+                  <Nav.Link>
+                    <Link to="/register">
+                      <span className="colorRed"> 📑 Register</span>
                     </Link>
                   </Nav.Link>
                 </Navbar.Collapse>
               )}
               {disconnected && (
                 <Navbar.Collapse className="justify-content-end">
-                  <Nav.Link >
-                  <Link to="/login">
-                    <span className="colorBisque">🔗 Login</span>
+                  <Nav.Link>
+                    <Link to="/login">
+                      <span className="colorBisque">🔗 Login</span>
                     </Link>
                   </Nav.Link>
                 </Navbar.Collapse>
