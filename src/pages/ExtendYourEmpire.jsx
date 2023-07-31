@@ -122,7 +122,7 @@ function ExtendYourEmpire() {
                   </Button>
                   <Button
                     variant="success"
-                    onClick={() => createShips("fighter")}
+                    onClick={() => {createShips("fighter");}}
                     disabled={isDisabled ? true : false}
                   >
                     Create 🚀
