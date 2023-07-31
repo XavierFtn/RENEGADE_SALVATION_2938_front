@@ -1,24 +1,26 @@
 import Header from "../models/ModelsHeader";
 import Footer from "../models/ModelsFooter";
 import Ships from "../Components/Ships/ViewShips";
-
 import { Button, Card, Modal } from "react-bootstrap";
 import ViewRessources from "../Components/Ressources/ViewRessources";
-import ViewShipyards from "../Components/Ships/ViewShipyards";
-import Createship from "../Components/Ships/CreateShips";
 import { useEffect, useState } from "react";
 import Map from "../Components/Map";
-
+import { getShips,getRessources,getShipyardsAvailable,updateShipQuantity } from "../Components/Api/backend_helper";
 import fighter from "../components/img/Ships/fighter.png";
 import frigate from "../components/img/Ships/frigate.png";
 import cruiser from "../components/img/Ships/cruiser.png";
 import destroyer from "../components/img/Ships/destroyer.png";
-
-import { useNavigate } from "react-router-dom";
+import swal from "sweetalert";
 
 function ExtendYourEmpire() {
-  const navigate = useNavigate();
+  const [ressources, setRessources] = useState({});
 
+  useEffect(() => {
+    getRessources().then((result) => setRessources(result));
+    getShips().then((ships) => setShips(ships));
+  }, []);
+
+  const [ships, setShips] = useState({});
   const [showfi, setShowfi] = useState(false);
   const [showfr, setShowfr] = useState(false);
   const [showcr, setShowcr] = useState(false);
@@ -27,10 +29,10 @@ function ExtendYourEmpire() {
   const handleClosefr = () => setShowfr(false);
   const handleClosecr = () => setShowcr(false);
   const handleClosede = () => setShowde(false);
-  const [ore, setOre] = useState(0);
   const [isDisabled, setIsDisabled] = useState(true);
+
   function handleShowfi() {
-    if (ore >= 50) {
+    if (ressources.ore >= 50) {
       setIsDisabled(false);
     } else {
       setIsDisabled(true);
@@ -38,7 +40,7 @@ function ExtendYourEmpire() {
     setShowfi(true);
   }
   function handleShowfr() {
-    if (ore >= 200) {
+    if (ressources.ore >= 200) {
       setIsDisabled(false);
     } else {
       setIsDisabled(true);
@@ -46,7 +48,7 @@ function ExtendYourEmpire() {
     setShowfr(true);
   }
   function handleShowcr() {
-    if (ore >= 800) {
+    if (ressources.ore >= 800) {
       setIsDisabled(false);
     } else {
       setIsDisabled(true);
@@ -54,36 +56,29 @@ function ExtendYourEmpire() {
     setShowcr(true);
   }
   function handleShowde() {
-    if (ore >= 2000) {
+    if (ressources.ore >= 2000) {
       setIsDisabled(false);
     } else {
       setIsDisabled(true);
     }
     setShowde(true);
   }
-  function ReadOre() {
-    var myHeaders = new Headers();
-    const token = JSON.parse(sessionStorage.getItem("token"));
 
-    myHeaders.append("Authorization", `Bearer ${token}`);
-
-    var requestOptions = {
-      method: "GET",
-      headers: myHeaders,
-      redirect: "follow",
-    };
-
-    fetch("http://127.0.0.1:8000/api/ressources/", requestOptions)
-      .then((response) => response.json())
-      .then((result) => {
-        setOre(result.ore);
-        console.log("result", result);
-      })
-      .catch((error) => console.log("error", error));
+  function createShips(type){
+    getShipyardsAvailable().then((result) => {
+      console.log('resultshipavailable',result);
+      if (result.success){
+        updateShipQuantity(type).then(() => {
+          getRessources().then((result) => setRessources(result));
+          swal("Created!", `Your ${type} is under construction`, "info");
+        });
+      }
+      else{
+        swal("Error", "No Shipyard Available", "error");
+      }
+    });
   }
-  useEffect(() => {
-    ReadOre();
-  }, []);
+
   return (
     <div className="container-fluid">
       <Header name="Prepare for war!" />
@@ -94,7 +89,7 @@ function ExtendYourEmpire() {
           <Card className="text-center p-1 ">
             <Card.Header className="py-0 ">
               <h1 className="orbitron2">
-                <Ships type={"fighter"} />
+                <Ships type={"fighter"} ships={ships} />
               </h1>
             </Card.Header>
             <img src={fighter} alt="fighter" />
@@ -120,18 +115,14 @@ function ExtendYourEmpire() {
                 </Modal.Body>
                 <Modal.Footer>
                   <p>
-                    You have 🪨: <strong>{ore}</strong> Ore Units
+                    You have 🪨: <strong>{ressources.ore}</strong> Ore Units
                   </p>
                   <Button variant="secondary" onClick={handleClosefi}>
                     Close
                   </Button>
                   <Button
                     variant="success"
-                    onClick={() => {
-                      Createship("fighter");
-                      handleClosefi();
-                      navigate("/extendyourempire");
-                    }}
+                    onClick={() => {createShips("fighter");}}
                     disabled={isDisabled ? true : false}
                   >
                     Create 🚀
@@ -145,7 +136,7 @@ function ExtendYourEmpire() {
           <Card className="text-center p-1">
             <Card.Header className="py-0 ">
               <h1 className="orbitron2">
-                <Ships type={"frigate"} />
+                <Ships type={"frigate"} ships={ships} />
               </h1>
             </Card.Header>
             <img src={frigate} alt="frigate" />
@@ -173,17 +164,14 @@ function ExtendYourEmpire() {
                 </Modal.Body>
                 <Modal.Footer>
                   <p>
-                    You have 🪨: <strong>{ore}</strong> Ore Units
+                    You have 🪨: <strong>{ressources.ore}</strong> Ore Units
                   </p>
                   <Button variant="secondary" onClick={handleClosefr}>
                     Close
                   </Button>
                   <Button
                     variant="success"
-                    onClick={() => {
-                      Createship("frigate");
-                      handleClosefr();
-                    }}
+                    onClick={() =>createShips("frigate")}
                     disabled={isDisabled ? true : false}
                   >
                     Create 🚀
@@ -197,7 +185,7 @@ function ExtendYourEmpire() {
           <Card className="text-center p-1">
             <Card.Header className="py-0 ">
               <h1 className="orbitron2">
-                <Ships type={"cruiser"} />
+                <Ships type={"cruiser"} ships={ships} />
               </h1>
             </Card.Header>
             <img src={cruiser} alt="cruiser" />
@@ -225,17 +213,14 @@ function ExtendYourEmpire() {
                 </Modal.Body>
                 <Modal.Footer>
                   <p>
-                    You have 🪨: <strong>{ore}</strong> Ore Units
+                    You have 🪨: <strong>{ressources.ore}</strong> Ore Units
                   </p>
                   <Button variant="secondary" onClick={handleClosecr}>
                     Close
                   </Button>
                   <Button
                     variant="success"
-                    onClick={() => {
-                      Createship("cruiser");
-                      handleClosecr();
-                    }}
+                    onClick={() =>createShips("cruiser")}
                     disabled={isDisabled ? true : false}
                   >
                     Create 🚀
@@ -249,7 +234,7 @@ function ExtendYourEmpire() {
           <Card className="text-center px-0 pb-0 pt-2">
             <Card.Header className="py-0 ">
               <h1 className="orbitron2">
-                <Ships type={"destroyer"} />
+                <Ships type={"destroyer"} ships={ships} />
               </h1>
             </Card.Header>
             <img src={destroyer} alt="destroyer" />
@@ -277,17 +262,14 @@ function ExtendYourEmpire() {
                 </Modal.Body>
                 <Modal.Footer>
                   <p>
-                    You have 🪨: <strong>{ore}</strong> Ore Units
+                    You have 🪨: <strong>{ressources.ore}</strong> Ore Units
                   </p>
                   <Button variant="secondary" onClick={handleClosede}>
                     Close
                   </Button>
                   <Button
                     variant="success"
-                    onClick={() => {
-                      Createship("destroyer");
-                      handleClosede();
-                    }}
+                    onClick={() =>createShips("destroyer")}
                     disabled={isDisabled ? true : false}
                   >
                     Create 🚀
@@ -304,7 +286,7 @@ function ExtendYourEmpire() {
           <Card.Header className="py-0 ">
             <div className="col d-flex justify-content-center">
               <h1 className="orbitron">Ressources : </h1>
-              <ViewRessources />
+              <ViewRessources ressources={ressources}/>
             </div>
           </Card.Header>
         </Card>

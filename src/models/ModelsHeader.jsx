@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Container, Image, Nav, NavDropdown, Navbar } from "react-bootstrap";
 import PropTypes from "prop-types";
+import { Link } from "react-router-dom";
 
 function Header(props) {
   const [connected, setConnected] = useState(false);
@@ -42,7 +43,7 @@ function Header(props) {
         >
           <Container fluid>
             {disconnected && (
-              <Navbar.Brand href="/">
+              <Navbar.Brand>
                 <img
                   src="src\assets\logo\rs2938.png"
                   style={{
@@ -52,7 +53,7 @@ function Header(props) {
               </Navbar.Brand>
             )}
             {connected && (
-              <Navbar.Brand href="/">
+              <Navbar.Brand>
                 <img
                   src="src\assets\logo\rs2938.png"
                   style={{
@@ -71,37 +72,51 @@ function Header(props) {
                   style={{ maxHeight: "100px" }}
                   navbarScroll
                 >
-                  <Nav.Link href="/"> 🏚️ Home</Nav.Link>
+                  <Navbar.Brand>
+                    <Link to="/"> 🏚️ Home</Link>
+                  </Navbar.Brand>
                   <NavDropdown
                     title="Your Empire"
                     id="navbarScrollingDropdown1"
                   >
-                    <NavDropdown.Item href="/yourempire">
-                    <span className="orbitron4"> 🛕 {planet} &apos; system</span>
+                    <NavDropdown.Item>
+                      <Link to="/yourempire">
+                        <span className="orbitron4">
+                          {" "}
+                          🛕 {planet} &apos; system
+                        </span>
+                      </Link>
                     </NavDropdown.Item>
                     <NavDropdown.Divider />
-                    <NavDropdown.Item href="/buildyourempire">
-                    <span className="orbitron4">⚒️ Build Your Empire</span>
+                    <NavDropdown.Item>
+                      <Link to="/buildyourempire">
+                        <span className="orbitron4">⚒️ Build Your Empire</span>
+                      </Link>
                     </NavDropdown.Item>
-                    
-                    <NavDropdown.Item href="/extendyourempire">
 
-                    <span className="orbitron4">🔭 Extend Your Empire</span>
-
-                    </NavDropdown.Item>
-                    <NavDropdown.Divider />
-                    <NavDropdown.Item href="/battlehistory">
-                    <span className="orbitron5">📜 Battle  History </span>
-
-                    </NavDropdown.Item>
-                    <NavDropdown.Item href="/battle">
-                      <span className="colorRed orbitron3"> ⚔️ <strong>Battle!</strong> </span>
-
+                    <NavDropdown.Item >
+                    <Link to="/extendyourempire">
+                      <span className="orbitron4">🔭 Extend Your Empire</span>
+                      </Link>
                     </NavDropdown.Item>
                     <NavDropdown.Divider />
-                    <NavDropdown.Item href="/ranking">
-                    <span className="orbitron6">🏆 World Ranking </span>
-
+                    <NavDropdown.Item >
+                      <Link to="/battlehistory">
+                        <span className="orbitron5">📜 Battle History </span>
+                      </Link>
+                    </NavDropdown.Item>
+                    <NavDropdown.Item >
+                      <Link to="/battle">
+                        <span className="colorRed orbitron3">
+                          ⚔️ <strong>Battle!</strong>
+                        </span>
+                      </Link>
+                    </NavDropdown.Item>
+                    <NavDropdown.Divider />
+                    <NavDropdown.Item>
+                      <Link to="/ranking">
+                        <span className="orbitron6">🏆 World Ranking </span>
+                      </Link>
                     </NavDropdown.Item>
                   </NavDropdown>
                 </Nav>
@@ -123,18 +138,24 @@ function Header(props) {
                     title={UserMenu}
                     id="navbarScrollingDropdown2"
                   >
-                    <NavDropdown.Item href="/editprofile">
-                      🔍 Edit your profile
+                    <NavDropdown.Item>
+                      <Link to="/editprofile">🔍 Edit your profile</Link>
                     </NavDropdown.Item>
                     <NavDropdown.Divider />
-                    <NavDropdown.Item href="/">
-
-                    <span className="colorYellow"><strong> 🪙 Premium Access </strong></span>
+                    <NavDropdown.Item>
+                      <Link to="/payment">
+                        <span className="colorYellow">
+                          <strong> 🪙 Premium Access </strong>
+                        </span>
+                      </Link>
                     </NavDropdown.Item>
                     <NavDropdown.Divider />
-                    <NavDropdown.Item href="/disconnect">
-                      <span className="colorRed"><strong>🪧 Logout</strong></span>
-
+                    <NavDropdown.Item >
+                    <Link to="/disconnect">
+                      <span className="colorRed">
+                        <strong>🪧 Logout</strong>
+                      </span>
+                      </Link>
                     </NavDropdown.Item>
                   </NavDropdown>
                 </Nav>
@@ -142,15 +163,19 @@ function Header(props) {
 
               {disconnected && (
                 <Navbar.Collapse>
-                  <Nav.Link href="/register">
+                  <Nav.Link >
+                  <Link to="/register">
                     <span className="colorRed"> 📑 Register</span>
+                    </Link>
                   </Nav.Link>
                 </Navbar.Collapse>
               )}
               {disconnected && (
                 <Navbar.Collapse className="justify-content-end">
-                  <Nav.Link href="/login">
+                  <Nav.Link >
+                  <Link to="/login">
                     <span className="colorBisque">🔗 Login</span>
+                    </Link>
                   </Nav.Link>
                 </Navbar.Collapse>
               )}

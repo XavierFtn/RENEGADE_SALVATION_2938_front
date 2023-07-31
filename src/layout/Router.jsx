@@ -1,15 +1,3 @@
-/**
- * @description      :
- * @author           :
- * @group            :
- * @created          : 27/07/2023 - 22:19:55
- *
- * MODIFICATION LOG
- * - Version         : 1.0.0
- * - Date            : 27/07/2023
- * - Author          :
- * - Modification    :
- **/
 import Home from "../pages/home";
 import BuildYourEmpire from "../pages/BuildYourEmpire";
 import YourEmpire from "../pages/YourEmpire";
@@ -24,9 +12,8 @@ import ResetPWD from "../pages/ResetPWD";
 import ForgetPWD from "../pages/ForgetPWD";
 import Stripe from "../Components/Stripe/Stripe";
 import History from "../pages/History";
-import EndBattle from "../pages/EndBattle";
 import Ranking from "../pages/Ranking";
-
+import Stripe from "../pages/Stripe";
 
 const router = createBrowserRouter([
   {
@@ -62,19 +49,18 @@ const router = createBrowserRouter([
     element: <Battle />,
   },
   {
-    path: "/ranking",
-    element: <Ranking />,
+    path: "/payment",
+    element: <Stripe />,
   },
   {
-    path: "/endofbattle",
-    element: <EndBattle />
+    path: "/ranking",
+    element: <Ranking />,
   },
   {
     path: "/battlehistory",
     element: <History />,
   },
   {
-
     path: "/editprofile",
     element: <EditProfil />,
   },
