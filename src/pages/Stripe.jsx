@@ -25,7 +25,7 @@ function Stripe() {
               <Card.Body>
                 <Card.Title className="orbitron2">Buy Ore</Card.Title>
                 <Card.Text className="orbitron5">Price : 1€</Card.Text>
-                <Button className="orbitron5" variant="warning" href="">
+                <Button className="orbitron5" variant="warning" href="https://buy.stripe.com/test_14kcQ29Tl6kQgtq001">
                   Payment
                 </Button>
               </Card.Body>
@@ -36,7 +36,7 @@ function Stripe() {
               <Card.Body>
                 <Card.Title className="orbitron2">Buy Fuel</Card.Title>
                 <Card.Text className="orbitron5">Price : 1€</Card.Text>
-                <Button className="orbitron5" variant="warning" href="">
+                <Button className="orbitron5" variant="warning" href="https://buy.stripe.com/test_cN25nAaXp4cI0us4gi">
                   Payment
                 </Button>
               </Card.Body>
@@ -47,7 +47,7 @@ function Stripe() {
               <Card.Body>
                 <Card.Title className="orbitron2">Buy Energy</Card.Title>
                 <Card.Text className="orbitron5">Price : 1€</Card.Text>
-                <Button className="orbitron5" variant="warning" href="">
+                <Button className="orbitron5" variant="warning" href="https://buy.stripe.com/test_cN25nAaXp4cI0us4gi">
                   Payment
                 </Button>
               </Card.Body>
